@@ -1,0 +1,136 @@
+PS C:\Users\HP\OneDrive\Desktop\AI\clones\sccialmedia> npm create vite@latest
+
+> npx
+> create-vite
+
+│
+◇  Project name:
+│  .
+│
+◇  Select a framework:
+│  React
+│
+◇  Select a variant:
+│  TypeScript
+│
+◇  Use rolldown-vite (Experimental)?:
+│  No
+│
+◇  Install with npm and start now?
+│  Yes
+│
+◇  Scaffolding project in C:\Users\HP\OneDrive\Desktop\AI\clones\sccialmedia...
+│
+◇  Installing dependencies with npm...
+
+npm install tailwindcss @tailwindcss/vite
+
+------------------------------------------------------
+
+src/index.css : @import "tailwindcss";
+
+--------------------------------------------------
+
+tsconfig.json =====================>
+
+Copy
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+
+
+-----------------------------------------------
+tsconfig.app.json  ===========================>
+
+Copy
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  }
+}
+
+
+
+--------------------------------------------------
+
+npm install -D @types/node
+
+
+---------------------------------------------
+
+vite.config.ts
+
+import path from "path"
+import tailwindcss from "@tailwindcss/vite"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+
+--------------------------------------------------------
+
+
+npx shadcn@latest init
+
+ Which color would you like to use as the base color? » - Use arrow-keys. Return to submit.
+>   Neutral
+
+
+
+---------------------------------------------------------------
+
+npx shadcn@latest add button
+
+
+--------------------------------------------------------------
+
+import { Button } from "@/components/ui/button"
+
+function App() {
+  return (
+    <div className="flex min-h-svh flex-col items-center justify-center">
+      <Button>Click me</Button>
+    </div>
+  )
+}
+
+export default App
+
+---------------------------------
+
+npm i react-icons
+npm i react-avatar
+npm i react-router-dom
+
+
+npm i axios
+npm i react-hot-toast
