@@ -1,0 +1,7 @@
+npm init -y
+
+npm i express cors dotenv cookie-parser mongoose bcrypt jsonwebtoken
+
+npm i --save-dev nodemon
+
+
