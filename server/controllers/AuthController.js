@@ -96,6 +96,7 @@ export const login = async (req, res) => {
         image: user.image,
         color: user.color,
       },
+      success: true,
     });
   } catch (error) {
     console.log("catch block of login ==>", error.message);

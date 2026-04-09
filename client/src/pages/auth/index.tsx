@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { apiClient } from "@/lib/api-client";
-import { SIGNUP_ROUTE } from "@/utils/constants";
+import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
@@ -45,8 +47,28 @@ const Auth = () => {
   };
 
   const handleLogin = async () => {
-    if(validateLogin()){
-      
+    if (validateLogin()) {
+      try {
+        const res = await apiClient.post(
+          LOGIN_ROUTE,
+          { email, password },
+          { withCredentials: true },
+        );
+        console.log("res login ==>", res);
+        // res is object and inside res we have object like ==>  data : and inside it has user object ,
+        // config object , request, headers and prop like status
+        if (res.data.success) {
+          if (res.data.user.profileSetup) {
+            navigate("/chat");
+          } else {
+            navigate("/profile");
+          }
+        }
+      } catch (error: any) {
+        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message/.response etc
+        // Chrome console often shows AxiosError instances as a string (AxiosError: ...) for readability.
+        toast.error(error.response.data.message, { duration: 1000 });
+      }
     }
   };
   const handleSignup = async () => {
@@ -55,9 +77,12 @@ const Auth = () => {
         const res = await apiClient.post(
           SIGNUP_ROUTE,
           { email, password },
-          { withCredentials: true },
+          // { withCredentials: true },
         );
         console.log("res signup ==>", res);
+        if (res.data.success) {
+          navigate("/profile");
+        }
       } catch (error: any) {
         // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message/.response etc
         // Chrome console often shows AxiosError instances as a string (AxiosError: ...) for readability.
@@ -84,7 +109,7 @@ const Auth = () => {
             </p>
           </div>
           <div className="flex items-center justify-center w-full">
-            <Tabs className="w-3/4">
+            <Tabs className="w-3/4" defaultValue="login">
               <TabsList className="bg-transparent rounded-none w-full">
                 <TabsTrigger
                   className="
@@ -121,7 +146,7 @@ const Auth = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button className="rounded-full" onClick={handleLogin}>
-                  Signup
+                  Login
                 </Button>
               </TabsContent>
 
