@@ -98,6 +98,8 @@ export const login = async (req, res) => {
       },
       success: true,
     });
+    // undefined fields are automatically removed in JSON : "firstName": undefined,
+    // null and "" (empty string) included in JSON
   } catch (error) {
     console.log("catch block of login ==>", error.message);
     return res

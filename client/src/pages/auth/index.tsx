@@ -8,8 +8,10 @@ import { toast } from "sonner";
 import { apiClient } from "@/lib/api-client";
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/utils/constants";
 import { useNavigate } from "react-router-dom";
+import { useAppStore } from "@/store";
 
 const Auth = () => {
+  const { setUserInfo } = useAppStore();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -58,6 +60,7 @@ const Auth = () => {
         // res is object and inside res we have object like ==>  data : and inside it has user object ,
         // config object , request, headers and prop like status
         if (res.data.success) {
+          setUserInfo(res.data.user);
           if (res.data.user.profileSetup) {
             navigate("/chat");
           } else {
@@ -81,6 +84,8 @@ const Auth = () => {
         );
         console.log("res signup ==>", res);
         if (res.data.success) {
+          setUserInfo(res.data.user);
+
           navigate("/profile");
         }
       } catch (error: any) {
