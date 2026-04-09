@@ -1,17 +1,70 @@
-import  { useState } from "react";
+import { useState } from "react";
 import Background from "../../assets/login2.png";
 import Victory from "../../assets/victory.svg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
+import { SIGNUP_ROUTE } from "@/utils/constants";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {};
-  const handleSignup = async () => {};
+  const validateSignup = () => {
+    if (!email.length) {
+      toast.error("Email is required", { duration: 2000 });
+      return false;
+    }
+    if (!password.length) {
+      toast.error("Password is required", { duration: 2000 });
+      return false;
+    }
+    if (password !== confirmPassword) {
+      toast.error("Password and Confirm Password must be same!", {
+        duration: 2000,
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const validateLogin = () => {
+    if (!email.length) {
+      toast.error("Email is required", { duration: 2000 });
+      return false;
+    }
+    if (!password.length) {
+      toast.error("Password is required", { duration: 2000 });
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleLogin = async () => {
+    if(validateLogin()){
+      
+    }
+  };
+  const handleSignup = async () => {
+    if (validateSignup()) {
+      try {
+        const res = await apiClient.post(
+          SIGNUP_ROUTE,
+          { email, password },
+          { withCredentials: true },
+        );
+        console.log("res signup ==>", res);
+      } catch (error: any) {
+        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message/.response etc
+        // Chrome console often shows AxiosError instances as a string (AxiosError: ...) for readability.
+        toast.error(error.response.data.message, { duration: 1000 });
+      }
+    }
+  };
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
       {/* width >= , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}
