@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
-
+import authRoutes from "./routes/AuthRoutes.js"
 dotenv.config();
 
 const app = express();
@@ -24,6 +24,8 @@ app.use(
 
 app.use(cookieParser()); //It parses cookies from the request and makes them available in req.cookies.
 app.use(express.json()); //It parses incoming JSON request bodies and makes data available in req.body.
+
+app.use("/api/v1/auth",authRoutes)
 
 // Health check
 app.get("/api/health", (req, res) => {
