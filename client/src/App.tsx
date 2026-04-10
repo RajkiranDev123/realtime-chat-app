@@ -29,17 +29,15 @@ function App() {
         const res = await apiClient.get(GET_USER_INFO, {
           withCredentials: true,
         });
-        if(res.status===200 && res.data.id){
-          setUserInfo(res.data)
-
-        }else{
-          setUserInfo(null)
+        if (res.status === 200 && res.data.id) {
+          setUserInfo(res.data);
+        } else {
+          setUserInfo(null);
         }
-
       } catch (error) {
-        setUserInfo(null)
-      }finally{
-        setLoading(false)
+        setUserInfo(null);
+      } finally {
+        setLoading(false);
       }
     };
     if (!userInfo) {
@@ -71,7 +69,6 @@ function App() {
             path="/chat"
             element={
               <PrivateRoute>
-                {" "}
                 <Chat />
               </PrivateRoute>
             }

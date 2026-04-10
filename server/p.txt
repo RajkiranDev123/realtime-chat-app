@@ -4,4 +4,8 @@ npm i express cors dotenv cookie-parser mongoose bcrypt jsonwebtoken
 
 npm i --save-dev nodemon
 
+npm install express-rate-limit
+
+npm install winston morgan
+
 

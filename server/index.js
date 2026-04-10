@@ -3,7 +3,12 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
-import authRoutes from "./routes/AuthRoutes.js"
+import authRoutes from "./routes/AuthRoutes.js";
+import rateLimit from "express-rate-limit";
+//
+import morgan from "morgan";
+import fs from "fs";
+import logger from "./utils/logger.js";
 dotenv.config();
 
 const app = express();
@@ -14,7 +19,27 @@ if (!process.env.DATABASE_URL) {
   process.exit(1);
 }
 
-// Middleware
+// logs folder and files
+if (!fs.existsSync("logs")) {
+  fs.mkdirSync("logs");
+}
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per window
+  message: {
+    success: false,
+    message: "Too many requests, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const stream = {
+  write: (message) => logger.info(message.trim()),
+}; // SENDS logs to Winston
+
+// Middlewares
 app.use(
   cors({
     origin: process.env.ORIGIN,
@@ -22,21 +47,40 @@ app.use(
   }),
 );
 
+app.use(limiter);
+
+app.use(morgan("combined", { stream })); // captures: HTTP method , URL , Status , Response time , IP address
+
 app.use(cookieParser()); //It parses cookies from the request and makes them available in req.cookies.
 app.use(express.json()); //It parses incoming JSON request bodies and makes data available in req.body.
 
-app.use("/api/v1/auth",authRoutes)
+// custom performance tracking using Winston directly
+app.use((req, res, next) => {
+  const start = Date.now();
 
-// Health check
+  res.on("finish", () => {
+    logger.info("API_METRICS", {
+      method: req.method,
+      url: req.url,
+      status: res.statusCode,
+      duration: `${Date.now() - start}ms`,
+      ip: req.ip,
+    });
+  });
+
+  next();
+});
+
+// end of custom performance tracking using Winston directly
+
+//Routes
+app.use("/api/v1/auth", authRoutes);
+
 app.get("/api/health", (req, res) => {
   res.send("API is running...");
 });
 
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err.message);
-  res.status(500).json({ message: "Internal Server Error" });
-});
+//Routes end
 
 // DB + Server start
 mongoose

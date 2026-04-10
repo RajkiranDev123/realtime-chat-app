@@ -103,9 +103,9 @@ const Auth = () => {
         md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2"
       >
         {/* col-1 */}
-        <div className="flex flex-col gap-10 items-center justify-center bg-yellow-300">
-          <div className="flex items-center justify-center flex-col bg-red-300 p-1">
-            <div className="flex items-center justify-center bg-green-200">
+        <div className="flex flex-col gap-10 items-center justify-center ">
+          <div className="flex items-center justify-center flex-col  p-1">
+            <div className="flex items-center justify-center ">
               <h1 className="text-5xl font-bold md:text-6xl">Welcome</h1>
               <img src={Victory} alt="victory" className="h-[100px]" />
             </div>
