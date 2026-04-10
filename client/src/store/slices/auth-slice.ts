@@ -3,13 +3,13 @@ import type { StateCreator } from "zustand";
 // StateCreator is a TypeScript type from Zustand.
 type UserInfo = {
   email: string;
-  profileSetup:boolean,
-  id:string
+  profileSetup: boolean;
+  id: string;
 };
 
 export type AuthSlice = {
   userInfo: UserInfo | null;
-  setUserInfo: (userInfo: UserInfo) => void;
+  setUserInfo: (userInfo: UserInfo | null) => void;
 };
 
 export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({

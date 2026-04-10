@@ -108,4 +108,30 @@ export const login = async (req, res) => {
   }
 };
 
-/////////////////////////////// login ///////////////////
+/////////////////////////////// user info ///////////////////
+
+export const getUserInfo = async (req, res) => {
+  try {
+    const userData = await User.findById(req.userId);
+    if (!userData) {
+      return res.status(400).json({
+        success: false,
+        message: "User with given id not found.",
+      });
+    }
+    return res.status(200).json({
+      id: userData._id,
+      email: userData.email,
+      profileSetup: userData.profileSetup,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      image: userData.image,
+      color: userData.color,
+    });
+  } catch (error) {
+    console.log("catch block of user info ==>", error.message);
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", success: false });
+  }
+};
