@@ -1,6 +1,7 @@
 import { compare } from "bcrypt";
 import User from "../models/UserModel.js";
 
+
 import jwt from "jsonwebtoken";
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
@@ -107,6 +108,7 @@ export const login = async (req, res) => {
       .json({ message: "Internal Server Error", success: false });
   }
 };
+
 
 /////////////////////////////// user info ///////////////////
 

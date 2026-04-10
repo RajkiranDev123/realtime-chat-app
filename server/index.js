@@ -9,6 +9,7 @@ import rateLimit from "express-rate-limit";
 import morgan from "morgan";
 import fs from "fs";
 import logger from "./utils/logger.js";
+
 dotenv.config();
 
 const app = express();
@@ -76,6 +77,7 @@ app.use((req, res, next) => {
 //Routes
 app.use("/api/v1/auth", authRoutes);
 
+
 app.get("/api/health", (req, res) => {
   res.send("API is running...");
 });
@@ -95,6 +97,7 @@ mongoose
 
 // Graceful shutdown
 // SIGINT (Signal Interrupt) is a signal sent to your Node.js app when you try to stop it manually.
+// SIGINT = signal sent when you press Ctrl + C
 process.on("SIGINT", async () => {
   await mongoose.connection.close();
   console.log("DB connection closed");

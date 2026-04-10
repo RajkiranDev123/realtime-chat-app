@@ -8,4 +8,18 @@ npm install express-rate-limit
 
 npm install winston morgan
 
+-------------------
+
+npm i swagger-ui-express swagger-jsdoc : 
+
+Zod + Auto Swagger (no manual work) : next time
+http://localhost:8080/api-docs/
+
+--------------------
+
+auto full :
+npm i zod zod-to-json-schema swagger-ui-express glob
+
+
+
 

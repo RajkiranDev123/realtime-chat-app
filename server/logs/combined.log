@@ -1,12 +1,40 @@
-{"level":"info","message":"::1 - - [10/Apr/2026:04:36:53 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 200 85 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
-{"duration":"91ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/user-info"}
-{"level":"info","message":"::1 - - [10/Apr/2026:04:36:53 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
-{"duration":"37ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
-{"level":"info","message":"::1 - - [10/Apr/2026:04:37:28 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
-{"duration":"53ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
-{"level":"info","message":"::1 - - [10/Apr/2026:04:37:28 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
-{"duration":"62ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
-{"level":"info","message":"::1 - - [10/Apr/2026:04:37:32 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
-{"duration":"304ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
-{"level":"info","message":"::1 - - [10/Apr/2026:04:37:35 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
-{"duration":"96ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:29:53 +0000] \"GET /api-docs/ HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"19ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:29:53 +0000] \"GET /api-docs/swagger-ui-init.js HTTP/1.1\" 200 4256 \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"3ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/swagger-ui-init.js"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:29:53 +0000] \"GET /api-docs/swagger-ui.css HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"12ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/swagger-ui.css"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:29:53 +0000] \"GET /api-docs/swagger-ui-bundle.js HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"13ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/swagger-ui-bundle.js"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:29:53 +0000] \"GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"39ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/swagger-ui-standalone-preset.js"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:29:53 +0000] \"GET /api-docs/favicon-32x32.png HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"3ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/favicon-32x32.png"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:30:49 +0000] \"POST /api/v1/auth/login HTTP/1.1\" 400 62 \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"43ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":400,"url":"/login"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:30:53 +0000] \"POST /api/v1/auth/login HTTP/1.1\" 400 62 \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"60ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":400,"url":"/login"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:31:10 +0000] \"POST /api/v1/auth/login HTTP/1.1\" 400 62 \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"33ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":400,"url":"/login"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:31:11 +0000] \"POST /api/v1/auth/login HTTP/1.1\" 400 62 \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"54ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":400,"url":"/login"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:31:38 +0000] \"GET /api-docs/ HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"6ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:31:38 +0000] \"GET /api-docs/swagger-ui.css HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"5ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/swagger-ui.css"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:31:38 +0000] \"GET /api-docs/swagger-ui-init.js HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"1ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/swagger-ui-init.js"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:31:38 +0000] \"GET /api-docs/swagger-ui-bundle.js HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"9ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/swagger-ui-bundle.js"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:31:38 +0000] \"GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"10ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/swagger-ui-standalone-preset.js"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:53:57 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"68ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:54:24 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 401 66 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"5ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":401,"url":"/user-info"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:54:42 +0000] \"POST /api/v1/auth/login HTTP/1.1\" 200 109 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"163ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/login"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:56:03 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"125ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [10/Apr/2026:06:56:06 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36\""}
+{"duration":"75ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}

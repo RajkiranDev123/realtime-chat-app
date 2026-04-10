@@ -9,6 +9,7 @@ import { apiClient } from "@/lib/api-client";
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useAppStore } from "@/store";
+import { Copy } from "lucide-react";
 
 const Auth = () => {
   const { setUserInfo } = useAppStore();
@@ -136,6 +137,17 @@ const Auth = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent className="flex flex-col gap-5 " value="login">
+                <div className="flex gap-4 items-center">
+                  Copy Test Email{" "}
+                  <Copy
+                    onClick={() => {
+                      navigator.clipboard.writeText("rajtech645@gmail.com"); // ✅ fixed email
+                      toast.success("Email copied!",{duration:1000});
+                    }}
+                    className="cursor-pointer animate-pulse"
+                    size={18}
+                  />
+                </div>
                 <Input
                   placeholder="Email"
                   type="email"
@@ -143,6 +155,17 @@ const Auth = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+                <div className="flex gap-4 items-center">
+                  Copy Test Password{" "}
+                  <Copy
+                    onClick={() => {
+                      navigator.clipboard.writeText("123"); // ✅ fixed email
+                      toast.success("Password copied!",{duration:1000});
+                    }}
+                    className="cursor-pointer animate-pulse"
+                    size={18}
+                  />
+                </div>
                 <Input
                   placeholder="Password"
                   type="password"
