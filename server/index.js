@@ -20,7 +20,7 @@ if (!process.env.DATABASE_URL) {
   process.exit(1);
 }
 
-// logs folder and files
+// create folder 
 if (!fs.existsSync("logs")) {
   fs.mkdirSync("logs");
 }
@@ -76,7 +76,6 @@ app.use((req, res, next) => {
 
 //Routes
 app.use("/api/v1/auth", authRoutes);
-
 
 app.get("/api/health", (req, res) => {
   res.send("API is running...");
