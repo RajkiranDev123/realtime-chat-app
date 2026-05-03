@@ -142,7 +142,7 @@ const Auth = () => {
                   <Copy
                     onClick={() => {
                       navigator.clipboard.writeText("rajtech645@gmail.com"); // ✅ fixed email
-                      toast.success("Email copied!",{duration:1000});
+                      toast.success("Email copied!", { duration: 1000 });
                     }}
                     className="cursor-pointer animate-pulse"
                     size={18}
@@ -160,7 +160,7 @@ const Auth = () => {
                   <Copy
                     onClick={() => {
                       navigator.clipboard.writeText("123"); // ✅ fixed email
-                      toast.success("Password copied!",{duration:1000});
+                      toast.success("Password copied!", { duration: 1000 });
                     }}
                     className="cursor-pointer animate-pulse"
                     size={18}
