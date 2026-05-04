@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import authRoutes from "./routes/AuthRoutes.js";
 import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 //
 import morgan from "morgan";
 import fs from "fs";
@@ -15,19 +16,20 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Env validation
 if (!process.env.DATABASE_URL) {
   console.error("DATABASE_URL is missing");
   process.exit(1);
 }
 
-// create folder 
+// create folder
 if (!fs.existsSync("logs")) {
   fs.mkdirSync("logs");
 }
 
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 100, // limit each IP to 100 requests per window
+  max: 100, // Limits each IP to 100 requests/min
   message: {
     success: false,
     message: "Too many requests, please try again later.",
@@ -36,11 +38,16 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 
+// Morgan → Winston bridge
 const stream = {
   write: (message) => logger.info(message.trim()),
-}; // SENDS logs to Winston
+};
+// Morgan generates log → stream.write() → Winston stores it
 
 // Middlewares
+app.use(helmet());
+// “Helmet = adds protective headers to every HTTP response”
+
 app.use(
   cors({
     origin: process.env.ORIGIN,
@@ -60,6 +67,7 @@ app.use((req, res, next) => {
   const start = Date.now();
 
   res.on("finish", () => {
+    // "finish" fires when response is fully sent to client
     logger.info("API_METRICS", {
       method: req.method,
       url: req.url,
