@@ -67,7 +67,6 @@ export const login = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "All fields are required.",
-        // data: data
       });
     }
     const user = await User.findOne({ email });
@@ -87,9 +86,7 @@ export const login = async (req, res) => {
     res.cookie("jwt", createToken(email, user._id), {
       maxAge,
       secure: true,
-      sameSite: "None",
-      // Server sets cookie attributes (secure, sameSite, maxAge).
-      // Browser enforces them when deciding whether to store/send the cookie.
+      sameSite: "none",
     });
     return res.status(200).json({
       user: {
@@ -103,7 +100,7 @@ export const login = async (req, res) => {
       },
       success: true,
     });
-    // undefined fields are automatically removed in JSON : "firstName": undefined,
+    // undefined fields are automatically removed in JSON (response) : "firstName": undefined,
     // null and "" (empty string) included in JSON
   } catch (error) {
     console.log("catch block of login ==>", error.message);

@@ -39,7 +39,7 @@ userSchema.pre("save", async function () {
   this.password = await hash(this.password, salt);
 });
 
-// A document is an instance of a Mongoose model, and the model is built from a schema
+// A document is an instance of a Mongoose model, and the model is built from ==> schema
 const User = mongoose.model("User", userSchema);
 export default User;
 
