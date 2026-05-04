@@ -16,7 +16,6 @@ export const signup = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "All fields are required.",
-        // data: data
       });
     }
     const existingUser = await User.findOne({ email });
