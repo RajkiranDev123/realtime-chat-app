@@ -14,7 +14,7 @@ import logger from "./utils/logger.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8000;
 
 // Env validation
 if (!process.env.DATABASE_URL) {
@@ -23,6 +23,9 @@ if (!process.env.DATABASE_URL) {
 }
 
 // create folder
+// existsSync : checks synchronously whether a file or folder exists and
+// mkdirSync  : create a directory synchronously
+
 if (!fs.existsSync("logs")) {
   fs.mkdirSync("logs");
 }
