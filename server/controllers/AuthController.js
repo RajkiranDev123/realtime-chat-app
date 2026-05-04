@@ -113,6 +113,7 @@ export const login = async (req, res) => {
 /////////////////////////////// user info ///////////////////
 
 export const getUserInfo = async (req, res) => {
+  // req.userId = payload.userId;
   try {
     const userData = await User.findById(req.userId);
     if (!userData) {
