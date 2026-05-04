@@ -30,6 +30,9 @@ if (!fs.existsSync("logs")) {
   fs.mkdirSync("logs");
 }
 
+// RIGHT HERE (just before sending response), rate limiter adds headers:
+// RateLimit-Limit: 100 , RateLimit-Remaining: 99 , RateLimit-Reset: 60
+
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 100, // Limits each IP to 100 requests/min
@@ -47,9 +50,8 @@ const stream = {
 };
 // Morgan generates log → stream.write() → Winston stores it
 
-// Middlewares
-app.use(helmet());
-// “Helmet = adds protective headers to every HTTP response”
+// Middlewares starts
+app.use(helmet()); // “Helmet = adds protective headers to every HTTP response”
 
 app.use(
   cors({
