@@ -18,3 +18,13 @@
 {"duration":"213ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
 {"level":"info","message":"::1 - - [04/May/2026:07:14:04 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
 {"duration":"182ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [04/May/2026:07:15:43 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"75ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [04/May/2026:07:17:09 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 401 66 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"4ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":401,"url":"/user-info"}
+{"level":"info","message":"::1 - - [04/May/2026:07:17:13 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 401 66 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"2ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":401,"url":"/user-info"}
+{"level":"info","message":"::1 - - [04/May/2026:07:17:19 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 401 66 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"2ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":401,"url":"/user-info"}
+{"level":"info","message":"::1 - - [04/May/2026:07:17:24 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 401 66 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"4ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":401,"url":"/user-info"}
