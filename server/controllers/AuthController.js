@@ -1,4 +1,4 @@
-import { compare } from "bcrypt";
+import { compare } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
 import User from "../models/UserModel.js";
 
 import jwt from "jsonwebtoken";
@@ -47,7 +47,7 @@ export const signup = async (req, res) => {
         email: user.email,
         profileSetup: user.profileSetup,
       },
-      message: "Account Created.",
+      message: "Account Created. Setup your profile now.",
       success: true,
     });
   } catch (error) {
@@ -73,17 +73,18 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(400).json({
         success: false,
-        message: "User with given email not found.",
+        message: "User with given email not found. Create an account now.",
       });
     }
-    const auth = await compare(password, user.password);
-    if (!auth) {
+    const comparePassword = await compare(password, user.password);
+    if (!comparePassword) {
       return res.status(400).json({
         success: false,
-        message: "Password is not correct..",
+        message: "Password is not correct.",
       });
     }
     res.cookie("jwt", createToken(email, user._id), {
+      httpOnly: true,
       maxAge,
       secure: true,
       sameSite: "none",
@@ -126,6 +127,7 @@ export const getUserInfo = async (req, res) => {
       id: userData._id,
       email: userData.email,
       profileSetup: userData.profileSetup,
+      // 
       firstName: userData.firstName,
       lastName: userData.lastName,
       image: userData.image,
@@ -138,3 +140,9 @@ export const getUserInfo = async (req, res) => {
       .json({ message: "Internal Server Error", success: false });
   }
 };
+
+// | Method       | Argument Type        | Returns                   |
+// | ------------ | -------------------- | ------------------------- |
+// | `find()`     | Object (filter)      | Array of documents or []  |
+// | `findOne()`  | Object (filter)      | Single document or `null` |
+// | `findById()` | ID (string/ObjectId) | Single document or `null` |

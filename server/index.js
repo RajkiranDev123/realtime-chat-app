@@ -92,7 +92,7 @@ app.use((req, res, next) => {
 //Routes
 app.use("/api/v1/auth", authRoutes);
 
-app.get("/api/health", (req, res) => {
+app.get("/api/v1/health", (req, res) => {
   res.send("API is running...");
 });
 
