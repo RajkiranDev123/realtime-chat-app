@@ -57,7 +57,9 @@ app.use(
 
 app.use(limiter);
 
+// combined : it’s an Apache-style access log, which is a plain text format with spaces as separators.
 app.use(morgan("combined", { stream })); // captures: HTTP method , URL , Status , Response time , IP address
+// { stream } → don’t print to console , instead call stream.write(...)
 
 app.use(cookieParser()); //It parses cookies from the request and makes them available in req.cookies.
 app.use(express.json()); //It parses incoming JSON request bodies and makes data available in req.body.
