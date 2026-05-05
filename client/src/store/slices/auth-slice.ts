@@ -1,5 +1,5 @@
 import type { StateCreator } from "zustand";
-// StateCreator gives types to: set , state ,your slice ,Without it → everything becomes any ❌
+// StateCreator gives types to : set , state , your slice , Without it → everything becomes any ❌
 // StateCreator is a TypeScript type from Zustand.
 type UserInfo = {
   email: string;
