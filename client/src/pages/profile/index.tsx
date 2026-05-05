@@ -17,6 +17,7 @@ const Profile = () => {
   const [selectedColor, setSelectedColor] = useState(0);
 
   console.log(userInfo?.email.split("").shift());
+  // shift() is an Array method that removes the first element of an array and returns it.
 
   const saveChanges = async () => {};
 
@@ -27,7 +28,7 @@ const Profile = () => {
           <IoArrowBack className="text-4xl lg:text-6xl text-white/90 cursor-pointer" />
         </div>
         <div className="grid grid-cols-2">
-          {/* avatar */}
+          {/* avatar starts*/}
           <div
             className="h-full w-32 md:w-48 relative flex items-center justify-center"
             onMouseEnter={() => setHovered(true)}
