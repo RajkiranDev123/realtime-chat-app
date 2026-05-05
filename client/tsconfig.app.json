@@ -36,3 +36,38 @@
 
 // This file tells TypeScript how to handle your React (frontend) code.”
 // tsconfig.app.json controls how TypeScript understands and checks your React code inside src.
+
+// Yes, Node exists in React project (for Vite)
+// But that Node is just a tool, not your backend
+
+// npm run dev
+//    ↓
+// npm reads package.json
+//    ↓
+// Finds "dev": "vite"
+//    ↓
+// Node.js runs Vite
+//    ↓
+// Vite reads vite.config.js
+//    ↓
+// Vite loads plugins (React, Tailwind)
+//    ↓
+// Vite starts dev server (localhost:5173)
+//    ↓
+// Browser sends request to server
+//    ↓
+// Vite returns index.html
+//    ↓
+// Browser reads index.html
+//    ↓
+// Loads /src/main.jsx (entry file)
+//    ↓
+// React starts
+//    ↓
+// App.jsx renders UI
+//    ↓
+// UI visible in browser
+//    ↓
+// (File change)
+//    ↓
+// Vite HMR updates only changed part
