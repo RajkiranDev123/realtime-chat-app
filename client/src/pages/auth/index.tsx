@@ -98,7 +98,7 @@ const Auth = () => {
   };
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
-      {/* width >= , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}
+      {/* width >= xs : 480 , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}
       <div
         className="h-[80vh] bg-white border-2 border-white text-opacity-90 shadow-2xl w-[80vw]
         md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2"

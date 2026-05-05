@@ -22,3 +22,26 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
     });
   },
 });
+
+// import { create, StateCreator } from "zustand";
+
+// /* ---------- Slice type ---------- */
+// type Slice = {
+//   value: string;
+//   setValue: (v: string) => void;
+// };
+
+// /* ---------- Slice ---------- */
+// const createSlice: StateCreator<Slice> = (set) => ({
+//   value: "",
+
+//   setValue: (v) => set({ value: v }),
+// });
+
+// /* ---------- Store (this is what you use) ---------- */
+// export const useStore = create<Slice>()((...a) => ({
+//   ...createSlice(...a),
+// }));
+
+// const value = useStore((s) => s.value);
+// or const {value} = useStore()
