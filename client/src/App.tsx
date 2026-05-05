@@ -7,16 +7,21 @@ import { useEffect, useState } from "react";
 import { apiClient } from "./lib/api-client";
 import { GET_USER_INFO } from "./utils/constants";
 
+// Logged in ✅ → “you can enter chat/profile”
+// Not logged in ❌ → “go to login page first”
+// Chat and Profile
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { userInfo } = useAppStore();
   const isAuthenticated = !!userInfo;
   return isAuthenticated ? children : <Navigate to={"/auth"} />;
 };
 
+// AuthRoute = block login page for logged-in users
+// Auth
 const AuthRoute = ({ children }: { children: React.ReactNode }) => {
   const { userInfo } = useAppStore();
   const isAuthenticated = !!userInfo;
-  return isAuthenticated ? <Navigate to={"/chat"} /> : children;
+  return isAuthenticated ? <Navigate to={"/chat"} /> : children; // children will be Auth only
 };
 
 function App() {
@@ -24,8 +29,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // getUserData
     const getUserData = async () => {
       try {
+        setLoading(true);
+
         const res = await apiClient.get(GET_USER_INFO, {
           withCredentials: true,
         });
@@ -40,6 +48,8 @@ function App() {
         setLoading(false);
       }
     };
+    // getUserData ends
+
     if (!userInfo) {
       getUserData();
     } else {
@@ -50,6 +60,9 @@ function App() {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  // Logged in ❌ → “You don’t need login page” → go to chat
+  // Not logged in ❌ → “Ok, show login page”
 
   return (
     <>
