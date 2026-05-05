@@ -35,3 +35,7 @@ export const useAppStore = create<Store>()((...a) => ({
 // };
 
 // console.log(p.name);
+
+// currying
+// const add = (a) => (b) => a + b;
+// add(5)(10); // 15
