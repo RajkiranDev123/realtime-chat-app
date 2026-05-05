@@ -15,3 +15,6 @@
     }
   }
 }
+
+// Its job is to connect and coordinate other configs
+// This file links your React config and Node config, and shares common settings like alias.”
