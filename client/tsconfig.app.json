@@ -71,3 +71,7 @@
 // (File change)
 //    ↓
 // Vite HMR updates only changed part
+
+// Vite runs HMR (with help from the browser and React)
+// HMR = update only the changed code in the browser, instantly, without full reload
+// Vite is used to run and build frontend apps faster, with less setup and better developer experience.
