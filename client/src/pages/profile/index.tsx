@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppStore } from "@/store";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
@@ -9,7 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { apiClient } from "@/lib/api-client";
-import { UPDATE_PROFILE_ROUTE } from "@/utils/constants";
+import {
+  ADD_PROFILE_IMAGE_ROUTE,
+  UPDATE_PROFILE_ROUTE,
+} from "@/utils/constants";
 
 const Profile = () => {
   const { userInfo, setUserInfo } = useAppStore();
@@ -19,6 +22,7 @@ const Profile = () => {
   const [image, setImage] = useState(null);
   const [hovered, setHovered] = useState(false);
   const [selectedColor, setSelectedColor] = useState(0);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   console.log(userInfo?.email.split("").shift());
   // shift() is an Array method that removes the first element of an array and returns it.
@@ -96,6 +100,35 @@ const Profile = () => {
     }
   };
 
+  const handleFileInputclick = () => {
+    fileInputRef.current?.click();
+    // current is null
+    // null has no properties
+    // so current.click is impossible : never
+  };
+
+  const handleImageChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+    // ChangeEvent = value changed
+    // MouseEvent = click / pointer action
+    // for div click : event: React.MouseEvent<HTMLDivElement>
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("profile-image", file);
+      const res = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, {
+        withCredentials: true,
+      });
+      if (res.status === 200 && res.data.image) {
+        if (!userInfo) return; //c
+        setUserInfo({ ...userInfo, image: res.data.image });
+        toast.success("Image updated.");
+      }
+    }
+  };
+  const handleDeleteImage = async () => {};
+
   return (
     <div className="bg-[#1b1c24] h-[100vh] flex items-center justify-center ">
       {/* arrow and inputs */}
@@ -103,7 +136,7 @@ const Profile = () => {
       <div className="flex flex-col gap-2 w-[80vw] md:w-max border border-white p-2 rounded-md shadow-md shadow-amber-100">
         {/* arrow */}
         <div onClick={handleNavigate}>
-          <IoArrowBack  className="text-2xl lg:text-4xl text-white/90 cursor-pointer" />
+          <IoArrowBack className="text-2xl lg:text-4xl text-white/90 cursor-pointer" />
         </div>
         {/* arrow ends */}
 
@@ -138,6 +171,7 @@ const Profile = () => {
             {hovered && (
               // inset-0 : Child covers entire parent
               <div
+                onClick={image ? handleDeleteImage : handleFileInputclick}
                 className="absolute inset-0 flex items-center justify-center 
               bg-black/50 ring-2 ring-white rounded-full
               "
@@ -151,6 +185,14 @@ const Profile = () => {
                 )}
               </div>
             )}
+            <input
+              type="file"
+              className="hidden"
+              ref={fileInputRef}
+              onChange={handleImageChange}
+              accept=".png , .jpg , .jpeg , .webp , .svg"
+              name="profile-image"
+            />
           </div>
           {/* avatar ends */}
           {/* --------------------------------------------------------- */}
