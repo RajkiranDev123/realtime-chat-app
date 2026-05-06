@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppStore } from "@/store";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
@@ -7,6 +7,9 @@ import { colors, getColor } from "@/lib/utils";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
+import { UPDATE_PROFILE_ROUTE } from "@/utils/constants";
 
 const Profile = () => {
   const { userInfo, setUserInfo } = useAppStore();
@@ -25,7 +28,65 @@ const Profile = () => {
   // console.log(arr);     // [20, 30]
   // console.log(removed); // 10
 
-  const saveChanges = async () => {};
+  useEffect(() => {
+    if (userInfo?.profileSetup) {
+      setFirstName(userInfo.firstName);
+      setLastName(userInfo.lastName);
+      setSelectedColor(userInfo.color);
+    }
+  }, [userInfo]);
+
+  const validateProfile = () => {
+    if (!firstName) {
+      toast.error("First Name is required.");
+      return false;
+    }
+    if (!lastName) {
+      toast.error("Last Name is required.");
+      return false;
+    }
+    return true;
+  };
+
+  const saveChanges = async () => {
+    if (validateProfile()) {
+      try {
+        const response = await apiClient.post(
+          UPDATE_PROFILE_ROUTE,
+          { firstName, lastName, color: selectedColor },
+          { withCredentials: true },
+        );
+        console.log(23, response);
+        if (response.status === 200 && response.data) {
+          setUserInfo({ ...response.data });
+          ////////////////////////////////////////////////////
+          // setUserInfo(response.data) ==>
+          // ✔ calls your setter
+          // ✔ calls set(...)
+          // ✔ Zustand updates state
+          // ✔ UI re-renders
+          /////////////////////////////////////////////////
+
+          ////////////////////////////////////////////////////////////
+          // setUserInfo(response.data);
+          // Zustand stores the same object reference
+          // No cloning, no protection
+          // This is perfectly valid ✅
+          // Problem : If you later do:
+          // const user = useStore.getState().userInfo;
+          // user.email = "new@mail.com"; // ❌ mutation
+          // You changed the object without calling set
+          // Zustand doesn’t know anything changed
+          // UI may not re-render
+          //////////////////////////////////////////////////////////////
+          toast.success("Profile updated successfully.");
+          navigate("/chat");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <div className="bg-[#1b1c24] h-[100vh] flex items-center justify-center ">
@@ -145,8 +206,9 @@ const Profile = () => {
 
         <div className="w-full">
           <Button
-          onClick={()=>saveChanges()}
-          className="h-16 w-full bg-purple-700 hover:bg-purple-900 transition duration-300">
+            onClick={() => saveChanges()}
+            className="h-16 w-full bg-purple-700 hover:bg-purple-900 transition duration-300"
+          >
             {/* Color will change instantly (no smooth effect) : if no transition used */}
             {/* transition = shortcut for transition-all */}
             {/* transition-colors : background , text color , border etc  */}
