@@ -36,6 +36,14 @@ const Profile = () => {
     }
   }, [userInfo]);
 
+  const handleNavigate = () => {
+    if (userInfo?.profileSetup) {
+      navigate("/chat");
+    } else {
+      toast.error("Please setup profile first.");
+    }
+  };
+
   const validateProfile = () => {
     if (!firstName) {
       toast.error("First Name is required.");
@@ -94,8 +102,8 @@ const Profile = () => {
       {/* w-max : only as wide as content needs and w-full : 100% of parent container */}
       <div className="flex flex-col gap-2 w-[80vw] md:w-max border border-white p-2 rounded-md shadow-md shadow-amber-100">
         {/* arrow */}
-        <div>
-          <IoArrowBack className="text-2xl lg:text-4xl text-white/90 cursor-pointer" />
+        <div onClick={handleNavigate}>
+          <IoArrowBack  className="text-2xl lg:text-4xl text-white/90 cursor-pointer" />
         </div>
         {/* arrow ends */}
 
