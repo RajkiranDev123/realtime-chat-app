@@ -3,9 +3,10 @@ import { useAppStore } from "@/store";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { getColor } from "@/lib/utils";
+import { colors, getColor } from "@/lib/utils";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Profile = () => {
   const { userInfo, setUserInfo } = useAppStore();
@@ -96,22 +97,62 @@ const Profile = () => {
                 className="rounded-lg p-6 bg-[#2c2e3b] border-none"
               />
             </div>
-            {/* email */}
-            {/* email */}
+            {/* email ends*/}
+            {/* firstname */}
             <div className="w-full">
               <Input
-                placeholder="Email"
-                type="email"
-                disabled
-                value={userInfo?.email}
+                placeholder="First Name"
+                type="text"
+                onChange={(e) => setFirstName(e.target.value)}
+                value={firstName}
                 className="rounded-lg p-6 bg-[#2c2e3b] border-none"
               />
             </div>
-            {/* email */}
+            {/* firstname ends*/}
+            {/* lastname */}
+            <div className="w-full">
+              <Input
+                placeholder="Last Name"
+                type="text"
+                onChange={(e) => setLastName(e.target.value)}
+                value={lastName}
+                className="rounded-lg p-6 bg-[#2c2e3b] border-none"
+              />
+            </div>
+            {/* lastname ends*/}
+
+            {/* colors */}
+            <div className="w-full flex gap-5">
+              {colors.map((color, index) => (
+                <div
+                  onClick={() => setSelectedColor(index)}
+                  className={`${color} h-8 w-8 rounded-full cursor-pointer 
+                  transition-all duration-300 ${selectedColor === index ? " outline-white/50 outline-4" : ""}`}
+                  key={index}
+                >
+                  {/* Border = real line (inside) , Outline = extra line (outside)
+                  Border → part of the box , Outline → not part of box , glow around the box , no space consumed
+                  Padding ✅ adds space , Border ✅ adds space , Margin ✅ adds gap */}
+                </div>
+              ))}
+            </div>
+
+            {/* colors ends */}
           </div>
           {/* input fields */}
         </div>
-        {/* avatar and inputs */}
+        {/* avatar and inputs ends*/}
+
+        <div className="w-full">
+          <Button
+          onClick={()=>saveChanges()}
+          className="h-16 w-full bg-purple-700 hover:bg-purple-900 transition duration-300">
+            {/* Color will change instantly (no smooth effect) : if no transition used */}
+            {/* transition = shortcut for transition-all */}
+            {/* transition-colors : background , text color , border etc  */}
+            Save
+          </Button>
+        </div>
       </div>
       {/* arrow and inputs */}
     </div>
