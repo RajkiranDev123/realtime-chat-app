@@ -12,6 +12,7 @@ import { apiClient } from "@/lib/api-client";
 import {
   ADD_PROFILE_IMAGE_ROUTE,
   HOST,
+  REMOVE_PROFILE_IMAGE_ROUTE,
   UPDATE_PROFILE_ROUTE,
 } from "@/utils/constants";
 
@@ -20,7 +21,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [image, setImage] = useState<string|null>(null);
+  const [image, setImage] = useState<string | null>(null);
   const [hovered, setHovered] = useState(false);
   const [selectedColor, setSelectedColor] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -40,7 +41,7 @@ const Profile = () => {
       setSelectedColor(userInfo.color);
     }
     if (userInfo?.image) {
-    console.log(`${HOST}/${userInfo.image}`)
+      console.log(`${HOST}/${userInfo.image}`);
 
       setImage(`${HOST}/${userInfo.image}`);
     }
@@ -133,7 +134,22 @@ const Profile = () => {
       }
     }
   };
-  const handleDeleteImage = async () => {};
+
+  const handleDeleteImage = async () => {
+    try {
+      const res = await apiClient.delete(REMOVE_PROFILE_IMAGE_ROUTE, {
+        withCredentials: true,
+      });
+      if (res.status === 200) {
+        if (!userInfo) return; //c
+        setUserInfo({ ...userInfo, image: null });
+      }
+      toast.success("Image removed");
+      setImage(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-[#1b1c24] h-[100vh] flex items-center justify-center ">
