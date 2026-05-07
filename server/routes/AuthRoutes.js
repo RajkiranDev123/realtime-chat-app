@@ -5,6 +5,7 @@ import {
   login,
   getUserInfo,
   updateProfile,
+  addProfileImage
 } from "../controllers/AuthController.js";
 import { verifyToken } from "../middlewares/AuthMiddleware.js";
 

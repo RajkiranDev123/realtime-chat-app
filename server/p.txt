@@ -10,6 +10,8 @@ npm install winston morgan
 
 npm i helmet
 
+npm i multer
+
 -------------------
 
 npm i swagger-ui-express swagger-jsdoc : 

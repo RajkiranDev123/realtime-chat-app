@@ -149,7 +149,50 @@ export const updateProfile = async (req, res) => {
     const { userId } = req;
     const { firstName, lastName, color } = req.body;
 
-    if (!firstName || !lastName ) {
+    if (!firstName || !lastName) {
+      return res.status(400).json({
+        success: false,
+        message: "firstName , lastName and color is required.",
+      });
+    }
+
+    const userData = await User.findByIdAndUpdate(
+      userId,
+      {
+        firstName,
+        lastName,
+        color,
+        profileSetup: true,
+      },
+      { new: true, runValidators: true },
+    );
+
+    return res.status(200).json({
+      id: userData._id,
+      email: userData.email,
+      profileSetup: userData.profileSetup,
+      //
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      image: userData.image,
+      color: userData.color,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", success: false });
+  }
+};
+
+/////////////
+
+export const addProfileImage = async (req, res) => {
+  // req.userId = payload.userId;
+  try {
+    const { userId } = req;
+    const { firstName, lastName, color } = req.body;
+
+    if (!firstName || !lastName) {
       return res.status(400).json({
         success: false,
         message: "firstName , lastName and color is required.",

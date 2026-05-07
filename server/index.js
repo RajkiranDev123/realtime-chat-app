@@ -66,6 +66,11 @@ app.use(limiter);
 app.use(morgan("combined", { stream })); // captures: HTTP method , URL , Status , Response time , IP address
 // { stream } → don’t print to console , instead call stream.write(...)
 
+app.use("/uploads/profiles", express.static("uploads/profiles"));
+
+// This tells Express.js : “When someone visits /uploads/profiles/..., send files from the uploads/profiles folder.”
+// http://localhost:5000/uploads/profiles/cat.png
+
 app.use(cookieParser()); //It parses cookies from the request and makes them available in req.cookies.
 app.use(express.json()); //It parses incoming JSON request bodies and makes data available in req.body.
 
