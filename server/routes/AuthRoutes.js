@@ -11,6 +11,10 @@ import {
 import { verifyToken } from "../middlewares/AuthMiddleware.js";
 import multer from "multer";
 
+// Express cannot read multipart/form-data file uploads by itself,
+// so multer parses the uploaded file and makes it available as req.file, then Cloudinary
+// stores it in the cloud.
+
 const authRoutes = Router();
 
 const upload = multer({ dest: "uploads/profiles/" });
