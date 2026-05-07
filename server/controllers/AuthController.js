@@ -2,12 +2,15 @@ import { compare } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
 import User from "../models/UserModel.js";
 
 import jwt from "jsonwebtoken";
+import { renameSync, unlinkSync } from "fs";
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
 const createToken = (email, userId) => {
   return jwt.sign({ email, userId }, process.env.JWT_KEY, { expiresIn: "3d" });
 };
+
+////////////////////////////// signup /////////////////////////////
 
 export const signup = async (req, res) => {
   try {
@@ -111,7 +114,7 @@ export const login = async (req, res) => {
   }
 };
 
-/////////////////////////////// user info ///////////////////
+/////////////////////////////// getUserInfo ///////////////////
 
 export const getUserInfo = async (req, res) => {
   // req.userId = payload.userId;
@@ -141,7 +144,7 @@ export const getUserInfo = async (req, res) => {
   }
 };
 
-////////////////////
+//////////////////// updateProfile /////////////////////////////////
 
 export const updateProfile = async (req, res) => {
   // req.userId = payload.userId;
@@ -184,9 +187,44 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-/////////////
+///////////// addProfileImage ///////////////////////////////
 
 export const addProfileImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        message: "File is required",
+        success: false,
+      });
+    }
+
+    const date = Date.now(); // machine format
+    // console.log(new Date(Date.now())); // readable date object
+    let fileName = "uploads/profiles/" + date + req.file.originalname;
+    console.log(fileName);
+    renameSync(req.file.path, fileName);
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.userId,
+      {
+        image: fileName,
+      },
+      { new: true, runValidators: true },
+    );
+
+    return res.status(200).json({
+      image: updatedUser.image,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", success: false });
+  }
+};
+
+////////// removeProfileImage ////////////////
+
+export const removeProfileImage = async (req, res) => {
   // req.userId = payload.userId;
   try {
     const { userId } = req;
@@ -226,6 +264,8 @@ export const addProfileImage = async (req, res) => {
       .json({ message: "Internal Server Error", success: false });
   }
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 // | Method       | Argument Type        | Returns                   |
 // | ------------ | -------------------- | ------------------------- |

@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { apiClient } from "@/lib/api-client";
 import {
   ADD_PROFILE_IMAGE_ROUTE,
+  HOST,
   UPDATE_PROFILE_ROUTE,
 } from "@/utils/constants";
 
@@ -19,7 +20,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string|null>(null);
   const [hovered, setHovered] = useState(false);
   const [selectedColor, setSelectedColor] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -37,6 +38,11 @@ const Profile = () => {
       setFirstName(userInfo.firstName);
       setLastName(userInfo.lastName);
       setSelectedColor(userInfo.color);
+    }
+    if (userInfo?.image) {
+    console.log(`${HOST}/${userInfo.image}`)
+
+      setImage(`${HOST}/${userInfo.image}`);
     }
   }, [userInfo]);
 
@@ -154,7 +160,7 @@ const Profile = () => {
                 <AvatarImage
                   src={image}
                   alt="profile"
-                  className="object-cover w-full h-full bg-black"
+                  className="object-cover w-full h-full"
                 />
               ) : (
                 <div

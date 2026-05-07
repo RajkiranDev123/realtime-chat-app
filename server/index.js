@@ -51,11 +51,15 @@ const stream = {
 // Morgan generates log → stream.write() → Winston stores it
 
 // Middlewares starts
-app.use(helmet()); // “Helmet = adds protective headers to every HTTP response”
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" }, //Can frontend DISPLAY backend resources?
+  }),
+); // “Helmet = adds protective headers to every HTTP response”
 
 app.use(
   cors({
-    origin: process.env.ORIGIN,
+    origin: process.env.ORIGIN, // Can frontend TALK to backend?
     credentials: true,
   }),
 );
