@@ -266,3 +266,20 @@
 {"duration":"461ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
 {"level":"info","message":"::1 - - [07/May/2026:07:59:51 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
 {"duration":"87ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [07/May/2026:08:00:53 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"37ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [07/May/2026:08:00:53 +0000] \"GET /uploads/profiles/1778136340894login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [07/May/2026:08:00:56 +0000] \"DELETE /api/v1/auth/remove-profile-image HTTP/1.1\" 200 51 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"104ms","ip":"::1","level":"info","message":"API_METRICS","method":"DELETE","status":200,"url":"/remove-profile-image"}
+{"level":"info","message":"::1 - - [07/May/2026:08:01:02 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 200 142 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"42ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/user-info"}
+{"level":"info","message":"::1 - - [07/May/2026:08:01:03 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"34ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [07/May/2026:08:01:09 +0000] \"POST /api/v1/auth/add-profile-image HTTP/1.1\" 200 52 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"82ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/add-profile-image"}
+{"level":"info","message":"::1 - - [07/May/2026:08:01:09 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 200 278492 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [07/May/2026:08:01:15 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 200 180 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"34ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/user-info"}
+{"level":"info","message":"::1 - - [07/May/2026:08:01:15 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [07/May/2026:08:06:02 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"60ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}

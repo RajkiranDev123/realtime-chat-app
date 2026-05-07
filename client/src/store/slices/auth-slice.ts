@@ -8,7 +8,7 @@ type UserInfo = {
   firstName: string;
   lastName: string;
   color: number;
-  image?:string|null
+  image?: string | null;
 };
 
 export type AuthSlice = {
