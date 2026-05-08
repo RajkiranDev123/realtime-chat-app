@@ -129,9 +129,10 @@ const Auth = () => {
             {/* if width full not given : it will take content width and width 3/4 : 75% */}
 
             {/* Tabs : Main container that controls the whole tabs system. */}
+            
             <Tabs className="w-3/4 " defaultValue="login">
 
-              {/* TabsList : Wrapper for all tab buttons (TabsTrigger) */}
+              {/* TabsList : Wrapper for all tab buttons (multiple TabsTrigger inisde) */}
               <TabsList className="bg-transparent rounded-none w-full">
 
                 {/* TabsTrigger 1 */}
@@ -163,7 +164,7 @@ const Auth = () => {
 
 
               {/* login : TabsContent */}
-              <TabsContent className="flex flex-col gap-5 " value="login">
+              <TabsContent className="flex flex-col gap-5" value="login">
                 {/* copy email */}
                 <div className="flex gap-2 items-center">
                   Copy Test Email{" "}
@@ -180,7 +181,7 @@ const Auth = () => {
                 <Input
                   placeholder="Email"
                   type="email"
-                  className="rounded-full p-6"
+                  className="rounded-full p-6  focus-visible:ring-0"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -200,7 +201,7 @@ const Auth = () => {
                 <Input
                   placeholder="Password"
                   type="password"
-                  className="rounded-full p-6"
+                  className="rounded-full p-6 focus-visible:ring-0"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
