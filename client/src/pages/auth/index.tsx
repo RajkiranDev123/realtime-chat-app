@@ -99,56 +99,84 @@ const Auth = () => {
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
       {/* width >= xs : 480 , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}
-      {/* border == border-1 */}
+      {/* border == border-1 border-black */}
       <div
-        className="h-[80vh] w-[80vw] bg-white border-2 border-black text-opacity-90 shadow-2xl 
+        className="h-[80vh] w-[80vw] bg-white shadow-2xl 
         md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2"
       >
         {/* col-1 starts */}
         <div className="flex flex-col gap-10 items-center justify-center ">
-          <div className="flex items-center justify-center flex-col  p-1">
+          {/* welcome , logo and fill */}
+          <div className="flex items-center justify-center flex-col p-1">
+            {/* col-1 */}
             <div className="flex items-center justify-center ">
-              <h1 className="text-5xl font-bold md:text-6xl">Welcome</h1>
-              <img src={Victory} alt="victory" className="h-[100px]" />
+              <h1 className="text-4xl font-bold md:text-5xl text-black/70">
+                Welcome
+              </h1>
+              <img src={Victory} alt="victory" className="h-[80px] animate-bounce" />
             </div>
+            {/* col-1 */}
+            {/* col-2 */}
             <p className="font-medium text-center">
               Fill in the details to get started
             </p>
+            {/* col-2 */}
           </div>
-          <div className="flex items-center justify-center w-full">
-            <Tabs className="w-3/4" defaultValue="login">
+          {/* welcome , logo and fill ends*/}
+
+          {/* tabs */}
+          <div className="flex justify-center w-full">
+            {/* if width full not given : it will take content width and width 3/4 : 75% */}
+
+            {/* Tabs : Main container that controls the whole tabs system. */}
+            <Tabs className="w-3/4 " defaultValue="login">
+
+              {/* TabsList : Wrapper for all tab buttons (TabsTrigger) */}
               <TabsList className="bg-transparent rounded-none w-full">
+
+                {/* TabsTrigger 1 */}
                 <TabsTrigger
                   className="
-                data-[state=active]:bg-transparent text-black text-opactity-90 border-b-2
+                data-[state=active]:bg-transparent text-black text-opactity-90 border-b
                 rounded-none w-full data-[state=active]:text-black data-[state=active]:font-semibold
                 data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
                   value="login"
                 >
                   Login
                 </TabsTrigger>
+                {/* TabsTrigger 1 */}
+
+                {/* TabsTrigger 2 */}
                 <TabsTrigger
                   className="
-                data-[state=active]:bg-transparent text-black text-opactity-90 border-b-2
+                data-[state=active]:bg-transparent text-black text-opactity-90 border-b
                 rounded-none w-full data-[state=active]:text-black data-[state=active]:font-semibold
                 data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
                   value="signup"
                 >
                   Signup
                 </TabsTrigger>
+                {/* TabsTrigger 2 */}
+
               </TabsList>
+              {/* TabsList : Wrapper for all tab buttons (TabsTrigger) */}
+
+
+              {/* login : TabsContent */}
               <TabsContent className="flex flex-col gap-5 " value="login">
-                <div className="flex gap-4 items-center">
+                {/* copy email */}
+                <div className="flex gap-2 items-center">
                   Copy Test Email{" "}
                   <Copy
                     onClick={() => {
                       navigator.clipboard.writeText("rajtech645@gmail.com"); // ✅ fixed email
                       toast.success("Email copied!", { duration: 1000 });
                     }}
-                    className="cursor-pointer animate-pulse"
+                    className="cursor-pointer animate-pulse text-blue-500"
                     size={18}
                   />
                 </div>
+                {/* copy email ends */}
                 <Input
                   placeholder="Email"
                   type="email"
@@ -156,17 +184,19 @@ const Auth = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <div className="flex gap-4 items-center">
+                {/*  */}
+                <div className="flex gap-2 items-center">
                   Copy Test Password{" "}
                   <Copy
                     onClick={() => {
                       navigator.clipboard.writeText("123"); // ✅ fixed email
                       toast.success("Password copied!", { duration: 1000 });
                     }}
-                    className="cursor-pointer animate-pulse"
+                    className="cursor-pointer animate-pulse text-blue-500"
                     size={18}
                   />
                 </div>
+                {/*  */}
                 <Input
                   placeholder="Password"
                   type="password"
@@ -178,6 +208,8 @@ const Auth = () => {
                   Login
                 </Button>
               </TabsContent>
+              {/* login : TabsContent */}
+
 
               <TabsContent className="flex flex-col gap-5 " value="signup">
                 <Input
@@ -205,8 +237,10 @@ const Auth = () => {
                   Signup
                 </Button>
               </TabsContent>
+
             </Tabs>
           </div>
+          {/* tabs ends */}
         </div>
         {/* col-1 ends */}
         {/*col-2 starts */}
@@ -214,10 +248,9 @@ const Auth = () => {
           <img
             src={Background}
             alt="background"
-            className="h-[580px] rounded-sm object-cover"
+            className="h-[80vh] rounded-sm object-cover"
           />
         </div>
-
         {/* col-2 ends */}
       </div>
     </div>
