@@ -57,7 +57,7 @@ const Auth = () => {
           { email, password },
           { withCredentials: true },
         );
-        console.log("res login ==>", res);
+  
         // res is object and inside res we have object like ==>  data : and inside it has user object ,
         // config object , request, headers and prop like status
         if (res.data.success) {
@@ -69,7 +69,7 @@ const Auth = () => {
           }
         }
       } catch (error: any) {
-        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message/.response etc
+        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message or .response properties etc
         // Chrome console often shows AxiosError instances as a string (AxiosError: ...) for readability.
         toast.error(error.response.data.message, { duration: 1000 });
       }

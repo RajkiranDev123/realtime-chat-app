@@ -7,6 +7,39 @@ export const useAppStore = create<Store>()((...a) => ({
   ...createAuthSlice(...a),
 }));
 
+
+// import { create } from "zustand";
+
+// type UserStore = {
+//   user: string;
+//   setUser: (name: string) => void;
+// };
+
+// const useUserStore = create<UserStore>((set) => ({
+//   user: "RJ",
+
+//   setUser: (name) =>
+//     set({ user: name }),
+// }));
+
+// “slice” when you separate it into its own function/file to combine with other parts.
+
+// export const createUserSlice = (set) => ({
+//   user: "RJ",
+
+//   setUser: (name) =>
+//     set({ user: name }),
+// });
+
+// Then combined :
+
+// const useStore = create((...a) => ({
+//   ...createUserSlice(...a),
+//   ...createCartSlice(...a),
+// }));
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
 // type outside (same thing) :
 
 // Same meaning, just longer
