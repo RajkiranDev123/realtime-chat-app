@@ -267,6 +267,7 @@ export const removeProfileImage = async (req, res) => {
     await user.save();
     // If email is missing and you do:user.save() , Mongoose will throw validation error IF schema has: email {type : String , required : true}
     // Because save() validates the whole document.
+    // ValidationError: email is required when we do email = null
 
     return res.status(200).json({
       message: "Profile image removed.",
