@@ -104,7 +104,8 @@ export const login = async (req, res) => {
         id: user._id,
         email: user.email,
         profileSetup: user.profileSetup,
-        firstName: user.firstName,
+        firstName: user.firstName, // user.firstName does not exist, value becomes : undefined and 
+        // then firstName may disappear from JSON because undefined is omitted.
         lastName: user.lastName,
         image: user.image,
         color: user.color,
@@ -253,10 +254,13 @@ export const removeProfileImage = async (req, res) => {
     //   type: String,
     //   required: true,
     // }
+    // user.image = null ==> will fail validation. field must exist and and cannot be null or empty.
 
-    // user.image = null ==> will fail validation. field must exist and and cannot be null or empty
+
     // null is completely valid in a JSON response.
     // res.json({ image: undefined, name: "RJ" }) ==>  { "name": "RJ" }
+    // null → intentionally empty value , undefined :field may be omitted from MongoDB document entirely.
+    // true ==> "true" and 12 ==> "12"
 
     await user.save();
 
