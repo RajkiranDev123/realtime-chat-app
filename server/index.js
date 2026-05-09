@@ -133,8 +133,12 @@ mongoose
 process.on("SIGINT", async () => {
   console.log("SIGINT received... shutting down");
 
-  await mongoose.connection.close();
-  console.log("DB connection closed");
+  try {
+    await mongoose.disconnect(); 
+    console.log("DB connection closed");
+  } catch (err) {
+    console.log("DB close error:", err.message);
+  }
 
   process.exit(0);
 });
