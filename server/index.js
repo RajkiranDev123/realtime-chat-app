@@ -101,6 +101,7 @@ app.use((req, res, next) => {
 
   next();
 });
+// Middleware function runs before route , finish callback runs after response is sent & next() is what moves request forward
 
 // end of custom performance tracking using Winston directly
 
