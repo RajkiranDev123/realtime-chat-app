@@ -11,7 +11,8 @@ export const verifyToken = (req, res, next) => {
     });
   }
 
-  jwt.verify(token, process.env.JWT_KEY, (err, payload) => {
+  jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+    // jwt.verify() becomes asynchronous when you use a callback because Node.js follows the async callback pattern for many operations
     if (err) {
       return res.status(401).json({
         success: false,
@@ -19,7 +20,7 @@ export const verifyToken = (req, res, next) => {
       });
     }
 
-    req.userId = payload.userId;
+    req.userId = decoded.userId;
     next();
   });
 };
