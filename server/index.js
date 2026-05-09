@@ -11,6 +11,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import fs from "fs";
 import logger from "./utils/logger.js";
+import connectDB from "./db/connectDB.js";
 
 dotenv.config();
 
@@ -115,15 +116,15 @@ app.get("/api/v1/health", (req, res) => {
 //Routes end
 
 // DB + Server start
-mongoose
-  .connect(process.env.DATABASE_URL)
-  .then(() => {
-    console.log("DB Connected!");
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => console.log(err.message));
+const startServer = async () => {
+  await connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+};
+
+startServer();
 
 // Graceful shutdown
 // SIGINT (Signal Interrupt) is a signal sent to your Node.js app when you try to stop it manually.
