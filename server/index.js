@@ -128,8 +128,13 @@ mongoose
 // Graceful shutdown
 // SIGINT (Signal Interrupt) is a signal sent to your Node.js app when you try to stop it manually.
 // SIGINT = signal sent when you press Ctrl + C , it triggers SIGINT
+
+
 process.on("SIGINT", async () => {
+  console.log("SIGINT received... shutting down");
+
   await mongoose.connection.close();
   console.log("DB connection closed");
-  process.exit(0); // success exit
+
+  process.exit(0);
 });
