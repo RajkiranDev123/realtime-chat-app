@@ -28,6 +28,9 @@ export const signup = async (req, res) => {
         message: "Email already exists.",
       });
     }
+    // Yes, it works, but 400 is not the most correct status code here.
+    // 400 Bad Request → means the request itself is invalid (missing fields, wrong format, etc.)
+    // 409 Conflict → means request is valid, but conflicts with existing data (like duplicate email)
     const user = await User.create({
       email,
       password,
@@ -54,7 +57,7 @@ export const signup = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log("catch block of signup ==>", error.message);
+    // console.log("catch block of signup ==>", error.message);
     return res
       .status(500)
       .json({ message: "Internal Server Error", success: false });
