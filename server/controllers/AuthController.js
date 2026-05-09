@@ -245,8 +245,19 @@ export const removeProfileImage = async (req, res) => {
 
     if (user.image) {
       unlinkSync(user.image);
+      //user.image : "uploads/profiles/1778140869800login2.png"
     }
     user.image = null;
+    // If you use:
+    // image: {
+    //   type: String,
+    //   required: true,
+    // }
+
+    // user.image = null ==> will fail validation. field must exist and and cannot be null or empty
+    // null is completely valid in a JSON response.
+    // res.json({ image: undefined, name: "RJ" }) ==>  { "name": "RJ" }
+
     await user.save();
 
     return res.status(200).json({
