@@ -3,10 +3,11 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+
 import authRoutes from "./routes/AuthRoutes.js";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
-//
+
 import morgan from "morgan";
 import fs from "fs";
 import logger from "./utils/logger.js";
@@ -22,9 +23,9 @@ if (!process.env.DATABASE_URL) {
   process.exit(1);
 }
 
-// create folder
-// existsSync : checks synchronously whether a file or folder exists and
-// mkdirSync  : create a directory synchronously
+// create folder :
+// existsSync : checks synchronously whether a file or folder exists.
+// mkdirSync  : create a directory synchronously.
 
 if (!fs.existsSync("logs")) {
   fs.mkdirSync("logs");
@@ -48,19 +49,23 @@ const limiter = rateLimit({
 const stream = {
   write: (message) => logger.info(message.trim()),
 };
-// Morgan generates log → stream.write() → Winston stores it
+// Morgan generates log → stream.write() → Winston stores it in log file.
 
 // Middlewares starts
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" }, //Can frontend DISPLAY backend resources?
   }),
-); // “Helmet = adds protective headers to every HTTP response”
+);
+// “Helmet = adds protective headers to every HTTP response”
+// a request is coming from a different domain / origin than your server.
+// 
 
 app.use(
   cors({
     origin: process.env.ORIGIN, // Can frontend TALK to backend?
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
   }),
 );
 
@@ -74,6 +79,7 @@ app.use("/uploads/profiles", express.static("uploads/profiles"));
 
 // This tells Express.js : “When someone visits /uploads/profiles/..., send files from the uploads/profiles folder.”
 // http://localhost:5000/uploads/profiles/cat.png
+// image : "uploads/profiles/1778140869800login2.png"
 
 app.use(cookieParser()); //It parses cookies from the request and makes them available in req.cookies.
 app.use(express.json()); //It parses incoming JSON request bodies and makes data available in req.body.
