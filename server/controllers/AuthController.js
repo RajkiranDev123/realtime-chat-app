@@ -104,7 +104,7 @@ export const login = async (req, res) => {
         id: user._id,
         email: user.email,
         profileSetup: user.profileSetup,
-        firstName: user.firstName, // user.firstName does not exist, value becomes : undefined and 
+        firstName: user.firstName, // user.firstName does not exist, value becomes : undefined and
         // then firstName may disappear from JSON because undefined is omitted.
         lastName: user.lastName,
         image: user.image,
@@ -159,7 +159,7 @@ export const updateProfile = async (req, res) => {
   try {
     const { userId } = req;
     const { firstName, lastName, color } = req.body;
-
+    // if color value is 0 then ==> !0 == true
     if (!firstName || !lastName) {
       return res.status(400).json({
         success: false,
@@ -175,7 +175,10 @@ export const updateProfile = async (req, res) => {
         color,
         profileSetup: true,
       },
-      { new: true, runValidators: true },
+      { new: true, runValidators: true }, // Mongoose mainly validates only the fields being updated , not email etc.
+      // but whole ==> user.validate() , User.create({}) , user.save()
+      // These methods in Mongoose run schema validation automatically: doc.save(), Model.create() automatically
+      // updateOne() , updateMany() , findOneAndUpdate() , findByIdAndUpdate() , replaceOne() need runValidators: true
     );
 
     return res.status(200).json({
@@ -256,13 +259,14 @@ export const removeProfileImage = async (req, res) => {
     // }
     // user.image = null ==> will fail validation. field must exist and and cannot be null or empty.
 
-
     // null is completely valid in a JSON response.
     // res.json({ image: undefined, name: "RJ" }) ==>  { "name": "RJ" }
     // null → intentionally empty value , undefined :field may be omitted from MongoDB document entirely.
     // true ==> "true" and 12 ==> "12"
 
     await user.save();
+    // If email is missing and you do:user.save() , Mongoose will throw validation error IF schema has: email {type : String , required : true}
+    // Because save() validates the whole document.
 
     return res.status(200).json({
       message: "Profile image removed.",
