@@ -7,6 +7,7 @@ import { renameSync, unlinkSync } from "fs";
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
 const createToken = (email, userId) => {
+  // jwt.sign(payload, secretKey, options)
   return jwt.sign({ email, userId }, process.env.JWT_KEY, { expiresIn: "3d" });
 };
 
