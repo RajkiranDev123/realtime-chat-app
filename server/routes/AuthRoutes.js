@@ -14,6 +14,8 @@ import multer from "multer";
 // Express cannot read multipart/form-data file uploads by itself,
 // so multer parses the uploaded file and makes it available as req.file, then Cloudinary
 // stores it in the cloud. Normal JSON cannot send files, so we use multipart/form-data.
+// JSON = data only , express.json()
+// Multipart = data + files , multer
 
 const authRoutes = Router();
 
