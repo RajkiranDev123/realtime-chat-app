@@ -63,7 +63,7 @@ export const signup = async (req, res) => {
       user: {
         id: user._id,
         email: user.email,
-        profileSetup: user.profileSetup,
+        profileSetup: user.profileSetup, // user is from db after creation
       },
       message: "Account Created. Setup your profile now.",
       success: true,
