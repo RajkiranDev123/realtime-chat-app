@@ -59,6 +59,7 @@ export const signup = async (req, res) => {
       // Path does NOT make it cross-site. Browser mainly checks: protocol (https) and domain (raj.com) ==> sameSite: "Strict"
     });
     return res.status(201).json({
+      // axios : const { user, message, success } = res.data;
       user: {
         id: user._id,
         email: user.email,
