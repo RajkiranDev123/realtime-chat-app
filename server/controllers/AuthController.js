@@ -45,6 +45,7 @@ export const signup = async (req, res) => {
     res.cookie("jwt", createToken(email, user._id), {
       httpOnly: true, // JS (frontend) cannot access cookie
       maxAge,
+      //
       secure: true, // cookie will only be sent over HTTPS.
       sameSite: "none", // cookie can be sent in cross-site requests
       // "strict" → safest , "lax" → balanced (commonly used) , "none" → requires secure: true
