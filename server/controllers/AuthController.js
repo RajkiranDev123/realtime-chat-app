@@ -52,6 +52,9 @@ export const signup = async (req, res) => {
       // “Allow cross-site cookie, but only over encrypted connection (https)”
       //  secure: false, sameSite: "lax" ==> dev
       //  prod ==>   secure: true , sameSite: "none",
+      // https://raj.com        -> frontend
+      // https://raj.com/api    -> backend
+      // Path does NOT make it cross-site. Browser mainly checks: protocol (https) and domain (raj.com) ==> sameSite: "Strict"
     });
     return res.status(201).json({
       user: {
