@@ -36,6 +36,8 @@ export const signup = async (req, res) => {
 
     // const user = new User(data) and await user.save() == User.create({})
 
+    // firstName : Since you did not provide , fields usually omitted from DB
+    // This field gets auto-added because of default : profileSetup
     const user = await User.create({
       email,
       password,
