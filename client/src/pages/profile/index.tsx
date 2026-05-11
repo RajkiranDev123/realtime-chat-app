@@ -127,6 +127,11 @@ const Profile = () => {
       const res = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, {
         withCredentials: true,
       });
+      // Browser / Axios detects FormData , Content-Type: multipart/form-data; boundary=----xyz ==> automatically
+      // ----abc123
+      // name: Rj
+      // ----abc123
+      // file: image.png
       if (res.status === 200 && res.data.image) {
         if (!userInfo) return; //c
         setUserInfo({ ...userInfo, image: res.data.image });
