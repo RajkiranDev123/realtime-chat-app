@@ -144,3 +144,4 @@ npm i react-icons
 npx shadcn@latest add avatar
 npm i react-lottie
 npm i --save-dev @types/react-lottie
+npm i emoji-picker-react
