@@ -1,5 +1,3 @@
-
-
 const ContactsContainer = () => {
   return (
     // xs sm  md lg xl 2xl ......... 7xl
@@ -10,7 +8,7 @@ const ContactsContainer = () => {
       {/*  */}
       <div className="my-5">
         <div className="flex items-center justify-between pr-10">
-
+          <Title text="Direct Msg"/>
         </div>
       </div>
     </div>
@@ -48,5 +46,17 @@ const Logo = () => {
       </svg>
       <span className="text-3xl font-semibold">Sync</span>
     </div>
+  );
+};
+
+const Title = ({ text }: { text: string }) => {
+  return (
+    <h6
+      className="uppercase tracking-widest text-neutral-400 pl-10 font-light text-opacity-90
+  
+  text-sm "
+    >
+      {text}
+    </h6>
   );
 };

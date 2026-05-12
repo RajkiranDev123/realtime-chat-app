@@ -6,6 +6,7 @@ const EmptyChatContainer = () => {
     // If you have 3 flex items and only one item has flex: 1, then:
     // That item will take all the remaining available space.
     // The other items keep their natural/content width. same for grow too!
+    // if one item has bigger content, that item can become wider because items start from their content size first, if grow on all 3
     <div className="flex-1 md:bg-[#1c1d25] md:flex flex-col justify-center items-center hidden duration-1000 transition-all">
       <Lottie
         isClickToPauseDisabled={true}
