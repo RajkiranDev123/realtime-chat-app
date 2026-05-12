@@ -17,6 +17,7 @@ const Chat = () => {
     }
     // userInfo → effect should rerun when user info changes
     // navigate → used inside effect , navigate from React Router is usually stable and won't change.
+    // But ESLint still asks to include it.
   }, [userInfo, navigate]);
   return (
     <div className="flex h-[100vh] text-white overflow-hidden bg-amber-200">
