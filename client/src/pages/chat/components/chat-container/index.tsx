@@ -4,8 +4,9 @@ import MessageContainer from "./components/message-container";
 
 const ChatContainer = () => {
   return (
+    // h-screen == h-[100vh]
     <div
-      className="fixed top-0 text-white  h-[100vh] bg-[#1c1d25] w-[100vw] 
+      className="fixed top-0 text-white  h-[100vh] bg-[#1c1d25] 
     flex flex-col md:flex-1 md:static"
     >
       {/* static = default normal positioning. So it overrides : fixed */}
