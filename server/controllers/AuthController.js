@@ -123,7 +123,7 @@ export const login = async (req, res) => {
     // undefined fields are automatically removed in JSON (response) : "firstName": undefined,
     // null and "" (empty string) included in JSON
   } catch (error) {
-    console.log("catch block of login ==>", error.message);
+    // console.log("catch block of login ==>", error.message);
     return res
       .status(500)
       .json({ message: "Internal Server Error", success: false });
@@ -133,7 +133,7 @@ export const login = async (req, res) => {
 /////////////////////////////// getUserInfo ///////////////////
 
 export const getUserInfo = async (req, res) => {
-  // req.userId = payload.userId;
+  // req.userId = decoded.userId; // in middleware
   try {
     const userData = await User.findById(req.userId);
     if (!userData) {
@@ -153,7 +153,7 @@ export const getUserInfo = async (req, res) => {
       color: userData.color,
     });
   } catch (error) {
-    console.log("catch block of user info ==>", error.message);
+    // console.log("catch block of user info ==>", error.message);
     return res
       .status(500)
       .json({ message: "Internal Server Error", success: false });
@@ -163,7 +163,7 @@ export const getUserInfo = async (req, res) => {
 //////////////////// updateProfile /////////////////////////////////
 
 export const updateProfile = async (req, res) => {
-  // req.userId = payload.userId;
+  // req.userId = decoded.userId;
   try {
     const { userId } = req;
     const { firstName, lastName, color } = req.body;
@@ -171,7 +171,7 @@ export const updateProfile = async (req, res) => {
     if (!firstName || !lastName) {
       return res.status(400).json({
         success: false,
-        message: "firstName , lastName and color is required.",
+        message: "firstName , lastName is required.",
       });
     }
 
@@ -184,9 +184,9 @@ export const updateProfile = async (req, res) => {
         profileSetup: true,
       },
       { new: true, runValidators: true }, // Mongoose mainly validates only the fields being updated , not email etc.
-      // but whole ==> user.validate() , User.create({}) , user.save()
-      // These methods in Mongoose run schema validation automatically: doc.save(), Model.create() automatically
-      // updateOne() , updateMany() , findOneAndUpdate() , findByIdAndUpdate() , replaceOne() need runValidators: true
+      // but whole validation is done by ==> user.validate() , User.create({}) , user.save()
+      // These methods in Mongoose run schema validation automatically: user.save(), User.create() automatically
+      // updateOne() , updateMany() , findOneAndUpdate() , findByIdAndUpdate() , replaceOne() need runValidators : true
     );
 
     return res.status(200).json({
@@ -210,6 +210,16 @@ export const updateProfile = async (req, res) => {
 
 export const addProfileImage = async (req, res) => {
   try {
+    const { userId } = req;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User id not found.",
+      });
+    }
+
     if (!req.file) {
       return res.status(400).json({
         message: "File is required",
@@ -220,11 +230,11 @@ export const addProfileImage = async (req, res) => {
     const date = Date.now(); // machine format
     // console.log(new Date(Date.now())); // readable date object
     let fileName = "uploads/profiles/" + date + req.file.originalname;
-    console.log(fileName);
-    renameSync(req.file.path, fileName);
+    // console.log(fileName);
+    renameSync(req.file.path, fileName); // renameSync(oldPath, newPath)
 
     const updatedUser = await User.findByIdAndUpdate(
-      req.userId,
+      userId,
       {
         image: fileName,
       },
@@ -251,7 +261,7 @@ export const removeProfileImage = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "User not found.",
+        message: "User  not found.",
       });
     }
 
@@ -269,13 +279,13 @@ export const removeProfileImage = async (req, res) => {
 
     // null is completely valid in a JSON response.
     // res.json({ image: undefined, name: "RJ" }) ==>  { "name": "RJ" }
-    // null → intentionally empty value , undefined :field may be omitted from MongoDB document entirely.
+    // null → intentionally empty value , undefined : field may be omitted from MongoDB document entirely.
     // true ==> "true" and 12 ==> "12"
 
     await user.save();
-    // If email is missing and you do:user.save() , Mongoose will throw validation error IF schema has: email {type : String , required : true}
+    // If email is missing and you do : user.save() , Mongoose will throw validation error iF schema has : email {type : String , required : true}
     // Because save() validates the whole document.
-    // ValidationError: email is required when we do email = null
+    // ValidationError : email is required when we do email = null
 
     return res.status(200).json({
       message: "Profile image removed.",
