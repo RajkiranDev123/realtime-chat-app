@@ -1,6 +1,7 @@
 import { animationDefaultOptions } from "@/lib/utils";
-
 import Lottie from "react-lottie";
+// LottieFiles animations in React are usually used for lightweight JSON-based animations instead of GIFs or videos.
+
 const EmptyChatContainer = () => {
   return (
     // If you have 3 flex items and only one item has flex: 1, then:
@@ -15,8 +16,8 @@ const EmptyChatContainer = () => {
         options={animationDefaultOptions}
       />
       <div
-        className="text-opacity-80 text-white flex flex-col gap-5 items-center mt-10 
-      lg:text-4xl text-3xl transition-all duration-300 text-center "
+        className=" text-white/80   mt-10 
+      lg:text-4xl text-3xl  text-center "
       >
         <h3 className="poppins-thin-italic">
           Hi <span className="text-purple-500">!</span> Welcome to

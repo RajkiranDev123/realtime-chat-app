@@ -8,9 +8,17 @@ const ContactsContainer = () => {
       {/*  */}
       <div className="my-5">
         <div className="flex items-center justify-between pr-10">
-          <Title text="Direct Msg"/>
+          <Title text="Direct Messages" />
         </div>
       </div>
+      {/*  */}
+          <div className="my-5">
+        <div className="flex items-center justify-between pr-10">
+          <Title text="Channels" />
+        </div>
+      </div>
+
+      {/*  */}
     </div>
   );
 };
@@ -29,6 +37,7 @@ const Logo = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
+          // d = drawing instructions.
           d="M55.5 0H77.5L58.5 32H36.5L55.5 0Z"
           className="ccustom"
           fill="#8338ec"
@@ -49,7 +58,11 @@ const Logo = () => {
   );
 };
 
-const Title = ({ text }: { text: string }) => {
+interface TitleProps {
+  text: string;
+}
+
+const Title = ({ text }: TitleProps) => {
   return (
     <h6
       className="uppercase tracking-widest text-neutral-400 pl-10 font-light text-opacity-90
