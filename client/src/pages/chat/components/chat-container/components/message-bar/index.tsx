@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GrAttachment } from "react-icons/gr";
 import { RiEmojiStickerLine } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
@@ -17,6 +17,8 @@ const MessageBar = () => {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
+      // without MouseEvent : TypeScript loses type info , Now event becomes implicitly any (or very loosely typed depending on config).
+      // TypeScript loses type info , So TS no longer knows : what event is , what target is
       if (
         emojiRef.current &&
         !emojiRef.current.contains(event.target as Node)
