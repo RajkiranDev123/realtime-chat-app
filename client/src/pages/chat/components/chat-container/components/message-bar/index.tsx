@@ -15,6 +15,13 @@ const MessageBar = () => {
     setMessage((msg) => msg + emojiData.emoji);
   };
 
+  // as = Type Assertion (you force a type)
+
+  // ! = Non-null assertion (value is NOT null/undefined)
+  // const name: string | null = "Rj";
+  // console.log(name!.toUpperCase()); // ❌ crash at runtime
+  // ! ==> removes null | undefined from a type by forcing TypeScript to trust you — but it does NOT guarantee safety at runtime.
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       // without MouseEvent : TypeScript loses type info , Now event becomes implicitly any (or very loosely typed depending on config).
@@ -22,12 +29,17 @@ const MessageBar = () => {
       if (
         emojiRef.current &&
         !emojiRef.current.contains(event.target as Node)
+        // EventTarget includes things like: DOM elements (div, button) ✅ (these ARE Nodes) ,document ✅ (Node)
+        // window ❌ (NOT a Node in TS DOM typings) ,other custom event targets
+        // ts : “I cannot promise this is always a Node.”
       ) {
         setEmojiPickerOpen(false);
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside);
+    // It is attached to the global document object in the browser DOM after mounting.
+    // From this moment onward, every mouse click triggers your handler.
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
