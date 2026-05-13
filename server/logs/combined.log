@@ -370,3 +370,78 @@
 {"duration":"31ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
 {"level":"info","message":"::1 - - [08/May/2026:08:33:04 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
 {"duration":"49ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:06:16:15 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 401 66 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"12ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":401,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:06:16:24 +0000] \"POST /api/v1/auth/login HTTP/1.1\" 200 204 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"148ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/login"}
+{"level":"info","message":"::1 - - [12/May/2026:06:16:29 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"70ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:06:17:24 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" - - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [12/May/2026:06:18:44 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"264ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:06:23:29 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"47ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:06:31:54 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"204ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:06:36:29 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"35ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:06:41:33 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"36ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:07:11:12 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"104ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:07:13:17 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"1598ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:07:53:03 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" - - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [12/May/2026:07:57:23 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 500 51 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"30016ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":500,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:08:00:20 +0000] \"POST /api/v1/auth/login HTTP/1.1\" 200 204 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"354ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/login"}
+{"level":"info","message":"::1 - - [12/May/2026:08:07:13 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 200 180 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"43ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:08:10:07 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"29ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:08:20:48 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"247ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:08:28:35 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"423ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:08:43:21 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"1103ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:08:54:41 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"221ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:09:01:43 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"47ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:09:06:12 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"38ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:09:09:09 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"31ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:09:56:26 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"905ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:09:59:43 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"70ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:04:05 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"37ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:12:43 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"135ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:15:05 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"26ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:22:52 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"35ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:23:11 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"43ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:23:30 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"43ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:31:24 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"100ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:34:29 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"37ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:34:58 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"43ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:10:41:29 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"40ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:11:00:33 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" - - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [12/May/2026:11:03:32 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"492ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:11:13:52 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"120ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [12/May/2026:11:19:46 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}
+{"duration":"73ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
