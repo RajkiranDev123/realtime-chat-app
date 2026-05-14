@@ -14,6 +14,7 @@ type UserInfo = {
 export type AuthSlice = {
   userInfo: UserInfo | null;
   setUserInfo: (userInfo: UserInfo | null) => void;
+  // When someone calls setUserInfo, they can pass either :a UserInfo object or null
 };
 
 export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
