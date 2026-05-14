@@ -3,21 +3,28 @@ const ContactsContainer = () => {
     // xs sm  md lg xl 2xl ......... 7xl
     <div className="relative rounded-sm md:w-[35vw] lg:w-[30vw] xl:w-[20vw] bg-[#1b1c24] border-r-2 border-[#2f303b] w-full">
       {/* if w-full removed : shrink to content width, or follow parent layout or look “auto-sized” (not full screen) */}
+
+      {/* logo */}
       <div className="pt-3">
         <Logo />
       </div>
-      {/*  */}
+      {/* logo ends */}
+
+      {/* Direct Messages  */}
       <div className="my-5">
         <div className="flex items-center justify-between pr-10">
           <Title text="Direct Messages" />
         </div>
       </div>
-      {/*  */}
+      {/* Direct Messages ends */}
+
+      {/* channels */}
       <div className="my-5">
         <div className="flex items-center justify-between pr-10">
           <Title text="Channels" />
         </div>
       </div>
+      {/* channels ends*/}
 
       {/*  */}
     </div>
