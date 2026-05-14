@@ -46,32 +46,38 @@ const MessageBar = () => {
     };
   }, []);
   return (
-    <div className="h-[10vh] bg-[#1c1d25] flex justify-center items-center px-8 mb-6 gap-6">
-      {/* flex item 1 : input , emoji */}
-      <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center gap-5 pr-5">
+    <div className="h-[10vh] bg-[#1c1d25] flex  items-center px-3 mb-6 gap-1">
+      {/* flex item 1 : input , attachment and emoji */}
+      <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center  gap-5 pr-5">
         <input
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           type="text"
           placeholder="Message..."
-          className="flex-1 p-5 bg-transparent rounded-md focus:border-none 
+          className="flex-1 p-3 bg-transparent rounded-md focus:border-none 
          focus:outline-none"
         />
+        {/* attachment  */}
         <button
           className="
         text-neutral-500 focus:text-white duration-300 transition-all
         "
         >
-          <GrAttachment className="text-2xl" />
+          <GrAttachment className="text-xl" />
         </button>
-        <div className="relative">
+        {/* attachment ends */}
+
+        {/* emoji */}
+        <div className="relative ">
+
           <button
             onClick={() => setEmojiPickerOpen(true)}
             className="text-neutral-500 focus:text-white duration-300 transition-all"
           >
             <RiEmojiStickerLine className="text-2xl" />
           </button>
-          <div className="absolute bottom-16 right-0" ref={emojiRef}>
+
+          <div className="absolute bottom-12 right-0 " ref={emojiRef}>
             <EmojiPicker
               theme={Theme.DARK}
               open={emojiPickerOpen}
@@ -79,24 +85,28 @@ const MessageBar = () => {
               autoFocusSearch={false}
             />
           </div>
-        </div>
-      </div>
-      {/* flex item 1 : input , emoji  */}
 
-      {/*  */}
+        </div>
+        {/* emoji ends */}
+      </div>
+      {/* flex item 1 : input , attachment and emoji ends */}
+
+      {/* send button */}
+
+      {/* focus ==> Triggered when an element is selected  (usually via click or keyboard tab). */}
 
       <button
         onClick={handleSendMessage}
-        className="
-      bg-[#8417ff] rounded-md flex items-center justify-center p-5 
-      focus:border-none hover:bg-[#741bda] focus:bg-[#741bda]
-      focus:outline-none focus:text-white text-neutral-300 duration-300 transition-all
+        className=" 
+       rounded-md flex items-center justify-center p-3
+     bg-[#8417ff]  focus:outline-none focus:border-none hover:bg-[#741bda] focus:bg-[#741bda]
+      focus:text-white text-neutral-300 duration-300 transition-all
       "
       >
         <IoSend className="text-2xl" />
       </button>
 
-      {/*  */}
+      {/* send button ends */}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import ProfileInfo from "./components/profile-info";
+
 const ContactsContainer = () => {
   return (
     // xs sm  md lg xl 2xl ......... 7xl
@@ -26,6 +28,9 @@ const ContactsContainer = () => {
       </div>
       {/* channels ends*/}
 
+      {/*  */}
+
+      <ProfileInfo />
       {/*  */}
     </div>
   );

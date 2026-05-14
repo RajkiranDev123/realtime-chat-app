@@ -9,7 +9,7 @@ const ChatContainer = () => {
     // and its children can only grow within that width.
     // xs sm md lg xl 2xl..............
     <div
-      className="fixed top-0  flex flex-col rounded-sm text-white  h-screen bg-[#1c1d25] 
+      className="fixed top-0  flex flex-col rounded-sm text-white  h-[98vh] bg-[#1c1d25] 
                  md:flex-1 md:static w-full"
     >
       {/* static = default normal positioning. So it overrides : fixed */}
