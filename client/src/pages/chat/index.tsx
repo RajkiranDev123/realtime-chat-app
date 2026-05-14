@@ -12,15 +12,15 @@ const Chat = () => {
 
   useEffect(() => {
     if (!userInfo?.profileSetup) {
-      toast("Please setup profile to continue");
+      toast("Please setup your profile first to continue");
       navigate("/profile");
     }
-    // userInfo → effect should rerun when user info changes
+    // userInfo → effect should re-run when user info changes
     // navigate → used inside effect , navigate from React Router is usually stable and won't change.
     // But ESLint still asks to include it.
   }, [userInfo, navigate]);
   return (
-    <div className="flex h-[100vh] text-white overflow-hidden bg-amber-200">
+    <div className="flex h-[100vh] text-white overflow-hidden gap-1 bg-gray-300 p-2">
       <ContactsContainer />
       {/* <EmptyChatContainer /> */}
       <ChatContainer />
