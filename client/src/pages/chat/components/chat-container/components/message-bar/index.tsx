@@ -3,7 +3,7 @@ import { GrAttachment } from "react-icons/gr";
 import { RiEmojiStickerLine } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
 import EmojiPicker, { Theme } from "emoji-picker-react";
-import type { EmojiClickData } from "emoji-picker-react";
+import type { EmojiClickData } from "emoji-picker-react"; // otherwise you must manually define it:
 const MessageBar = () => {
   const emojiRef = useRef<HTMLDivElement | null>(null);
   const [message, setMessage] = useState<string>("");
@@ -19,7 +19,7 @@ const MessageBar = () => {
 
   // ! = Non-null assertion (value is NOT null/undefined)
   // const name: string | null = "Rj";
-  // console.log(name!.toUpperCase()); // ❌ crash at runtime
+  // console.log(name!.toUpperCase()); // ❌ crash at runtime if name=null , console.log(name!.toUpperCase())
   // ! ==> removes null | undefined from a type by forcing TypeScript to trust you — but it does NOT guarantee safety at runtime.
 
   useEffect(() => {
