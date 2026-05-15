@@ -32,8 +32,13 @@ const NewDm = () => {
           { searchTerm },
           { withCredentials: true },
         );
-        console.log(3333,res.data.data)
+
         if (res.status === 200 && res.data.data) {
+          //   return res.status(200).json({
+          //   data: contacts,
+          //   success: true,
+          //   message: "Contacts fetched.",
+          // });
           setSearchedContacts(res.data.data);
         }
       } else {
