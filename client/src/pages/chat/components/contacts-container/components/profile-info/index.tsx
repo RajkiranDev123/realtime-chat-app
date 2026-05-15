@@ -1,10 +1,20 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getColor } from "@/lib/utils";
 import { useAppStore } from "@/store";
 import { HOST } from "@/utils/constants";
+import { FiEdit2 } from "react-icons/fi";
+import {  IoPowerSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const ProfileInfo = () => {
   const { userInfo } = useAppStore();
+  const navigate = useNavigate();
   return (
     // absolute : It is removed from normal layout and Its width becomes auto (content-based)
     <div
@@ -51,7 +61,39 @@ const ProfileInfo = () => {
 
       {/* item 2 : edit and logout*/}
       <div className="flex gap-5">
-        
+        {/* edit profile */}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <FiEdit2
+                onClick={() => navigate("/profile")}
+                className="text-purple-500 text-xl font-medium"
+              />
+            </TooltipTrigger>
+            <TooltipContent className="bg-black border-none text-white p-2">
+              Edit Profile
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        {/* edit profile */}
+
+        {/* logout */}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <IoPowerSharp
+                onClick={() => navigate("/profile")}
+                className="text-purple-500 text-xl font-medium"
+              />
+            </TooltipTrigger>
+            <TooltipContent className="bg-black border-none text-white p-2">
+              Logout
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        {/* logout */}
+
       </div>
       {/* item 2 : edit and logout*/}
     </div>

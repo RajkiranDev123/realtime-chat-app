@@ -146,3 +146,5 @@ npm i react-lottie
 npm i --save-dev @types/react-lottie
 npm i emoji-picker-react
 npx shadcn@latest add tooltip
+npx shadcn@latest add dialog
+npx shadcn@latest add scroll-area
