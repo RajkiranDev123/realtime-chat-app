@@ -4,10 +4,10 @@ import type { StateCreator } from "zustand";
 type UserInfo = {
   email: string;
   profileSetup: boolean;
-  id: string;
-  firstName: string;
-  lastName: string;
-  color: number;
+  _id: string;
+  firstName?: string;
+  lastName?: string;
+  color?: number;
   image?: string | null;
 };
 

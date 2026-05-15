@@ -1,3 +1,4 @@
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   Dialog,
   DialogContent,
@@ -6,6 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Tooltip,
   TooltipContent,
@@ -13,16 +15,26 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { apiClient } from "@/lib/api-client";
-import { animationDefaultOptions } from "@/lib/utils";
-import { SEARCH_CONTACTS_ROUTE } from "@/utils/constants";
+import { animationDefaultOptions, getColor } from "@/lib/utils";
+import { HOST, SEARCH_CONTACTS_ROUTE } from "@/utils/constants";
 import { useState } from "react";
 
 import { FaPlus } from "react-icons/fa";
 import Lottie from "react-lottie";
 
+type Contact = {
+  email: string;
+  profileSetup: boolean;
+  _id: string;
+  firstName?: string;
+  lastName?: string;
+  color?: number;
+  image?: string | null;
+};
+
 const NewDm = () => {
   const [openNewContactModal, setOpenNewContactModal] = useState(false);
-  const [searchedContacts, setSearchedContacts] = useState([]);
+  const [searchedContacts, setSearchedContacts] = useState<Contact[]>([]);
 
   const searchContacts = async (searchTerm: string) => {
     try {
@@ -48,6 +60,14 @@ const NewDm = () => {
       console.log(error);
     }
   };
+
+
+  const selectNewContact=(contact:Contact)=>{
+
+    setOpenNewContactModal(false)
+    setSearchedContacts([])
+
+  }
   return (
     <>
       {/* tooltip */}
@@ -81,6 +101,66 @@ const NewDm = () => {
               onChange={(e) => searchContacts(e.target.value)}
             />
           </div>
+
+          {/* scroll area */}
+
+          <ScrollArea className="h-[250px]">
+            <div className="flex flex-col gap-5">
+              {searchedContacts.map((contact) => (
+                <div
+                onClick={()=>selectNewContact(contact)}
+                  key={contact._id}
+                  className="flex gap-3 items-center cursor-pointer"
+                >
+                  <div className="w-12 h-12 relative">
+                    <Avatar className="h-12 w-12 rounded-full overflow-hidden">
+                      {contact?.image ? (
+                        <AvatarImage
+                          src={`${HOST}/${contact.image}`}
+                          alt="profile"
+                          className="object-cover w-full h-full"
+                        />
+                      ) : (
+                        <div
+                          className={`uppercase h-12 w-12 text-lg border-[1px] 
+                            flex items-center justify-center
+                            rounded-full ${getColor(contact?.color ?? 0)}
+                          `}
+                          // ts says : “I can’t pass undefined into something that requires a number”
+                          // ?? ==> It gives a default value only when the left side is null or undefined.
+                          // nullish coalescing operator.
+                        >
+                          {contact?.firstName
+                            ? contact.firstName.split("").shift()
+                            : contact?.email.split("").shift()}
+                        </div>
+                      )}
+                    </Avatar>
+                  </div>
+                  {/*  */}
+
+                  <div className="flex flex-col">
+                   <span className="">
+                    {
+                      contact.firstName && contact.lastName ?
+                      `${contact.firstName} ${contact.lastName}` : contact.email
+                    }
+
+                   </span>
+
+                   <span className="text-xs">{contact.email}</span>
+
+                  </div>
+
+
+                  {/*  */}
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+
+          {/* scroll area */}
+
           {searchedContacts.length <= 0 && (
             <div
               className="flex-1 md:bg-[#1c1d25] md:flex flex-col justify-center 
