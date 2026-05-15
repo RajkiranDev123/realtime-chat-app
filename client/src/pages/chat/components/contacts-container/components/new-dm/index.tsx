@@ -12,7 +12,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { apiClient } from "@/lib/api-client";
 import { animationDefaultOptions } from "@/lib/utils";
+import { SEARCH_CONTACTS_ROUTE } from "@/utils/constants";
 import { useState } from "react";
 
 import { FaPlus } from "react-icons/fa";
@@ -22,7 +24,25 @@ const NewDm = () => {
   const [openNewContactModal, setOpenNewContactModal] = useState(false);
   const [searchedContacts, setSearchedContacts] = useState([]);
 
-  const searchContacts = async (searchTerm: string) => {};
+  const searchContacts = async (searchTerm: string) => {
+    try {
+      if (searchTerm.length > 0) {
+        const res = await apiClient.post(
+          SEARCH_CONTACTS_ROUTE,
+          { searchTerm },
+          { withCredentials: true },
+        );
+        console.log(3333,res.data.data)
+        if (res.status === 200 && res.data.data) {
+          setSearchedContacts(res.data.data);
+        }
+      } else {
+        setSearchedContacts([]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {/* tooltip */}
