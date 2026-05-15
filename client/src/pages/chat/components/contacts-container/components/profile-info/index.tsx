@@ -5,18 +5,33 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { apiClient } from "@/lib/api-client";
 import { getColor } from "@/lib/utils";
 import { useAppStore } from "@/store";
-import { HOST } from "@/utils/constants";
+import { HOST, LOGOUT_ROUTE } from "@/utils/constants";
 import { FiEdit2 } from "react-icons/fi";
 import { IoPowerSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const ProfileInfo = () => {
-  const { userInfo } = useAppStore();
+  const { userInfo, setUserInfo } = useAppStore();
   const navigate = useNavigate();
 
-  const logout = async () => {};
+  const logout = async () => {
+    try {
+      const res = await apiClient.post(
+        LOGOUT_ROUTE,
+        {},
+        { withCredentials: true },
+      );
+      if (res.status === 200) {
+        setUserInfo(null);
+        navigate("/auth");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     // absolute : It is removed from normal layout and Its width becomes auto (content-based)
     <div
