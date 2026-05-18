@@ -13,6 +13,7 @@ import morgan from "morgan";
 import fs from "fs";
 import logger from "./utils/logger.js";
 import connectDB from "./db/connectDB.js";
+import setupSocket from "./socket.js";
 
 dotenv.config();
 
@@ -61,13 +62,13 @@ app.use(
 );
 // “Helmet = adds protective headers to every HTTP response”
 // a request is coming from a different domain / origin than your server.
-// 
+//
 
 app.use(
   cors({
     origin: process.env.ORIGIN, // Can frontend TALK to backend?
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   }),
 );
 
@@ -121,9 +122,11 @@ app.get("/api/v1/health", (req, res) => {
 const startServer = async () => {
   await connectDB();
 
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
+
+  setupSocket(server);
 };
 
 startServer();
@@ -132,12 +135,11 @@ startServer();
 // SIGINT (Signal Interrupt) is a signal sent to your Node.js app when you try to stop it manually.
 // SIGINT = signal sent when you press Ctrl + C , it triggers SIGINT
 
-
 process.on("SIGINT", async () => {
   console.log("SIGINT received... shutting down");
 
   try {
-    await mongoose.disconnect(); 
+    await mongoose.disconnect();
     console.log("DB connection closed");
   } catch (err) {
     console.log("DB close error:", err.message);

@@ -24,6 +24,8 @@ http://localhost:8080/api-docs/
 auto full :
 npm i zod zod-to-json-schema swagger-ui-express glob
 
+ npm i socket.io
+
 
 
 
