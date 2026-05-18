@@ -148,3 +148,6 @@ npm i emoji-picker-react
 npx shadcn@latest add tooltip
 npx shadcn@latest add dialog
 npx shadcn@latest add scroll-area
+
+
+npm i socket.io-client

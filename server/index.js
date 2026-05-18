@@ -127,6 +127,10 @@ const startServer = async () => {
   });
 
   setupSocket(server);
+// HTTP server = railway station
+// Express = platform for API trains
+// Socket.IO = platform for realtime trains
+// Add another platform to same station
 };
 
 startServer();
