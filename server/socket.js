@@ -1,12 +1,7 @@
 import { Server as SocketIOServer } from "socket.io";
 
 
-// const userMap = new Map();
 
-// userMap.set("name", "Ravi");
-// userMap.set("age", 22);
-// console.log(userMap) // Map(2) { 'name' => 'Ravi', 'age' => 22 }
-// console.log(userMap.get("name")); // Ravi
 
 const setupSocket = (server) => {
   const io = new SocketIOServer(server, {
@@ -42,3 +37,17 @@ const setupSocket = (server) => {
 };
 
 export default setupSocket;
+
+
+
+
+
+
+
+
+// const userMap = new Map();
+
+// userMap.set("name", "Ravi");
+// userMap.set("age", 22);
+// console.log(userMap) // Map(2) { 'name' => 'Ravi', 'age' => 22 }
+// console.log(userMap.get("name")); // Ravi
