@@ -3,6 +3,8 @@ import { useRef, useEffect, createContext, useContext } from "react";
 import type { ReactNode } from "react";
 
 import { io, Socket } from "socket.io-client";
+// io is a function used to create a socket connection.
+// Socket is a TypeScript type.
 
 import { useAppStore } from "@/store";
 import { HOST } from "@/utils/constants";
@@ -24,7 +26,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
   const { userInfo } = useAppStore();
 
-  console.log(876, userInfo?.id);
+
 
   useEffect(() => {
     if (userInfo) {
