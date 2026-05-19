@@ -60,6 +60,8 @@ export default setupSocket;
 // console.log(userMap) // Map(2) { 'name' => 'Ravi', 'age' => 22 }
 // console.log(userMap.get("name")); // Ravi
 // userMap.delete("name");
+// Map in JavaScript does not allow duplicate keys.
+// If you add the same key again, the old value gets replaced.
 
 // Problems with plain objects : Keys were only strings
 // WeakMap : keys MUST be objects only.
