@@ -1,8 +1,5 @@
 import { Server as SocketIOServer } from "socket.io";
 
-
-
-
 const setupSocket = (server) => {
   const io = new SocketIOServer(server, {
     cors: {
@@ -36,7 +33,6 @@ const setupSocket = (server) => {
     } else {
       console.log(`user id not provided during connection`);
     }
-
     // Disconnect event
     socket.on("disconnect", () => disconnect(socket));
   });
