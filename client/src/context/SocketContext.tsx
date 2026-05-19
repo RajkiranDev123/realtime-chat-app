@@ -22,16 +22,13 @@ type SocketProviderProps = {
 };
 
 export const SocketProvider = ({ children }: SocketProviderProps) => {
-
   const socket = useRef<Socket | null>(null);
 
   const { userInfo } = useAppStore();
 
-
-
   useEffect(() => {
     if (userInfo) {
-      // io() returns a Socket instance/object.
+      // io() ==> creates + returns socket object
       socket.current = io(HOST, {
         withCredentials: true,
         query: {
