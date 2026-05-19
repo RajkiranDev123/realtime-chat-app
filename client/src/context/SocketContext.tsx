@@ -28,7 +28,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
   useEffect(() => {
     if (userInfo) {
-      // io() ==> creates + returns socket object
+      // io() ==> creates + returns socket instance/object
       socket.current = io(HOST, {
         withCredentials: true,
         query: {
