@@ -26,7 +26,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
   const { userInfo } = useAppStore();
 
-
+  console.log(876, userInfo?.id);
 
   useEffect(() => {
     if (userInfo) {
