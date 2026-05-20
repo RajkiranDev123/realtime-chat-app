@@ -19,6 +19,7 @@ type Message = {
 
   sender: UserRef;
   recipient: UserRef;
+  createdAt:string
 };
 
 type ChatData = {
