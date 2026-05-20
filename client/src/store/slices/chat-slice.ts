@@ -1,8 +1,24 @@
 import type { StateCreator } from "zustand";
 
+type User = {
+  _id: string;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  image?: string;
+  color?: number;
+};
+
+type UserRef = User | string;
+
 type Message = {
-  id: string;
-  text: string;
+  _id: string;
+  content: string;
+  messageType: string;
+  fileUrl?: string;
+
+  sender: UserRef;
+  recipient: UserRef;
 };
 
 type ChatData = {
@@ -21,15 +37,21 @@ export type ChatSlice = {
   selectedChatMessages: Message[];
 
   setSelectedChatType: (selectedChatType: string) => void;
+
   setSelectedChatData: (selectedChatData: ChatData) => void;
+
   setSelectedChatMessages: (selectedChatMessages: Message[]) => void;
 
   closeChat: () => void;
+
+  addMessage: (message: Message) => void;
 };
 
-export const createChatSlice: StateCreator<ChatSlice> = (set) => ({
+export const createChatSlice: StateCreator<ChatSlice> = (set, get) => ({
   selectedChatType: undefined,
+
   selectedChatData: undefined,
+
   selectedChatMessages: [],
 
   setSelectedChatType: (selectedChatType) => set({ selectedChatType }),
@@ -45,4 +67,34 @@ export const createChatSlice: StateCreator<ChatSlice> = (set) => ({
       selectedChatType: undefined,
       selectedChatMessages: [],
     }),
+
+  addMessage: (message: Message) => {
+    const selectedChatMessages = get().selectedChatMessages;
+
+    const selectedChatType = get().selectedChatType;
+
+    set({
+      selectedChatMessages: [
+        ...selectedChatMessages,
+
+        {
+          ...message,
+
+          recipient:
+            selectedChatType === "channel"
+              ? message.recipient
+              : typeof message.recipient === "string"
+                ? message.recipient
+                : message.recipient._id,
+
+          sender:
+            selectedChatType === "channel"
+              ? message.sender
+              : typeof message.sender === "string"
+                ? message.sender
+                : message.sender._id,
+        },
+      ],
+    });
+  },
 });

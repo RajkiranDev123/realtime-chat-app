@@ -4,12 +4,33 @@ import { RiEmojiStickerLine } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
 import EmojiPicker, { Theme } from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react"; // otherwise you must manually define it:
+import { useAppStore } from "@/store";
+import { useSocket } from "@/context/SocketContext";
+
 const MessageBar = () => {
+  const socket = useSocket();
   const emojiRef = useRef<HTMLDivElement | null>(null);
+  const { selectedChatData, selectedChatType, userInfo } = useAppStore();
   const [message, setMessage] = useState<string>("");
   const [emojiPickerOpen, setEmojiPickerOpen] = useState<boolean>(false);
 
-  const handleSendMessage = async () => {};
+  const handleSendMessage = async () => {
+    // type SocketContextType = Socket | null ==> 'socket' is possibly 'null'.
+    if (
+      selectedChatType === "contact" &&
+      socket &&
+      userInfo &&
+      selectedChatData
+    ) {
+      socket.emit("sendMessage", {
+        sender: userInfo.id,
+        content: message,
+        recipient: selectedChatData._id,
+        messageType: "text",
+        fileUrl: undefined,
+      });
+    }
+  };
 
   const handleAddEmoji = (emojiData: EmojiClickData) => {
     setMessage((msg) => msg + emojiData.emoji);
@@ -69,7 +90,6 @@ const MessageBar = () => {
 
         {/* emoji */}
         <div className="relative ">
-
           <button
             onClick={() => setEmojiPickerOpen(true)}
             className="text-neutral-500 focus:text-white duration-300 transition-all"
@@ -85,7 +105,6 @@ const MessageBar = () => {
               autoFocusSearch={false}
             />
           </div>
-
         </div>
         {/* emoji ends */}
       </div>

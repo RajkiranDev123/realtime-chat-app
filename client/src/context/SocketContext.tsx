@@ -9,6 +9,31 @@ import { io, Socket } from "socket.io-client";
 import { useAppStore } from "@/store";
 import { HOST } from "@/utils/constants";
 
+type IncomingMessage = {
+  _id: string;
+  content: string;
+  messageType: string;
+  fileUrl?: string;
+
+  sender: {
+    _id: string;
+    firstName?: string;
+    lastName?: string;
+    email: string;
+    image?: string;
+    color?: number;
+  };
+
+  recipient: {
+    _id: string;
+    firstName?: string;
+    lastName?: string;
+    email: string;
+    image?: string;
+    color?: number;
+  };
+};
+
 type SocketContextType = Socket | null;
 
 const SocketContext = createContext<SocketContextType>(null);
@@ -39,6 +64,22 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
       socket.current.on("connect", () => {
         console.log("Connected to socket server");
       });
+
+      const handleReceiveMessage = (message:IncomingMessage) => {
+        const { selectedChatType, selectedChatData, addMessage } =
+          useAppStore.getState();
+
+        if (
+          selectedChatType !== undefined &&   selectedChatData &&
+          (selectedChatData._id === message.sender._id ||
+            selectedChatData._id === message.recipient._id)
+        ) {
+          addMessage(message);
+          console.log(76543,message)
+        }
+      };
+
+      socket.current.on("receiveMessage", handleReceiveMessage);
 
       return () => {
         socket.current?.disconnect();

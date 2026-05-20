@@ -21,7 +21,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   userInfo: null,
 
   setUserInfo: (userInfo) => {
-    console.log(77, userInfo);
+
     set({
       userInfo,
     });
