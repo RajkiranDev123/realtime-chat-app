@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 
 import authRoutes from "./routes/AuthRoutes.js";
 import contactRoutes from "./routes/ContactRoutes.js";
+import messageRoutes from "./routes/MessageRoutes.js";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 
@@ -111,6 +112,7 @@ app.use((req, res, next) => {
 //Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/contacts", contactRoutes);
+app.use("/api/v1/messages", messageRoutes);
 
 app.get("/api/v1/health", (req, res) => {
   res.send("API is running...");
