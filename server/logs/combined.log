@@ -1361,3 +1361,7 @@
 {"duration":"2ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":400,"url":"/get-messages"}
 {"level":"info","message":"::1 - - [20/May/2026:12:11:57 +0000] \"POST /api/v1/messages/get-messages HTTP/1.1\" 400 57 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"duration":"4ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":400,"url":"/get-messages"}
+{"level":"info","message":"::1 - - [20/May/2026:12:12:24 +0000] \"POST /api/v1/contacts/search HTTP/1.1\" 200 347 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"66ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/search"}
+{"level":"info","message":"::1 - - [20/May/2026:12:12:26 +0000] \"POST /api/v1/messages/get-messages HTTP/1.1\" 200 2581 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"65ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/get-messages"}

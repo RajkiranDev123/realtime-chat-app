@@ -4,7 +4,7 @@ export const getMessages = async (req, res) => {
   try {
     const user1 = req.userId;
     const user2 = req.body.id;
-    console.log(user1,user2)
+
     if (!user1 || !user2) {
       return res.status(400).json({
         success: false,
