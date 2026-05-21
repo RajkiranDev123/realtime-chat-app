@@ -11,6 +11,7 @@ type Contact = {
   firstName?: string;
   lastName?: string;
   image?: string;
+  name?: string;
 
   color?: number;
 };
@@ -64,9 +65,16 @@ const ContactList = ({
                   />
                 ) : (
                   <div
-                    className={`uppercase h-10 w-10 text-lg border-[1px] 
+                    className={`
+                        ${
+                          selectedChatData &&
+                          selectedChatData._id === contact._id
+                            ? "bg-[#ffffff22] border border-white/70"
+                            : getColor(contact.color ?? 0)
+                        }
+                        uppercase h-10 w-10 text-lg border-[1px] 
                             flex items-center justify-center
-                            rounded-full ${getColor(contact?.color ?? 0)}
+                            rounded-full }
                           `}
                     // ts says : “I can’t pass undefined into something that requires a number”
                     // ?? ==> It gives a default value only when the left side is null or undefined.
@@ -78,6 +86,16 @@ const ContactList = ({
                   </div>
                 )}
               </Avatar>
+            )}
+            {isChannel && (
+              <div className="bg-[#ffffff22] h-10 w-10 flex items-center justify-center rounded-full">
+                #
+              </div>
+            )}
+            {isChannel ? (
+              <span>{contact.name}</span>
+            ) : (
+              <span>{`${contact.firstName} ${contact.lastName}`}</span>
             )}
           </div>
         </div>
