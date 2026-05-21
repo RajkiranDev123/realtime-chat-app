@@ -10,6 +10,8 @@ import { useSocket } from "@/context/SocketContext";
 const MessageBar = () => {
   const socket = useSocket();
   const emojiRef = useRef<HTMLDivElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
   const { selectedChatData, selectedChatType, userInfo } = useAppStore();
   const [message, setMessage] = useState<string>("");
   const [emojiPickerOpen, setEmojiPickerOpen] = useState<boolean>(false);
@@ -34,6 +36,26 @@ const MessageBar = () => {
 
   const handleAddEmoji = (emojiData: EmojiClickData) => {
     setMessage((msg) => msg + emojiData.emoji);
+  };
+
+  const handleAttachmentClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleAttachmentChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    try {
+      const file = event.target.files?.[0];
+
+      if (!file) return;
+
+      console.log(file);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // as = Type Assertion (you force a type)
@@ -80,12 +102,19 @@ const MessageBar = () => {
         />
         {/* attachment  */}
         <button
+          onClick={handleAttachmentClick}
           className="
         text-neutral-500 focus:text-white duration-300 transition-all
         "
         >
           <GrAttachment className="text-xl" />
         </button>
+        <input
+          type="file"
+          className="hidden"
+          ref={fileInputRef}
+          onChange={handleAttachmentChange}
+        />
         {/* attachment ends */}
 
         {/* emoji */}

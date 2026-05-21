@@ -30,7 +30,7 @@ export const getMessages = async (req, res) => {
   }
 };
 
-export const uploadfile = async (req, res) => {
+export const uploadFile = async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({
