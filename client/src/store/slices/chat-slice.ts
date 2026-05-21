@@ -8,7 +8,17 @@ type User = {
   image?: string;
   color?: number;
 };
+type Contact = {
+  _id: string;
+  lastMessageTime: string;
 
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  image?: string;
+
+  color?: number;
+};
 type UserRef = User | string;
 
 type Message = {
@@ -19,7 +29,7 @@ type Message = {
 
   sender: UserRef;
   recipient: UserRef;
-  createdAt:string
+  createdAt: string;
 };
 
 type ChatData = {
@@ -36,6 +46,9 @@ export type ChatSlice = {
   selectedChatType: string | undefined;
   selectedChatData: ChatData | undefined;
   selectedChatMessages: Message[];
+  directMessagesContacts: Contact[];
+
+  setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
 
   setSelectedChatType: (selectedChatType: string) => void;
 
@@ -54,6 +67,11 @@ export const createChatSlice: StateCreator<ChatSlice> = (set, get) => ({
   selectedChatData: undefined,
 
   selectedChatMessages: [],
+
+  directMessagesContacts: [],
+
+  setDirectMessagesContacts: (directMessagesContacts) =>
+    set({ directMessagesContacts }),
 
   setSelectedChatType: (selectedChatType) => set({ selectedChatType }),
 
