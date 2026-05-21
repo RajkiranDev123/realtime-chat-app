@@ -55,26 +55,26 @@ const ContactList = ({
         >
           <div className="flex gap-5 items-center justify-start text-neutral-300">
             {!isChannel && (
-              <Avatar className="h-12 w-12 rounded-full overflow-hidden">
-                {selectedChatData?.image ? (
+              <Avatar className="h-10 w-10 rounded-full overflow-hidden">
+                {contact?.image ? (
                   <AvatarImage
-                    src={`${HOST}/${selectedChatData.image}`}
+                    src={`${HOST}/${contact.image}`}
                     alt="profile"
                     className="object-cover w-full h-full"
                   />
                 ) : (
                   <div
-                    className={`uppercase h-12 w-12 text-lg border-[1px] 
+                    className={`uppercase h-10 w-10 text-lg border-[1px] 
                             flex items-center justify-center
-                            rounded-full ${getColor(selectedChatData?.color ?? 0)}
+                            rounded-full ${getColor(contact?.color ?? 0)}
                           `}
                     // ts says : “I can’t pass undefined into something that requires a number”
                     // ?? ==> It gives a default value only when the left side is null or undefined.
                     // nullish coalescing operator.
                   >
-                    {selectedChatData?.firstName
-                      ? selectedChatData.firstName.split("").shift()
-                      : selectedChatData?.email.split("").shift()}
+                    {contact?.firstName
+                      ? contact.firstName.split("").shift()
+                      : contact?.email.split("").shift()}
                   </div>
                 )}
               </Avatar>
