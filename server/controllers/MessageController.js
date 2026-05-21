@@ -1,5 +1,5 @@
 import Message from "../models/MessageModel.js";
-import { mkdirSync } from "fs";
+import { mkdirSync, renameSync } from "fs";
 
 export const getMessages = async (req, res) => {
   try {
@@ -32,6 +32,22 @@ export const getMessages = async (req, res) => {
 
 export const uploadfile = async (req, res) => {
   try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "File is required.",
+      });
+    }
+    const date = Date.now();
+    let fileDir = `uploads/files/${date}`;
+    let fileName = `${fileDir}/${req.file.originalname}`;
+    mkdirSync(fileDir, { recursive: true });
+    renameSync(req.file.path, fileName);
+
+    return res.status(200).json({
+      success: true,
+      filePath: fileName,
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
