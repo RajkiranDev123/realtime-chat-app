@@ -80,6 +80,7 @@ app.use(morgan("combined", { stream })); // captures: HTTP method , URL , Status
 // { stream } → don’t print to console , instead call stream.write(...)
 
 app.use("/uploads/profiles", express.static("uploads/profiles"));
+app.use("/uploads/files", express.static("uploads/files"));
 
 // This tells Express.js : “When someone visits /uploads/profiles/..., send files from the uploads/profiles folder.”
 // http://localhost:5000/uploads/profiles/cat.png

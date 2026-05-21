@@ -1,4 +1,5 @@
 import Message from "../models/MessageModel.js";
+import { mkdirSync } from "fs";
 
 export const getMessages = async (req, res) => {
   try {
@@ -25,6 +26,16 @@ export const getMessages = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
+    });
+  }
+};
+
+export const uploadfile = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server error",
     });
   }
 };
