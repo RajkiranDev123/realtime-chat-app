@@ -34,7 +34,7 @@ type Message = {
 
 type ChatData = {
   email: string;
-  profileSetup: boolean;
+  profileSetup?: boolean;
   _id: string;
   firstName?: string;
   lastName?: string;
