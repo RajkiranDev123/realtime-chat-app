@@ -2,7 +2,7 @@ import { apiClient } from "@/lib/api-client";
 import { useAppStore } from "@/store";
 import { GET_ALL_MESSAGES_ROUTE, HOST } from "@/utils/constants";
 import moment from "moment";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import { MdFolderZip } from "react-icons/md";
 import { IoMdArrowRoundDown } from "react-icons/io";
@@ -40,6 +40,9 @@ const MessageContainer = () => {
     selectedChatMessages,
     setSelectedChatMessages,
   } = useAppStore();
+
+  const [showImage, setShowImage] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -142,7 +145,16 @@ const MessageContainer = () => {
             border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
           >
             {message.fileUrl && checkIfImage(message.fileUrl) ? (
-              <div className="cursor-pointer">
+              // TS already knows message.fileUrl exists.
+              // But inside onClick, narrowing is lost sometimes because of closure/function scope.
+              // So just use non-null assertion:
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  setShowImage(true);
+                  setImageUrl(message.fileUrl!);
+                }}
+              >
                 <img
                   src={`${HOST}/${message.fileUrl}`}
                   height={300}
