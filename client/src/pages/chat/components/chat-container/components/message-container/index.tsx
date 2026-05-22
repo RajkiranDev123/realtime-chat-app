@@ -1,8 +1,11 @@
 import { apiClient } from "@/lib/api-client";
 import { useAppStore } from "@/store";
-import { GET_ALL_MESSAGES_ROUTE } from "@/utils/constants";
+import { GET_ALL_MESSAGES_ROUTE, HOST } from "@/utils/constants";
 import moment from "moment";
 import { useRef, useEffect } from "react";
+
+import { MdFolderZip } from "react-icons/md";
+import { IoMdArrowRoundDown } from "react-icons/io";
 
 type User = {
   _id: string;
@@ -72,6 +75,10 @@ const MessageContainer = () => {
     return imageRegex.test(filePath);
   };
 
+  const downloadFile = (file: string) => {
+    
+  };
+
   const renderMessages = () => {
     let lastDate: string | null = null;
     return selectedChatMessages.map((message, index) => {
@@ -118,9 +125,29 @@ const MessageContainer = () => {
             border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
           >
             {message.fileUrl && checkIfImage(message.fileUrl) ? (
-              <div></div>
+              <div className="cursor-pointer">
+                <img
+                  src={`${HOST}/${message.fileUrl}`}
+                  height={300}
+                  width={300}
+                />
+              </div>
             ) : (
-              <div></div>
+              <div className="flex items-center justify-center gap-4">
+                <span className="text-white/80 text-3xl bg-black/20 rounded-full p-3">
+                  <MdFolderZip />
+                </span>
+                <span>{message.fileUrl?.split("/").pop()}</span>
+                <span
+                  onClick={() =>
+                    message.fileUrl && downloadFile(message.fileUrl)
+                  }
+                  className="bg-black/20 p-3 text-2xl rounded-full
+                hover:bg-black/50 cursor-pointer transition-all duration-300"
+                >
+                  <IoMdArrowRoundDown />
+                </span>
+              </div>
             )}
           </div>
         )}

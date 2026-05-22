@@ -29,7 +29,7 @@ const setupSocket = (server) => {
     const senderSocketId = userSocketMap.get(message.sender);
     const recipientSocketId = userSocketMap.get(message.recipient);
 
-    console.log(55,senderSocketId,recipientSocketId)
+   
 
     const createdMessage = await Message.create(message);
     const messageData = await Message.findById(createdMessage._id)
