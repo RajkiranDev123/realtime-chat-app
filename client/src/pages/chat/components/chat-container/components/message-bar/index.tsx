@@ -6,6 +6,8 @@ import EmojiPicker, { Theme } from "emoji-picker-react";
 import type { EmojiClickData } from "emoji-picker-react"; // otherwise you must manually define it:
 import { useAppStore } from "@/store";
 import { useSocket } from "@/context/SocketContext";
+import { apiClient } from "@/lib/api-client";
+import { UPLOAD_FILE_ROUTE } from "@/utils/constants";
 
 const MessageBar = () => {
   const socket = useSocket();
@@ -50,7 +52,24 @@ const MessageBar = () => {
     try {
       const file = event.target.files?.[0];
 
-      if (!file) return;
+      if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        const res = await apiClient.post(UPLOAD_FILE_ROUTE, formData, {
+          withCredentials: true,
+        });
+        if (res.status === 200 && res.data) {
+          if (selectedChatType === "contact") {
+            socket?.emit("sendMessage", {
+              sender: userInfo?.id,
+              content: undefined,
+              recipient: selectedChatData?._id,
+              messageType: "file",
+              fileUrl: res.data.filePath,
+            });
+          }
+        }
+      }
 
       console.log(file);
     } catch (error) {

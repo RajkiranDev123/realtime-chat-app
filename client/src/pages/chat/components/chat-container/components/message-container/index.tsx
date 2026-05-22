@@ -18,8 +18,10 @@ type UserRef = User | string;
 type Message = {
   _id: string;
   content: string;
+  // message.content is always guaranteed to exist, no ts complain
   messageType: string;
   fileUrl?: string;
+  // ? == string | undefined , so ts complains
 
   sender: UserRef;
   recipient: UserRef;
@@ -38,7 +40,7 @@ const MessageContainer = () => {
 
   useEffect(() => {
     const getMessages = async () => {
-      console.log(6754,selectedChatData?._id)
+      console.log(6754, selectedChatData?._id);
       try {
         const res = await apiClient.post(
           GET_ALL_MESSAGES_ROUTE,
@@ -63,6 +65,12 @@ const MessageContainer = () => {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [selectedChatMessages]);
+
+  const checkIfImage = (filePath: string) => {
+    const imageRegex =
+      /\.(jpg|jpeg|png|gif|bmp|tiff|tif|webp|svg|ico|heic|heif)$/i;
+    return imageRegex.test(filePath);
+  };
 
   const renderMessages = () => {
     let lastDate: string | null = null;
@@ -98,6 +106,22 @@ const MessageContainer = () => {
             border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
           >
             {message.content}
+          </div>
+        )}
+        {message.messageType === "file" && (
+          <div
+            className={`${
+              message.sender !== selectedChatData?._id
+                ? "bg-[#8417ff] text-white/80 border-[#8417ff]/50"
+                : "bg-[#2a2b33] text-white/80 border-[#ffffff]/20"
+            } 
+            border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+          >
+            {message.fileUrl && checkIfImage(message.fileUrl) ? (
+              <div></div>
+            ) : (
+              <div></div>
+            )}
           </div>
         )}
 
