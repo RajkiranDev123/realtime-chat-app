@@ -2058,3 +2058,9 @@
 {"level":"info","message":"::1 - - [22/May/2026:07:46:32 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"level":"info","message":"::1 - - [22/May/2026:07:46:32 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"duration":"45ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [22/May/2026:07:48:36 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"78ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [22/May/2026:07:48:37 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"104ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [22/May/2026:07:49:22 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"44ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}

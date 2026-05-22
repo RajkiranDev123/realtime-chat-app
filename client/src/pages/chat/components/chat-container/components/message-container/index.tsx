@@ -40,6 +40,9 @@ const MessageContainer = () => {
     userInfo,
     selectedChatMessages,
     setSelectedChatMessages,
+    //
+    setIsDownloading,
+    setFileDownloadProgress,
   } = useAppStore();
 
   const [showImage, setShowImage] = useState(false);
@@ -86,7 +89,19 @@ const MessageContainer = () => {
   // Browser downloads file
   // Cleanup memory
   const downloadFile = async (url: string) => {
-    const res = await apiClient.get(`${HOST}/${url}`, { responseType: "blob" });
+    setIsDownloading(true);
+    setFileDownloadProgress(0);
+    const res = await apiClient.get(`${HOST}/${url}`, {
+      responseType: "blob",
+      onDownloadProgress: (progressEvent) => {
+        const { loaded, total } = progressEvent;
+
+        if (total) {
+          const percentCompleted = Math.round((loaded * 100) / total);
+          setFileDownloadProgress(percentCompleted);
+        }
+      },
+    });
 
     const urlBlob = window.URL.createObjectURL(new Blob([res.data]));
     const link = document.createElement("a");
@@ -98,6 +113,8 @@ const MessageContainer = () => {
     link.click();
     link.remove();
     window.URL.revokeObjectURL(urlBlob);
+    setIsDownloading(false)
+    setFileDownloadProgress(0)
   };
 
   const renderMessages = () => {
