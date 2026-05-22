@@ -43,6 +43,18 @@ type ChatData = {
 };
 
 export type ChatSlice = {
+  //
+  isUploading: boolean;
+  isDownloading: boolean;
+  fileUploadProgress: number;
+  fileDownloadProgress: number;
+
+  setIsUploading: (isUploading: boolean) => void;
+  setIsDownloading: (isDownloading: boolean) => void;
+  setFileUploadProgress: (fileUploadProgress: number) => void;
+  setFileDownloadProgress: (fileDownloadProgress: number) => void;
+
+  //
   selectedChatType: string | undefined;
   selectedChatData: ChatData | undefined;
   selectedChatMessages: Message[];
@@ -62,6 +74,19 @@ export type ChatSlice = {
 };
 
 export const createChatSlice: StateCreator<ChatSlice> = (set, get) => ({
+  //
+  isUploading: false,
+  isDownloading: false,
+  fileUploadProgress: 0,
+  fileDownloadProgress: 0,
+  setIsUploading: (isUploading) => set({ isUploading }),
+  setIsDownloading: (isDownloading) => set({ isDownloading }),
+
+  setFileUploadProgress: (fileUploadProgress) => set({ fileUploadProgress }),
+  setFileDownloadProgress: (fileDownloadProgress) =>
+    set({ fileDownloadProgress }),
+
+  //
   selectedChatType: undefined,
 
   selectedChatData: undefined,
