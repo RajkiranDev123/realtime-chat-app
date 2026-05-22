@@ -75,8 +75,25 @@ const MessageContainer = () => {
     return imageRegex.test(filePath);
   };
 
-  const downloadFile = (file: string) => {
-    
+  // Fetch file from backend
+  // Convert to downloadable browser URL
+  // Create hidden link
+  // Auto click it
+  // Browser downloads file
+  // Cleanup memory
+  const downloadFile = async (url: string) => {
+    const res = await apiClient.get(`${HOST}/${url}`, { responseType: "blob" });
+
+    const urlBlob = window.URL.createObjectURL(new Blob([res.data]));
+    const link = document.createElement("a");
+    link.href = urlBlob;
+    // .pop() returns the last item OR undefined if array is empty
+    // ?? only uses fallback for null or undefined.
+    link.setAttribute("download", url.split("/").pop() ?? "download");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(urlBlob);
   };
 
   const renderMessages = () => {
