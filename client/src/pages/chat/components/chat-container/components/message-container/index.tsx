@@ -6,6 +6,7 @@ import { useRef, useEffect, useState } from "react";
 
 import { MdFolderZip } from "react-icons/md";
 import { IoMdArrowRoundDown } from "react-icons/io";
+import { IoCloseSharp } from "react-icons/io5";
 
 type User = {
   _id: string;
@@ -200,6 +201,39 @@ const MessageContainer = () => {
     >
       {renderMessages()}
       <div ref={scrollRef} />
+      {showImage && (
+        <div
+          className="fixed z-[1000] top-0 left-0 h-[100vh] w-[100vw] flex items-center
+          justify-center backdrop-blur-lg flex-col
+          "
+        >
+          <div>
+            <img
+              className="h-[80vh] w-full bg-cover"
+              src={`${HOST}/${imageUrl}`}
+            />
+          </div>
+          <div className="flex gap-5 fixed top-0 mt-5">
+            <button
+              onClick={() => imageUrl && downloadFile(imageUrl)}
+              className="bg-black/20 p-3 text-2xl rounded-full hover:bg-black/50
+            cursor-pointer transition-all duration-300"
+            >
+              <IoMdArrowRoundDown />
+            </button>
+            <button
+              onClick={() => {
+                setShowImage(false);
+                setImageUrl(null);
+              }}
+              className="bg-black/20 p-3 text-2xl rounded-full hover:bg-black/50
+            cursor-pointer transition-all duration-300"
+            >
+              <IoCloseSharp />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
