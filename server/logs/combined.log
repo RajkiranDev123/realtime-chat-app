@@ -2080,3 +2080,199 @@
 {"level":"info","message":"::1 - - [23/May/2026:04:14:33 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"level":"info","message":"::1 - - [23/May/2026:04:14:34 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"duration":"167ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:33 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"90ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:34 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"64ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:34 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:34 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"54ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:35 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"63ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:36 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"80ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:36 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:36 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 200 220 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"48ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:40 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" - - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:41 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"380ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:41 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:41 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 200 220 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"45ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:43 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" - - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:44 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"119ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:44 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:23:44 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 200 220 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"213ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:26:57 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"40ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:27:02 +0000] \"POST /api/v1/contacts/search HTTP/1.1\" 200 347 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"53ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/search"}
+{"level":"info","message":"::1 - - [23/May/2026:04:41:44 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"80ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:42:04 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"95ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:42:08 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"444ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:42:51 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 200 51 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"89ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:43:42 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"87ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:43:45 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"118ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:43:58 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"39ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:44:02 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"66ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:44:03 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"40ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:46:35 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"53ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:46:35 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"52ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:47:08 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"51ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:47:12 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"38ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:47:28 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"48ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:47:38 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"138ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:47:44 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"43ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:48:31 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"73ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:48:31 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"73ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:48:33 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"69ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:48:38 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"83ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:48:58 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"2207ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:49:54 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"108ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:00 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"51ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:04 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"38ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:05 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"89ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:08 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"85ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:10 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"43ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:14 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"38ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:16 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"44ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:20 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"52ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:23 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"103ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:24 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"47ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:30 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"41ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:33 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"126ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:35 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"48ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:37 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"51ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:39 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"44ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:45 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"165ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:50:51 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"39ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:55:21 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"48ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:55:35 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" - - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:55:36 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"47ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [23/May/2026:04:55:36 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/May/2026:04:55:36 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 200 51 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"41ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":200,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:55:36 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"46ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:57:23 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"63ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:57:26 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"320ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:57:42 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"53ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:57:44 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"52ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:57:52 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"113ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:57:56 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"45ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:57:58 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"63ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:01 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"53ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:03 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"77ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:06 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"53ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:25 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"92ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:31 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"105ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:32 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"67ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:35 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"41ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:38 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"120ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:41 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"118ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:42 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"61ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:48 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"38ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:58:50 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"42ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:59:07 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"40ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:59:07 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"40ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:59:15 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"44ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:59:22 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"39ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:59:22 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"52ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}
+{"level":"info","message":"::1 - - [23/May/2026:04:59:53 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"57ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:04:59:56 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"254ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:03 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"214ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:06 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"103ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:16 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"105ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:18 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"39ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:28 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"39ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:31 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"170ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:36 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"37ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:41 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"49ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:44 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"55ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:00:46 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"50ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:02:26 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"71ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:02:40 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"41ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [23/May/2026:05:02:41 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"100ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}

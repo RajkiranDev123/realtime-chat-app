@@ -152,3 +152,7 @@ npx shadcn@latest add scroll-area
 
 npm i socket.io-client
 npm i moment
+
+https://shadcnui-expansions.typeart.cc/docs/multiple-selector
+
+ npx shadcn@latest add command badge
