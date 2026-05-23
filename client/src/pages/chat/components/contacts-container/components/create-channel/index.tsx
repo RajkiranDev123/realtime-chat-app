@@ -1,4 +1,3 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import MultipleSelector from "@/components/ui/MultipleSelector";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 import {
   Tooltip,
   TooltipContent,
@@ -17,27 +16,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { apiClient } from "@/lib/api-client";
-import { animationDefaultOptions, getColor } from "@/lib/utils";
-import { useAppStore } from "@/store";
-import {
-  GET_ALL_CONTACTS_ROUTE,
-  HOST,
-  SEARCH_CONTACTS_ROUTE,
-} from "@/utils/constants";
+
+import { GET_ALL_CONTACTS_ROUTE } from "@/utils/constants";
 import { useEffect, useState } from "react";
 
 import { FaPlus } from "react-icons/fa";
-import Lottie from "react-lottie";
-
-type Contact = {
-  email: string;
-  profileSetup: boolean;
-  _id: string;
-  firstName?: string;
-  lastName?: string;
-  color?: number;
-  image?: string | null;
-};
 
 type Option = {
   value: string;
@@ -46,7 +29,7 @@ type Option = {
 const CreateChannel = () => {
   //   const { setSelectedChatType, setSelectedChatData } = useAppStore();
   const [newChannelModal, setNewChannelModal] = useState(false);
-  const [searchedContacts, setSearchedContacts] = useState<Contact[]>([]);
+
   //
   const [allContacts, setAllContacts] = useState([]);
   const [selectedContacts, setSelectedContacts] = useState<Option[]>([]);
