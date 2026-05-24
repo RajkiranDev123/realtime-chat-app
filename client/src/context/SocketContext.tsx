@@ -14,6 +14,8 @@ type IncomingMessage = {
   content: string;
   messageType: string;
   fileUrl?: string;
+  channelId?: string;
+  createdAt: string;
 
   sender: {
     _id: string;
@@ -65,21 +67,36 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         console.log("Connected to socket server");
       });
 
-      const handleReceiveMessage = (message:IncomingMessage) => {
+      const handleReceiveMessage = (message: IncomingMessage) => {
         const { selectedChatType, selectedChatData, addMessage } =
           useAppStore.getState();
 
         if (
-          selectedChatType !== undefined &&   selectedChatData &&
+          selectedChatType !== undefined &&
+          selectedChatData &&
           (selectedChatData._id === message.sender._id ||
             selectedChatData._id === message.recipient._id)
         ) {
           addMessage(message);
-          console.log(76543,message)
+          console.log(76543, message);
+        }
+      };
+      //
+      const handleReceiveChannelMessage = (message: IncomingMessage) => {
+        const { selectedChatType, selectedChatData, addMessage } =
+          useAppStore.getState();
+
+        if (
+          selectedChatType !== undefined &&
+          selectedChatData &&
+          selectedChatData._id === message.channelId
+        ) {
+          addMessage(message);
         }
       };
 
       socket.current.on("receiveMessage", handleReceiveMessage);
+      socket.current.on("receive-channel-message", handleReceiveChannelMessage);
 
       return () => {
         socket.current?.disconnect();

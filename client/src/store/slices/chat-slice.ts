@@ -29,10 +29,13 @@ type Message = {
   _id: string;
   content: string;
   messageType: string;
+
   fileUrl?: string;
+  channelId?: string;
 
   sender: UserRef;
   recipient: UserRef;
+
   createdAt: string;
 };
 

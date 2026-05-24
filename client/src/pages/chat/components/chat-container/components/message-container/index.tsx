@@ -113,8 +113,8 @@ const MessageContainer = () => {
     link.click();
     link.remove();
     window.URL.revokeObjectURL(urlBlob);
-    setIsDownloading(false)
-    setFileDownloadProgress(0)
+    setIsDownloading(false);
+    setFileDownloadProgress(0);
   };
 
   const renderMessages = () => {
@@ -131,6 +131,7 @@ const MessageContainer = () => {
             </div>
           )}
           {selectedChatType === "contact" && renderDmMessages(message)}
+          {selectedChatType === "channel" && renderChannelMessages(message)}
         </div>
       );
     });
@@ -204,6 +205,15 @@ const MessageContainer = () => {
         </div>
       </div>
     );
+  };
+
+  //
+  const renderChannelMessages = (message: Message) => {
+    return (
+      <div>
+        j
+      </div>
+    )
   };
   return (
     // If you give flex-1 to MessageContainer, then it will take all remaining vertical space inside the flex column parent.
