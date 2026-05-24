@@ -36,9 +36,9 @@ const Profile = () => {
 
   useEffect(() => {
     if (userInfo?.profileSetup) {
-      setFirstName(userInfo.firstName);
-      setLastName(userInfo.lastName);
-      setSelectedColor(userInfo.color);
+      setFirstName(userInfo.firstName ?? "");
+      setLastName(userInfo.lastName ?? "");
+      setSelectedColor(userInfo.color ?? 0);
     }
     if (userInfo?.image) {
       console.log(`${HOST}/${userInfo.image}`);

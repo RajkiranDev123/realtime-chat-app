@@ -22,16 +22,17 @@ import { useState } from "react";
 
 import { FaPlus } from "react-icons/fa";
 import Lottie from "react-lottie";
+import type { Contact } from "@/store/slices/chat-slice";
 
-type Contact = {
-  email: string;
-  profileSetup: boolean;
-  _id: string;
-  firstName?: string;
-  lastName?: string;
-  color?: number;
-  image?: string | null;
-};
+// type Contact = {
+//   email: string;
+//   profileSetup: boolean;
+//   _id: string;
+//   firstName?: string;
+//   lastName?: string;
+//   color?: number;
+//   image?: string | null;
+// };
 
 const NewDm = () => {
   const { setSelectedChatType, setSelectedChatData } = useAppStore();

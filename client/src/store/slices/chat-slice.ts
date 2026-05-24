@@ -8,11 +8,11 @@ type User = {
   image?: string;
   color?: number;
 };
-type Channel = {
+export type Channel = {
   _id: string;
   name: string;
 };
-type Contact = {
+export type Contact = {
   _id: string;
   lastMessageTime: string;
 
@@ -59,7 +59,7 @@ export type ChatSlice = {
   setFileDownloadProgress: (fileDownloadProgress: number) => void;
 
   //
-  selectedChatType: string | undefined;
+  selectedChatType: "contact" | "channel" | undefined;
   selectedChatData: Contact | Channel | undefined;
   selectedChatMessages: Message[];
   directMessagesContacts: Contact[];
@@ -72,7 +72,7 @@ export type ChatSlice = {
 
   setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
 
-  setSelectedChatType: (selectedChatType: string) => void;
+  setSelectedChatType: (selectedChatType: "contact" | "channel") => void;
 
   setSelectedChatData: (selectedChatData: Contact | Channel) => void;
 
