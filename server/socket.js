@@ -1,5 +1,6 @@
 import { Server as SocketIOServer } from "socket.io";
 import Message from "./models/MessageModel.js";
+import Channel from "./models/ChannelModel.js";
 
 const setupSocket = (server) => {
   //
@@ -29,8 +30,6 @@ const setupSocket = (server) => {
     const senderSocketId = userSocketMap.get(message.sender);
     const recipientSocketId = userSocketMap.get(message.recipient);
 
-   
-
     const createdMessage = await Message.create(message);
     const messageData = await Message.findById(createdMessage._id)
       .populate("sender", "id firstName lastName email image color")
@@ -48,6 +47,11 @@ const setupSocket = (server) => {
     }
   };
 
+  //channel
+  const sendChannelMessage = async () => {
+    
+  };
+
   // Before this runs, Socket.IO does a handshake.
   io.on("connection", (socket) => {
     // socket : is an object that represents one user + has methods to communicate with them
@@ -63,6 +67,8 @@ const setupSocket = (server) => {
 
     // send message
     socket.on("sendMessage", sendMessage);
+    // send channel message
+    socket.on("send-channel-message", sendChannelMessage);
 
     // Disconnect event
     socket.on("disconnect", () => disconnect(socket));
