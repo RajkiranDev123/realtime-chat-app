@@ -36,15 +36,15 @@ type Message = {
   createdAt: string;
 };
 
-type ChatData = {
-  email: string;
-  profileSetup?: boolean;
-  _id: string;
-  firstName?: string;
-  lastName?: string;
-  color?: number;
-  image?: string | null;
-};
+// type ChatData = {
+//   email: string;
+//   profileSetup?: boolean;
+//   _id: string;
+//   firstName?: string;
+//   lastName?: string;
+//   color?: number;
+//   image?: string | null;
+// };
 
 export type ChatSlice = {
   //

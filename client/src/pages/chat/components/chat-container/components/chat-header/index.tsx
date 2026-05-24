@@ -49,6 +49,7 @@ const ChatHeader = () => {
           </div>
 
           <div>
+            {/* {selectedChatType==="channel" && selectedChatData.name} */}
             {selectedChatType === "contact"
               ? contactData?.firstName
                 ? `${contactData.firstName} ${contactData.lastName || ""}`
