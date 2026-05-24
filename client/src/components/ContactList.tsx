@@ -3,6 +3,10 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { getColor } from "@/lib/utils";
 import { HOST } from "@/utils/constants";
 
+type Channel = {
+  _id: string;
+  name: string;
+};
 type Contact = {
   _id: string;
   lastMessageTime: string;
@@ -11,7 +15,6 @@ type Contact = {
   firstName?: string;
   lastName?: string;
   image?: string;
-  name?: string;
 
   color?: number;
 };
@@ -20,18 +23,18 @@ const ContactList = ({
   contacts,
   isChannel = false,
 }: {
-  contacts: Contact[];
+  contacts: (Contact | Channel)[];
   isChannel?: boolean;
 }) => {
   const {
     selectedChatData,
     setSelectedChatData,
     setSelectedChatType,
-    selectedChatType,
+ 
     setSelectedChatMessages,
   } = useAppStore();
 
-  const handleClick = (contact: Contact) => {
+  const handleClick = (contact: Contact | Channel) => {
     if (isChannel) setSelectedChatType("channel");
     else setSelectedChatType("contact");
     setSelectedChatData(contact);
@@ -55,7 +58,7 @@ const ContactList = ({
                 `}
         >
           <div className="flex gap-5 items-center justify-start text-neutral-300">
-            {!isChannel && (
+            {"email" in contact && (
               <Avatar className="h-10 w-10 rounded-full overflow-hidden">
                 {contact?.image ? (
                   <AvatarImage
@@ -92,10 +95,12 @@ const ContactList = ({
                 #
               </div>
             )}
-            {isChannel ? (
+            {"name" in contact ? (
               <span>{contact.name}</span>
             ) : (
-              <span>{`${contact.firstName} ${contact.lastName}`}</span>
+              <span>
+                {contact.firstName} {contact.lastName}
+              </span>
             )}
           </div>
         </div>

@@ -16,8 +16,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { apiClient } from "@/lib/api-client";
+import { useAppStore } from "@/store";
 
-import { GET_ALL_CONTACTS_ROUTE } from "@/utils/constants";
+import {
+  CREATE_CHANNEL_ROUTE,
+  GET_ALL_CONTACTS_ROUTE,
+} from "@/utils/constants";
 import { useEffect, useState } from "react";
 
 import { FaPlus } from "react-icons/fa";
@@ -27,7 +31,8 @@ type Option = {
   label: string;
 };
 const CreateChannel = () => {
-  //   const { setSelectedChatType, setSelectedChatData } = useAppStore();
+  const { setSelectedChatType, setSelectedChatData, addChannel } =
+    useAppStore();
   const [newChannelModal, setNewChannelModal] = useState(false);
 
   //
@@ -46,7 +51,28 @@ const CreateChannel = () => {
     getData();
   }, []);
 
-  const createChannel = async () => {};
+  const createChannel = async () => {
+    try {
+      if (channelName.length > 0 && selectedContacts.length > 0) {
+        const res = await apiClient.post(
+          CREATE_CHANNEL_ROUTE,
+          {
+            name: channelName,
+            members: selectedContacts.map((contact) => contact.value),
+          },
+          { withCredentials: true },
+        );
+        if (res.status === 201) {
+          setChannelName("");
+          setSelectedContacts([]);
+          setNewChannelModal(false);
+          addChannel(res.data.channel);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>

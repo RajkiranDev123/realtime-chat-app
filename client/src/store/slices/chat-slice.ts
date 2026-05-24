@@ -8,6 +8,10 @@ type User = {
   image?: string;
   color?: number;
 };
+type Channel = {
+  _id: string;
+  name: string;
+};
 type Contact = {
   _id: string;
   lastMessageTime: string;
@@ -56,15 +60,21 @@ export type ChatSlice = {
 
   //
   selectedChatType: string | undefined;
-  selectedChatData: ChatData | undefined;
+  selectedChatData: Contact | Channel | undefined;
   selectedChatMessages: Message[];
   directMessagesContacts: Contact[];
+  //
+  channels: Channel[];
+
+  addChannel: (channel: Channel) => void;
+  setChannels: (channels: Channel[]) => void;
+  //
 
   setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
 
   setSelectedChatType: (selectedChatType: string) => void;
 
-  setSelectedChatData: (selectedChatData: ChatData) => void;
+  setSelectedChatData: (selectedChatData: Contact | Channel) => void;
 
   setSelectedChatMessages: (selectedChatMessages: Message[]) => void;
 
@@ -94,6 +104,14 @@ export const createChatSlice: StateCreator<ChatSlice> = (set, get) => ({
   selectedChatMessages: [],
 
   directMessagesContacts: [],
+  //
+  channels: [],
+  setChannels: (channels) => set({ channels }),
+  addChannel: (channel) => {
+    const channels = get().channels;
+    set({ channels: [channel, ...channels] });
+  },
+  //
 
   setDirectMessagesContacts: (directMessagesContacts) =>
     set({ directMessagesContacts }),
