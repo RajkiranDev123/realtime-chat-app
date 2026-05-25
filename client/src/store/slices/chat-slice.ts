@@ -162,4 +162,17 @@ export const createChatSlice: StateCreator<ChatSlice> = (set, get) => ({
       ],
     });
   },
+  addChannelInChannelList: (message: Message) => {
+    const channels = get().channels;
+    const data = channels.find((channel) => channel._id === message.channelId);
+    // find can return channel | undefined
+    const index = channels.findIndex(
+      (channel) => channel._id === message.channelId,
+    );
+    // must && data
+    if (index !== -1 && data) {
+      channels.splice(index, 1);
+      channels.unshift(data);
+    }
+  },
 });
