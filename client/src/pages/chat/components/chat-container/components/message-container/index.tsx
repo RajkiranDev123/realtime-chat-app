@@ -7,6 +7,8 @@ import { useRef, useEffect, useState } from "react";
 import { MdFolderZip } from "react-icons/md";
 import { IoMdArrowRoundDown } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getColor } from "@/lib/utils";
 
 type User = {
   _id: string;
@@ -138,6 +140,7 @@ const MessageContainer = () => {
   };
 
   const renderDmMessages = (message: Message) => {
+    // console.log("rdm =>",message)
     return (
       <div
         className={`${message.sender === selectedChatData?._id ? "text-left" : "text-right"}`}
@@ -207,27 +210,71 @@ const MessageContainer = () => {
     );
   };
   //
-
+  const isUser = (sender: UserRef): sender is User =>
+    typeof sender !== "string";
   //
   const getSenderId = (sender: UserRef) =>
     typeof sender === "string" ? sender : sender._id;
+  //
   const renderChannelMessages = (message: Message) => {
     const senderId = getSenderId(message.sender);
     const isMine = senderId === userInfo?.id;
 
     return (
-      <div className={`mt-5 ${isMine ? "text-right" : "text-left"}`}>
+      <div className={`mt-5  ${isMine ? "text-right" : "text-left"}`}>
         {message.messageType === "text" && (
           <div
             className={`${
               isMine
                 ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/20"
                 : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
-            } border inline-block p-4 my-1 max-w-[50%] break-words`}
+            } border inline-block p-4 my-1 max-w-[50%] break-words ml-9`}
           >
             {message.content}
           </div>
         )}
+        {/*  */}
+
+        {isMine ? (
+          <div className="text-xs text-white/60 mt-1">
+            {moment(message.createdAt).format("LT")}
+          </div>
+        ) : (
+          <div className="flex items-center justify-start gap-3">
+            <Avatar className="h-8 w-8 rounded-full overflow-hidden">
+              {isUser(message.sender) && message.sender.image && (
+                <AvatarImage
+                  src={`${HOST}/${message.sender.image}`}
+                  alt="profile"
+                  className="object-cover w-full h-full"
+                />
+              )}
+              <AvatarFallback
+                className={`uppercase h-8 w-8 text-lg 
+                            flex items-center justify-center
+                            rounded-full ${getColor(isUser(message.sender) ? (message.sender.color ?? 0) : 0)}
+                          `}
+                // ts says : “I can’t pass undefined into something that requires a number”
+                // ?? ==> It gives a default value only when the left side is null or undefined.
+                // nullish coalescing operator.
+              >
+                {isUser(message.sender)
+                  ? (message.sender.firstName?.[0] ?? message.sender.email?.[0])
+                  : "U"}
+              </AvatarFallback>
+            </Avatar>
+            <span>
+              {isUser(message.sender)
+                ? `${message.sender.firstName ?? ""} ${message.sender.lastName ?? ""}`
+                : "Unknown"}
+            </span>
+            <span className="text-xs text-white/60">
+              {moment(message.createdAt).format("LT")}
+            </span>
+          </div>
+        )}
+
+        {/*  */}
       </div>
     );
   };

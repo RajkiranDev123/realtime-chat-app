@@ -26,12 +26,15 @@ const MessageBar = () => {
 
   const handleSendMessage = async () => {
     // type SocketContextType = Socket | null ==> 'socket' is possibly 'null'.
+    if (!message.trim()) return;
     if (
       selectedChatType === "contact" &&
       socket &&
       userInfo &&
       selectedChatData
     ) {
+      console.log(11, typeof userInfo.id, userInfo.id);
+      console.log(12, typeof selectedChatData._id, selectedChatData._id);
       socket.emit("sendMessage", {
         sender: userInfo.id,
         content: message,
@@ -40,6 +43,8 @@ const MessageBar = () => {
         fileUrl: undefined,
       });
     } else if (selectedChatType === "channel") {
+      console.log(13, typeof userInfo?.id);
+      console.log(14, typeof selectedChatData?._id);
       socket?.emit("send-channel-message", {
         sender: userInfo?.id,
         content: message,

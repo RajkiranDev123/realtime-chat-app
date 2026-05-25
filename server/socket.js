@@ -14,6 +14,7 @@ const setupSocket = (server) => {
   });
 
   const userSocketMap = new Map();
+  console.log("usm ==> ",userSocketMap)
 
   const disconnect = (socket) => {
     console.log(`Client Disconnected ${socket.id}`);
@@ -28,12 +29,17 @@ const setupSocket = (server) => {
   // sendMessage : This function saves a message in the database and sends it in real time using Socket.IO.
   const sendMessage = async (message) => {
     const senderSocketId = userSocketMap.get(message.sender);
+    console.log("ssid ==> ",senderSocketId ," messageSender ==>", message.sender)
+
     const recipientSocketId = userSocketMap.get(message.recipient);
+    console.log("rsid ==> ",recipientSocketId ," messageRecipient ==>", message.recipient)
+
 
     const createdMessage = await Message.create(message);
     const messageData = await Message.findById(createdMessage._id)
       .populate("sender", "id firstName lastName email image color")
       .populate("recipient", "id firstName lastName email image color");
+    console.log("map after connect", userSocketMap);
 
     // Emit to recipient
     if (recipientSocketId) {
@@ -87,12 +93,15 @@ const setupSocket = (server) => {
     // it  has : id , Event methods ==> socket.on("event", handler) , socket.emit("event", data)
     // socket.handshake , Rooms system and Disconnect event
     const userId = socket.handshake.query.userId;
+
     if (userId) {
       userSocketMap.set(userId, socket.id);
       console.log(`User connected : ${userId} with socket id : ${socket.id}`);
     } else {
       console.log(`user id not provided during connection`);
     }
+
+    console.log("map after connect", userSocketMap);
 
     // send message
     socket.on("sendMessage", sendMessage);
