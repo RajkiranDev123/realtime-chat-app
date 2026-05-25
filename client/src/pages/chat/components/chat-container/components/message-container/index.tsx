@@ -206,14 +206,30 @@ const MessageContainer = () => {
       </div>
     );
   };
+  //
 
   //
+  const getSenderId = (sender: UserRef) =>
+    typeof sender === "string" ? sender : sender._id;
   const renderChannelMessages = (message: Message) => {
+    const senderId = getSenderId(message.sender);
+    const isMine = senderId === userInfo?.id;
+
     return (
-      <div>
-        j
+      <div className={`mt-5 ${isMine ? "text-right" : "text-left"}`}>
+        {message.messageType === "text" && (
+          <div
+            className={`${
+              isMine
+                ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/20"
+                : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
+            } border inline-block p-4 my-1 max-w-[50%] break-words`}
+          >
+            {message.content}
+          </div>
+        )}
       </div>
-    )
+    );
   };
   return (
     // If you give flex-1 to MessageContainer, then it will take all remaining vertical space inside the flex column parent.
