@@ -235,6 +235,54 @@ const MessageContainer = () => {
         )}
         {/*  */}
 
+        {message.messageType === "file" && (
+          <div
+            className={`${
+              isMine
+                ? "bg-[#8417ff] text-white/80 border-[#8417ff]/50"
+                : "bg-[#2a2b33] text-white/80 border-[#ffffff]/20"
+            } 
+            border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+          >
+            {message.fileUrl && checkIfImage(message.fileUrl) ? (
+              // TS already knows message.fileUrl exists.
+              // But inside onClick, narrowing is lost sometimes because of closure/function scope.
+              // So just use non-null assertion:
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  setShowImage(true);
+                  setImageUrl(message.fileUrl!);
+                }}
+              >
+                <img
+                  src={`${HOST}/${message.fileUrl}`}
+                  height={300}
+                  width={300}
+                />
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-4">
+                <span className="text-white/80 text-3xl bg-black/20 rounded-full p-3">
+                  <MdFolderZip />
+                </span>
+                <span>{message.fileUrl?.split("/").pop()}</span>
+                <span
+                  onClick={() =>
+                    message.fileUrl && downloadFile(message.fileUrl)
+                  }
+                  className="bg-black/20 p-3 text-2xl rounded-full
+                hover:bg-black/50 cursor-pointer transition-all duration-300"
+                >
+                  <IoMdArrowRoundDown />
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/*  */}
+
         {isMine ? (
           <div className="text-xs text-white/60 mt-1">
             {moment(message.createdAt).format("LT")}

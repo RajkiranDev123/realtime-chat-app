@@ -3745,3 +3745,7 @@
 {"level":"info","message":"::1 - - [25/May/2026:08:47:23 +0000] \"POST /api/v1/messages/get-messages HTTP/1.1\" 200 23291 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"duration":"63ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/get-messages"}
 {"level":"info","message":"::1 - - [25/May/2026:08:47:23 +0000] \"GET /uploads/files/1779425914619/login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [25/May/2026:08:54:13 +0000] \"POST /api/v1/messages/get-messages HTTP/1.1\" 200 24215 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"125ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/get-messages"}
+{"level":"info","message":"::1 - - [25/May/2026:08:54:20 +0000] \"POST /api/v1/messages/get-messages HTTP/1.1\" 200 30 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"42ms","ip":"::1","level":"info","message":"API_METRICS","method":"POST","status":200,"url":"/get-messages"}
