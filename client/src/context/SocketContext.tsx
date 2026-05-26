@@ -56,7 +56,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
   useEffect(() => {
     if (userInfo) {
       // io() ==> creates + returns socket instance/object
-      console.log(990,typeof userInfo.id, userInfo.id)
+      console.log(990, typeof userInfo.id, userInfo.id);
       socket.current = io(HOST, {
         withCredentials: true,
         query: {
@@ -68,15 +68,19 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         console.log("Connected to socket server");
       });
 
-          socket.current.on("connect_error", (err) => {
-      console.log("Socket connect error =>", err);
-    });
+      socket.current.on("connect_error", (err) => {
+        console.log("Socket connect error =>", err);
+      });
 
       const handleReceiveMessage = (message: IncomingMessage) => {
         console.log("handleReceiveMsg ==>", message);
 
-        const { selectedChatType, selectedChatData, addMessage } =
-          useAppStore.getState();
+        const {
+          selectedChatType,
+          selectedChatData,
+          addMessage,
+          addContactsInDMContacts,
+        } = useAppStore.getState();
 
         if (
           selectedChatType !== undefined &&
@@ -85,14 +89,18 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
             selectedChatData._id === message.recipient._id)
         ) {
           addMessage(message);
-        
         }
+        addContactsInDMContacts(message);
       };
       //
       const handleReceiveChannelMessage = (message: IncomingMessage) => {
         console.log("handleReceiveChannelMsg ==>", message);
-        const { selectedChatType, selectedChatData, addMessage } =
-          useAppStore.getState();
+        const {
+          selectedChatType,
+          selectedChatData,
+          addMessage,
+          addChannelInChannelList,
+        } = useAppStore.getState();
 
         if (
           selectedChatType !== undefined &&
@@ -101,6 +109,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         ) {
           addMessage(message);
         }
+        addChannelInChannelList(message);
       };
 
       socket.current.on("receiveMessage", handleReceiveMessage);

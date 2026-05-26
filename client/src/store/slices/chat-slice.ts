@@ -1,4 +1,5 @@
 import type { StateCreator } from "zustand";
+import type { Store } from "../index";
 
 type User = {
   _id: string;
@@ -48,6 +49,9 @@ type Message = {
 //   color?: number;
 //   image?: string | null;
 // };
+const isUser = (val: User | string): val is User => {
+  return typeof val !== "string";
+};
 
 export type ChatSlice = {
   //
@@ -84,9 +88,15 @@ export type ChatSlice = {
   closeChat: () => void;
 
   addMessage: (message: Message) => void;
+
+  addContactsInDMContacts: (message: Message) => void;
+  addChannelInChannelList: (message: Message) => void;
 };
 
-export const createChatSlice: StateCreator<ChatSlice> = (set, get) => ({
+export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
+  set,
+  get,
+) => ({
   //
   isUploading: false,
   isDownloading: false,
@@ -174,5 +184,37 @@ export const createChatSlice: StateCreator<ChatSlice> = (set, get) => ({
       channels.splice(index, 1);
       channels.unshift(data);
     }
+  },
+  addContactsInDMContacts: (message: Message) => {
+    const userId = get().userInfo?.id;
+
+    const sender = message.sender;
+    const recipient = message.recipient;
+
+    const fromId =
+      isUser(sender) && sender._id === userId
+        ? isUser(recipient)
+          ? recipient._id
+          : recipient
+        : isUser(sender)
+          ? sender._id
+          : sender;
+
+    const fromData =
+      isUser(sender) && sender._id === userId ? recipient : sender;
+
+    const dmContacts = get().directMessagesContacts;
+
+    const index = dmContacts.findIndex((c) => c._id === fromId);
+
+    let updated = [...dmContacts];
+
+    if (index !== -1) {
+      updated.splice(index, 1);
+    }
+
+    updated.unshift(fromData as Contact);
+
+    set({ directMessagesContacts: updated });
   },
 });

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { createAuthSlice, type AuthSlice } from "./slices/auth-slice";
 import { createChatSlice, type ChatSlice } from "./slices/chat-slice";
 
-type Store = AuthSlice & ChatSlice;
+export type Store = AuthSlice & ChatSlice;
 // if another slice comes ==> type Store = AuthSlice & ChatSlice;
 // (...a) ==> This is shorthand for : (set, get, api)
 export const useAppStore = create<Store>()((...a) => ({

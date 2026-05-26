@@ -26,6 +26,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
       userInfo,
     });
   },
+  
 });
 
 // import { create, StateCreator } from "zustand";

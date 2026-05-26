@@ -30,7 +30,7 @@ const ContactList = ({
     selectedChatData,
     setSelectedChatData,
     setSelectedChatType,
- 
+
     setSelectedChatMessages,
   } = useAppStore();
 
@@ -99,7 +99,10 @@ const ContactList = ({
               <span>{contact.name}</span>
             ) : (
               <span>
-                {contact.firstName} {contact.lastName}
+                {/* `${a} ${b}` ==> You are building a new string */}
+                {contact.firstName
+                  ? `${contact.firstName} ${contact.lastName}`
+                  : contact.email}
               </span>
             )}
           </div>
