@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema(
     },
     firstName: {
       type: String,
+      // if firstName is not provided and no default value too,
+      // firstName field is usually not stored in MongoDB when value is undefined
     },
     lastName: {
       type: String,
@@ -40,7 +42,7 @@ userSchema.pre("save", async function () {
 
   const salt = await genSalt(10);
   this.password = await hash(this.password, salt);
-  
+
 });
 
 // A document is an instance of a Mongoose model, and the model is built from ==> schema
