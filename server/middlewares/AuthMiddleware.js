@@ -30,5 +30,5 @@ export const verifyToken = (req, res, next) => {
     req.userId = decoded.userId;
     next();
   });
-  // console.log(7)
+  // console.log(7) // will run before decoding
 };
