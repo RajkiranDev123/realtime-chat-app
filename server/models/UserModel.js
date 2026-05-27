@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
     },
     firstName: {
       type: String,
-      // if firstName is not provided and no default value too,
+      // if firstName is not provided and no default value too, mongoose will internally set it as undefined
       // firstName field is usually not stored in MongoDB when value is undefined
     },
     lastName: {
