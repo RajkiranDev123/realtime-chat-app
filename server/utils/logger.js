@@ -7,16 +7,16 @@ const logger = winston.createLogger({
   // “Start logging from info level and above (more serious logs), ignore low-level noise.”
   format: winston.format.json(),
 
-  transports: [
-    new winston.transports.File({
-      filename: "logs/error.log",
-      level: "error", // Only error logs go here.
-    }),
+  // transports: [
+  //   new winston.transports.File({
+  //     filename: "logs/error.log",
+  //     level: "error", // Only error logs go here.
+  //   }),
 
-    new winston.transports.File({
-      filename: "logs/combined.log", // Everything (info + warn + error)
-    }),
-  ],
+  //   new winston.transports.File({
+  //     filename: "logs/combined.log", // Everything (info + warn + error)
+  //   }),
+  // ],
 
 });
 
