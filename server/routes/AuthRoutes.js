@@ -50,7 +50,7 @@ authRoutes.post("/update-profile", verifyToken, updateProfile);
 authRoutes.post(
   "/add-profile-image",
   verifyToken,
-  upload.single("profile-image"),
+  upload.single("profile-image"), // “Before controller runs, take the uploaded file, store it on disk, and attach its info to req.file”
   // "profile-image" → must match the frontend input name
   // <input type="file" name="profile-image" />
   addProfileImage,

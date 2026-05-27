@@ -228,7 +228,7 @@ export const addProfileImage = async (req, res) => {
 
     if (!req.file) {
       return res.status(400).json({
-        message: "File is required",
+        message: "File is required.",
         success: false,
       });
     }
@@ -236,7 +236,8 @@ export const addProfileImage = async (req, res) => {
     const date = Date.now(); // machine format
     // console.log(new Date(Date.now())); // readable date object
     let fileName = "uploads/profiles/" + date + req.file.originalname;
-    // console.log(fileName);
+    // console.log(fileName); // uploads/profiles/7867543467raj.png
+    // / = folder separator (path structure) and last part = actual file name
     renameSync(req.file.path, fileName); // renameSync(oldPath, newPath)
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -315,7 +316,7 @@ export const logout = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: "Logout done",
+      message: "Logout done.",
       success: true,
     });
   } catch (error) {
