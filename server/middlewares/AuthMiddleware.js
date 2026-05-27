@@ -18,7 +18,7 @@ export const verifyToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
     // Yes — this version is callback-based async, but not Promise-based async.
     // Asynchronous = “does not block the main thread”
-    // Async can happen in multiple ways : callbacks , promises , timers
+    // Async can happen in multiple ways : callbacks , promises , timers , Event-based , streams etc
     // promise-based are preferred over callback-based : no callback hell , better error handling , easier chaining , supports async/await
     if (err) {
       return res.status(401).json({

@@ -162,7 +162,6 @@ startServer();
 // SIGINT = signal sent when you press Ctrl + C , it triggers SIGINT
 
 process.on("SIGINT", async () => {
-
   // process.on() in Node.js is used to listen for events from the Node process ==> process.on(eventName, callback)
 
   console.log("SIGINT received... shutting down.");
