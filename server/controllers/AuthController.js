@@ -1,8 +1,8 @@
 import { compare } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
 import User from "../models/UserModel.js";
 
-import jwt from "jsonwebtoken";
-import { renameSync, unlinkSync } from "fs";
+import jwt from "jsonwebtoken"; // sign , verify
+import { renameSync, unlinkSync } from "fs"; // existsSync , mkdirSync , renameSync , unlinkSync
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
@@ -76,7 +76,7 @@ export const signup = async (req, res) => {
   }
 };
 
-/////////////////////////////// login ///////////////////
+/////////////////////////////// login ////////////////////////////
 
 export const login = async (req, res) => {
   try {
@@ -130,7 +130,7 @@ export const login = async (req, res) => {
   }
 };
 
-/////////////////////////////// getUserInfo ///////////////////
+/////////////////////////////// getUserInfo ///////////////////////
 
 export const getUserInfo = async (req, res) => {
   // req.userId = decoded.userId; // in middleware
@@ -206,7 +206,7 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-///////////// addProfileImage ///////////////////////////////
+///////////// addProfileImage ////////////////////////////////////
 
 export const addProfileImage = async (req, res) => {
   try {
@@ -251,7 +251,7 @@ export const addProfileImage = async (req, res) => {
   }
 };
 
-////////// removeProfileImage ////////////////
+////////// removeProfileImage //////////////////////////////////////
 
 export const removeProfileImage = async (req, res) => {
   try {

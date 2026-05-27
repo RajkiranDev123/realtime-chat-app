@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { hash, genSalt } from "bcrypt";
+import { hash, genSalt } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
 
 const userSchema = new mongoose.Schema(
   {
@@ -46,15 +46,26 @@ userSchema.pre("save", async function () {
 const User = mongoose.model("User", userSchema);
 export default User;
 
-// All requests (GET, POST, etc.) go through the Model
-// Schema is used at runtime indirectly, through the Model. But you never call schema directly.
+// Because mongoose.model is not a class/constructor. It is just a function. (no new keyword)
 
-// Request (GET / POST)
-//         ↓
-// Controller / Route
-//         ↓
-// Model (User.find, User.create, etc.)
-//         ↓
-// Schema (rules, validation, middleware applied)
-//         ↓
-// MongoDB
+// All requests (GET, POST, etc...) go through the Model
+// Schema is used at runtime indirectly through the Model. But you never call schema directly.
+
+// Request (GET / POST) => Controller =>  Model (User.find, User.create, etc...) => Schema (rules, validation, middleware applied) => MongoDB
+
+// You must set values manually.
+// class User {}
+// const u1 = new User();
+// u1.name = "RJ";
+// u1.age = 22;
+
+// Now object gets values automatically during creation ==> make object creation easier and cleaner
+// User is the class name, but it is also the constructor function used with new
+// class User {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+// }
+
+// const u1 = new User("RJ", 22);
