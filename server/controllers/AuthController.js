@@ -42,6 +42,7 @@ export const signup = async (req, res) => {
       email,
       password,
     });
+
     // res.cookie(name, value, options);
     // small data stored in browser that is automatically sent to the server with every request
     res.cookie("jwt", createToken(email, user._id), {
@@ -50,10 +51,15 @@ export const signup = async (req, res) => {
       //
       secure: true, // cookie will only be sent over HTTPS.
       sameSite: "none", // cookie can be sent in cross-site requests
+
       // "strict" → safest , "lax" → balanced (commonly used) , "none" → requires secure: true
-      // “Allow cross-site cookie, but only over encrypted connection (https)”
+
+      // “Allow cross-site cookie, but only over encrypted connection (https)” ==> secure : true , sameSite : "none"
+
       //  secure: false, sameSite: "lax" ==> dev
+
       //  prod ==>   secure: true , sameSite: "none",
+
       // https://raj.com        -> frontend
       // https://raj.com/api    -> backend
       // Path does NOT make it cross-site. Browser mainly checks: protocol (https) and domain (raj.com) ==> sameSite: "Strict"
