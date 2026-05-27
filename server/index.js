@@ -69,7 +69,9 @@ app.use(
   }),
 );
 
-// Helmet = adds protective headers to every HTTP response
+// Helmet = adds protective headers to every HTTP response , XSS (Cross-Site Scripting) : Prevents malicious scripts from being injected.
+// Content-Security-Policy : default-src 'self' ==> “Only allow resources (scripts, images, styles, etc.) from my own domain.”
+// Hyphen-separated words with each word capitalized , Title Case with hyphens (HTTP standard style) : header naming convention.
 
 app.use(
   cors({
