@@ -33,6 +33,9 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", async function () {
+  // async : So is it blocking or non-blocking
+  // Node.js level : Not blocking (good) , event loop can handle other requests
+  // Mongoose flow level : Still sequential , save waits for pre hook to finish
   if (!this.isModified("password")) return;
 
   const salt = await genSalt(10);
