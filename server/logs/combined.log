@@ -4909,3 +4909,12 @@
 {"level":"info","message":"::1 - - [27/May/2026:03:35:25 +0000] \"GET /uploads/files/1779425914619/login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"level":"info","message":"::1 - - [27/May/2026:03:35:29 +0000] \"GET /api/v1/channel/get-channel-messages/6a12a7c7c2e6e0a6d075310e HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
 {"duration":"161ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-channel-messages/6a12a7c7c2e6e0a6d075310e"}
+{"level":"info","message":"::1 - - [27/May/2026:03:58:32 +0000] \"GET /api/v1/auth/user-info HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"445ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/user-info"}
+{"level":"info","message":"::1 - - [27/May/2026:03:58:33 +0000] \"GET /uploads/profiles/1778140869800login2.png HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [27/May/2026:03:58:33 +0000] \"GET /api/v1/contacts/get-all-contacts HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"31ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-all-contacts"}
+{"level":"info","message":"::1 - - [27/May/2026:03:58:33 +0000] \"GET /api/v1/channel/get-user-channels HTTP/1.1\" 201 2463 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"242ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":201,"url":"/get-user-channels"}
+{"level":"info","message":"::1 - - [27/May/2026:03:58:33 +0000] \"GET /api/v1/contacts/get-contacts-for-dm HTTP/1.1\" 304 - \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36\""}
+{"duration":"258ms","ip":"::1","level":"info","message":"API_METRICS","method":"GET","status":304,"url":"/get-contacts-for-dm"}

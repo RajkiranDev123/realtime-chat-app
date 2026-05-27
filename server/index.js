@@ -8,11 +8,13 @@ import authRoutes from "./routes/AuthRoutes.js";
 import contactRoutes from "./routes/ContactRoutes.js";
 import messageRoutes from "./routes/MessageRoutes.js";
 import channelRoutes from "./routes/ChannelRoutes.js";
+
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 
 import morgan from "morgan";
 import fs from "fs";
+
 import logger from "./utils/logger.js";
 import connectDB from "./db/connectDB.js";
 import setupSocket from "./socket.js";
@@ -32,8 +34,8 @@ if (!process.env.DATABASE_URL) {
 // existsSync : checks synchronously whether a file or folder exists.
 // mkdirSync  : create a directory synchronously.
 
-if (!fs.existsSync("logs")) {
-  fs.mkdirSync("logs");
+if (!fs.existsSync("logs")) { // !fs.existsSync("logs.txt") // for file
+  fs.mkdirSync("logs"); //   fs.writeFileSync("logs.txt", "") // for file
 }
 
 // RIGHT HERE (just before sending response), rate limiter adds headers:
@@ -64,7 +66,6 @@ app.use(
 );
 // “Helmet = adds protective headers to every HTTP response”
 // a request is coming from a different domain / origin than your server.
-//
 
 app.use(
   cors({
