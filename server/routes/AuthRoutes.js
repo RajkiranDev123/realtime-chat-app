@@ -17,6 +17,9 @@ import multer from "multer";
 // stores it in the cloud. Normal JSON cannot send files, so we use multipart/form-data.
 // JSON = data only , express.json()
 // Multipart = data + files , multer
+// Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryabc123 ==> no need to mention
+// Axios (and most browsers) will automatically set it correctly with the boundary when you pass a FormData object:
+// await apiClient.post(UPLOAD_FILE_ROUTE, formData, { withCredentials: true });
 
 const authRoutes = Router();
 
@@ -35,6 +38,9 @@ const upload = multer({ dest: "uploads/profiles/" });
 
 authRoutes.post("/signup", signup);
 authRoutes.post("/login", login);
+authRoutes.post("/logout", logout);
+// Logout does NOT require authentication middleware
+
 authRoutes.get("/user-info", verifyToken, getUserInfo);
 authRoutes.post("/update-profile", verifyToken, updateProfile);
 authRoutes.post(
@@ -46,7 +52,5 @@ authRoutes.post(
   addProfileImage,
 );
 authRoutes.delete("/remove-profile-image", verifyToken, removeProfileImage);
-authRoutes.post("/logout", logout);
-// Logout does NOT require authentication middleware
 
 export default authRoutes;

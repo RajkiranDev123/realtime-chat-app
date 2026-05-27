@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const verifyToken = (req, res, next) => {
   const token = req.cookies?.jwt;
-  console.log("cookies ==> ", req.cookies);
+  // console.log("cookies ==> ", req.cookies);
 
   if (!token) {
     return res.status(401).json({
@@ -11,8 +11,15 @@ export const verifyToken = (req, res, next) => {
     });
   }
 
+  // const decoded = jwt.verify(token, secret) // Synchronous (blocking) version (no callback) 
+  // jwt don't return promise , Because its API (jwt.verify()) is callback-based, not promise-based.
+  // So it returns undefined, not a Promise.
+
   jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
-    // jwt.verify() becomes asynchronous when you use a callback because Node.js follows the async callback pattern for many operations
+    // Yes — this version is callback-based async, but not Promise-based async.
+    // Asynchronous = “does not block the main thread”
+    // Async can happen in multiple ways : callbacks , promises , timers
+    // promise-based are preferred over callback-based : no callback hell , better error handling , easier chaining , supports async/await
     if (err) {
       return res.status(401).json({
         success: false,
@@ -23,4 +30,5 @@ export const verifyToken = (req, res, next) => {
     req.userId = decoded.userId;
     next();
   });
+  // console.log(7)
 };
