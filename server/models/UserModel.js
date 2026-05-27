@@ -40,13 +40,14 @@ userSchema.pre("save", async function () {
 
   const salt = await genSalt(10);
   this.password = await hash(this.password, salt);
+  
 });
 
 // A document is an instance of a Mongoose model, and the model is built from ==> schema
 const User = mongoose.model("User", userSchema);
 export default User;
 
-// Because mongoose.model is not a class/constructor. It is just a function. (no new keyword)
+// (no new keyword) ==> mongoose.model is not a class/constructor. It is just a function.
 
 // All requests (GET, POST, etc...) go through the Model
 // Schema is used at runtime indirectly through the Model. But you never call schema directly.
@@ -54,13 +55,15 @@ export default User;
 // Request (GET / POST) => Controller =>  Model (User.find, User.create, etc...) => Schema (rules, validation, middleware applied) => MongoDB
 
 // You must set values manually.
+
 // class User {}
 // const u1 = new User();
 // u1.name = "RJ";
 // u1.age = 22;
 
 // Now object gets values automatically during creation ==> make object creation easier and cleaner
-// User is the class name, but it is also the constructor function used with new
+// User is the class name, but it is also the constructor function used with new keyword.
+
 // class User {
 //   constructor(name, age) {
 //     this.name = name;
