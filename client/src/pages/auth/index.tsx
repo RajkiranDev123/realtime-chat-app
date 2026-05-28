@@ -75,6 +75,8 @@ const Auth = () => {
         }
       } catch (error: unknown) {
         // “Turn off TypeScript completely for this value.” ==> any
+        console.log("error from handleLogin ==> ", error);
+
         if (axios.isAxiosError(error)) {
           toast.error(error.response?.data?.message || "Something went wrong", {
             duration: 1000,
