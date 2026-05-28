@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppStore } from "@/store";
 import { Copy } from "lucide-react";
 import { Loader2 } from "lucide-react";
+import axios from "axios";
 
 const Auth = () => {
   const { setUserInfo, loading, setLoading } = useAppStore();
@@ -64,8 +65,6 @@ const Auth = () => {
           { withCredentials: true },
         );
 
-        // res is object and inside res we have object like ==>  data : and inside it has user object ,
-        // config object , request, headers and prop like status
         if (res.data.success) {
           setUserInfo(res.data.user);
           if (res.data.user.profileSetup) {
@@ -74,8 +73,15 @@ const Auth = () => {
             navigate("/profile");
           }
         }
-      } catch (error: any) {
-        toast.error(error.response.data.message, { duration: 1000 });
+      } catch (error: unknown) {
+        // “Turn off TypeScript completely for this value.” ==> any
+        if (axios.isAxiosError(error)) {
+          toast.error(error.response?.data?.message || "Something went wrong", {
+            duration: 1000,
+          });
+        } else {
+          toast.error("Unknown error", { duration: 1000 });
+        }
       } finally {
         setLoading(false);
       }
@@ -94,15 +100,24 @@ const Auth = () => {
           setUserInfo(res.data.user);
           navigate("/profile");
         }
-      } catch (error: any) {
-        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message or .response etc
-        // Chrome console often shows AxiosError instances as a string (AxiosError: ...) for readability.
-        toast.error(error.response.data.message, { duration: 1000 });
+      } catch (error: unknown) {
+        // unknown :  Now TypeScript forces you to narrow the type before using it.
+        if (axios.isAxiosError(error)) {
+          toast.error(error.response?.data?.message || "Something went wrong", {
+            duration: 1000,
+          });
+        } else {
+          toast.error("Unknown error", { duration: 1000 });
+        }
       } finally {
         setLoading(false);
       }
     }
   };
+
+  // grid ==>	grid enabled, but 1 column layout
+  // grid grid-cols-2	==> 2 columns always
+  // grid grid-cols-1 xl:grid-cols-2	==> responsive layout
 
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
@@ -112,27 +127,28 @@ const Auth = () => {
         className="h-[80vh] w-[80vw] bg-white shadow-2xl 
         md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2"
       >
-        {/* col-1 starts */}
+        {/* grid-1 starts */}
         <div className="flex flex-col gap-10 items-center justify-center ">
           {/* welcome , logo and fill */}
-          <div className="flex items-center justify-center flex-col p-1">
-            {/* col-1 */}
+          <div className="flex flex-col items-center justify-center  p-1">
+            {/* col-1 ==> welcome text and hand */}
             <div className="flex items-center justify-center ">
               <h1 className="text-4xl font-bold md:text-5xl text-black/70">
                 Welcome
               </h1>
+
               <img
                 src={Victory}
                 alt="victory"
                 className="h-[80px] animate-bounce"
               />
             </div>
-            {/* col-1 */}
-            {/* col-2 */}
+            {/* col-1 ends*/}
+            {/* col-2 ==> Fill in... */}
             <p className="font-medium text-center">
               Fill in the details to get started
             </p>
-            {/* col-2 */}
+            {/* col-2 ends */}
           </div>
           {/* welcome , logo and fill ends*/}
 
@@ -253,9 +269,9 @@ const Auth = () => {
           </div>
           {/* tabs ends */}
         </div>
-        {/* col-1 ends */}
+        {/* grid-1 ends */}
 
-        {/*col-2 starts */}
+        {/*grid-2 starts */}
         <div className="hidden xl:block">
           <img
             src={Background}
@@ -263,7 +279,7 @@ const Auth = () => {
             className="h-[80vh] rounded-sm object-cover"
           />
         </div>
-        {/* col-2 ends */}
+        {/* grid-2 ends */}
       </div>
     </div>
   );
