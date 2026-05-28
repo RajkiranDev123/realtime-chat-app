@@ -57,7 +57,7 @@ const Auth = () => {
           { email, password },
           { withCredentials: true },
         );
-  
+
         // res is object and inside res we have object like ==>  data : and inside it has user object ,
         // config object , request, headers and prop like status
         if (res.data.success) {
@@ -113,7 +113,11 @@ const Auth = () => {
               <h1 className="text-4xl font-bold md:text-5xl text-black/70">
                 Welcome
               </h1>
-              <img src={Victory} alt="victory" className="h-[80px] animate-bounce" />
+              <img
+                src={Victory}
+                alt="victory"
+                className="h-[80px] animate-bounce"
+              />
             </div>
             {/* col-1 */}
             {/* col-2 */}
@@ -129,12 +133,10 @@ const Auth = () => {
             {/* if width full not given : it will take content width and width 3/4 : 75% */}
 
             {/* Tabs : Main container that controls the whole tabs system. */}
-            
-            <Tabs className="w-3/4 " defaultValue="login">
 
+            <Tabs className="w-3/4 " defaultValue="login">
               {/* TabsList : Wrapper for all tab buttons (multiple TabsTrigger inisde) */}
               <TabsList className="bg-transparent rounded-none w-full">
-
                 {/* TabsTrigger 1 */}
                 <TabsTrigger
                   className="
@@ -158,10 +160,8 @@ const Auth = () => {
                   Signup
                 </TabsTrigger>
                 {/* TabsTrigger 2 */}
-
               </TabsList>
               {/* TabsList : Wrapper for all tab buttons (TabsTrigger) */}
-
 
               {/* login : TabsContent */}
               <TabsContent className="flex flex-col gap-5" value="login">
@@ -211,7 +211,6 @@ const Auth = () => {
               </TabsContent>
               {/* login : TabsContent */}
 
-
               <TabsContent className="flex flex-col gap-5 " value="signup">
                 <Input
                   placeholder="Email"
@@ -238,7 +237,6 @@ const Auth = () => {
                   Signup
                 </Button>
               </TabsContent>
-
             </Tabs>
           </div>
           {/* tabs ends */}

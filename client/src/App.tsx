@@ -68,6 +68,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          {/* route 1 */}
           <Route
             path="/auth"
             element={
@@ -77,7 +78,9 @@ function App() {
               </AuthRoute>
             }
           />
+          {/* route 2 */}
           <Route path="*" element={<Auth />} />
+          {/* route 3 */}
           <Route
             path="/chat"
             element={
@@ -86,6 +89,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          {/* route 4 */}
           <Route
             path="/profile"
             element={

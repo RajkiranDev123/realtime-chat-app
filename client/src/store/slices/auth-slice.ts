@@ -21,12 +21,10 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   userInfo: null,
 
   setUserInfo: (userInfo) => {
-
     set({
       userInfo,
     });
   },
-  
 });
 
 // import { create, StateCreator } from "zustand";

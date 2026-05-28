@@ -1,8 +1,8 @@
 import { compare } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
 import User from "../models/UserModel.js";
 
-import jwt from "jsonwebtoken"; // sign , verify
-import { renameSync, unlinkSync } from "fs"; // existsSync , mkdirSync , renameSync , unlinkSync
+import jwt from "jsonwebtoken"; // sign , verify ==> jwt
+import { renameSync, unlinkSync } from "fs"; // existsSync , mkdirSync , renameSync , unlinkSync ==> fs
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
@@ -278,6 +278,7 @@ export const removeProfileImage = async (req, res) => {
     }
     user.image = null;
     // If you use:
+
     // image: {
     //   type: String,
     //   required: true,
@@ -287,10 +288,11 @@ export const removeProfileImage = async (req, res) => {
     // null is completely valid in a JSON response.
     // res.json({ image: undefined, name: "RJ" }) ==>  { "name": "RJ" }
     // null → intentionally empty value , undefined : field may be omitted from MongoDB document entirely.
-    // true ==> "true" and 12 ==> "12"
+    // true ==> "true" and 12 ==> "12" : Mongoose  may convert types based on schema.
 
     await user.save();
-    // If email is missing and you do : user.save() , Mongoose will throw validation error iF schema has : email {type : String , required : true}
+    
+    // If email is missing and you do : user.save() , Mongoose will throw validation error if schema has : email {type : String , required : true}
     // Because save() validates the whole document.
     // ValidationError : email is required when we do email = null
 
