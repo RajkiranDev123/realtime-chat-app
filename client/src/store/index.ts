@@ -10,57 +10,26 @@ export const useAppStore = create<Store>()((...a) => ({
   ...createChatSlice(...a),
 }));
 
-// import { create } from "zustand";
 
-// type UserStore = {
-//   user: string;
-//   setUser: (name: string) => void;
-// };
 
-// const useUserStore = create<UserStore>((set) => ({
-//   user: "RJ",
 
-//   setUser: (name) =>
-//     set({ user: name }),
-// }));
-
-// “slice” when you separate it into its own function/file to combine with other parts.
-
-// export const createUserSlice = (set) => ({
-//   user: "RJ",
-
-//   setUser: (name) =>
-//     set({ user: name }),
-// });
-
-// Then combined :
-
-// const useStore = create((...a) => ({
-//   ...createUserSlice(...a),
-//   ...createCartSlice(...a),
-// }));
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
-// type outside (same thing) :
-
-// Same meaning, just longer
+// type outside (same thing) : Same meaning, just longer
 
 // import { sayHi } from "./types";
 // import type { User } from "./types";
 // vs
 // import { sayHi, type User } from "./types"; (shorter)
 
-// ----------------------------------------------------------------
 
-// types.ts ==>
+
+// types.ts ===================================>
 
 // export type Person = {
 //   name: string;
 //   age: number;
 // };
 
-// index.ts ==>
+// index.ts ================================>
 
 // import type { Person } from "./types";
 
@@ -71,6 +40,7 @@ export const useAppStore = create<Store>()((...a) => ({
 
 // console.log(p.name);
 
-// currying
+// currying  =============================>
+
 // const add = (a) => (b) => a + b;
 // add(5)(10); // 15

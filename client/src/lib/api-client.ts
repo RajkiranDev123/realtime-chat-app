@@ -1,4 +1,4 @@
-//all external library related
+// all external library related
 
 import axios from "axios";
 
