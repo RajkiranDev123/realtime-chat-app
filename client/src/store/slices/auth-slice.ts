@@ -5,12 +5,25 @@ export type UserInfo = {
   email: string;
   profileSetup: boolean;
   id: string;
-  // 
+  //
   firstName: string;
   lastName?: string;
   color?: number;
   image?: string | null;
 };
+
+// Example with ?:
+
+// type User = {
+//   name: string;
+//   age?: number;
+// };
+
+// Also Valid:
+
+// const user1: User = {
+//   name: "RJ",
+// };
 
 // 👉 Slice = States and Functions for ONE feature
 // slice type

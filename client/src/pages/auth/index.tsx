@@ -18,6 +18,7 @@ const Auth = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
 
+  // validate signup
   const validateSignup = () => {
     if (!email.length) {
       toast.error("Email is required", { duration: 2000 });
@@ -36,6 +37,7 @@ const Auth = () => {
     return true;
   };
 
+  // validate login
   const validateLogin = () => {
     if (!email.length) {
       toast.error("Email is required", { duration: 2000 });
@@ -49,6 +51,7 @@ const Auth = () => {
     return true;
   };
 
+  // login
   const handleLogin = async () => {
     if (validateLogin()) {
       try {
@@ -75,6 +78,8 @@ const Auth = () => {
       }
     }
   };
+
+  // signup
   const handleSignup = async () => {
     if (validateSignup()) {
       try {
@@ -96,6 +101,7 @@ const Auth = () => {
       }
     }
   };
+
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
       {/* width >= xs : 480 , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}

@@ -30,19 +30,26 @@ function App() {
   const { userInfo, setUserInfo } = useAppStore();
   const [loading, setLoading] = useState(true);
 
+  console.log("userInfo from App.tsx ==> ", userInfo);
+  // If backend sends only : {email : "xxx@gmail.com"} then then runtime object is : {email : "xxx@gmail.com"}
+  // even though TypeScript type says: firstName: string; email:string
+  // ts is only for : autocomplete , error checking , hints etc
+
   useEffect(() => {
     // getUserData
     const getUserData = async () => {
       try {
         setLoading(true);
 
-        const res = await apiClient.get(GET_USER_INFO, {
+        const res = await apiClient.get<UserInfo>(GET_USER_INFO, {
+          // TypeScript does not inspect backend response at runtime.
           withCredentials: true,
         });
         console.log("res from App.ts x==> ", res);
         // res == {config , data , headers , request , status , statusText}
         if (res.status === 200 && res.data.id) {
-          console.log("firstName from app.tsx ==> ", res.data.firstName);
+          // To truly validate backend data, you need runtime validation libraries like : zod , yup , joi
+          console.log("firstName from app.tsx ==> ", res.data.firstName); // undefined
           setUserInfo(res.data);
         } else {
           setUserInfo(null);
