@@ -16,6 +16,12 @@ npm i socket.io
 
 
 
+npm install --save-dev jest
+Create folder: tests
+Create file:AuthController.test.js
+"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+npm test
+npm test AuthController.test.js
 
 
 
