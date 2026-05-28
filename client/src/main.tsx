@@ -8,8 +8,10 @@ import { Toaster } from "./components/ui/sonner.tsx";
 import { SocketProvider } from "./context/SocketContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
+  // “I am sure this value is not null or undefined.” ==> ! (Non-null assertion operator)
   <>
     {/* <StrictMode> */}
+    
     <SocketProvider>
       <App />
       <Toaster closeButton />

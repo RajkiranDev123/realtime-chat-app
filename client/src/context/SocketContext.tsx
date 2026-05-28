@@ -1,8 +1,10 @@
-import { useRef, useEffect, createContext, useContext } from "react";
+import { useRef, useEffect, createContext, useContext } from "react"; // createContext , useContext
 
 import type { ReactNode } from "react";
 
-import { io, Socket } from "socket.io-client";
+import { io } from "socket.io-client";
+import type { Socket } from "socket.io-client";
+
 // io is a function used to create a socket connection.
 // Socket is a TypeScript type.
 
@@ -123,6 +125,12 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
   return (
     <SocketContext.Provider value={socket.current}>
+      {/* {value} → pass variable / expression
+      {{ key: value }} → pass inline object
+      Your case → no object creation → no double braces needed */}
+      {/* creates new object and changes reference every render (can trigger re-renders) */}
+      {/* Use {value} → when passing variable/value directly */}
+      {/* Use {{ }} → when creating a new object inline */}
       {children}
     </SocketContext.Provider>
   );
