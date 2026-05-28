@@ -29,17 +29,23 @@ export type UserInfo = {
 // slice type
 
 export type AuthSlice = {
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
   userInfo: UserInfo | null;
   setUserInfo: (userInfo: UserInfo | null) => void; // When someone calls setUserInfo, they can pass either : a UserInfo object or null
 };
 
 export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   userInfo: null,
+  loading: false,
 
   setUserInfo: (userInfo) => {
     set({
       userInfo,
     });
+  },
+  setLoading: (loading) => {
+    set({ loading });
   },
 });
 

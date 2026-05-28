@@ -10,11 +10,13 @@ import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useAppStore } from "@/store";
 import { Copy } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const Auth = () => {
-  const { setUserInfo } = useAppStore();
+  const { setUserInfo, loading, setLoading } = useAppStore();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
 
@@ -55,6 +57,7 @@ const Auth = () => {
   const handleLogin = async () => {
     if (validateLogin()) {
       try {
+        setLoading(true);
         const res = await apiClient.post(
           LOGIN_ROUTE,
           { email, password },
@@ -72,9 +75,9 @@ const Auth = () => {
           }
         }
       } catch (error: any) {
-        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message or .response properties etc
-        // Chrome console often shows AxiosError instances as a string (AxiosError: ...) for readability.
         toast.error(error.response.data.message, { duration: 1000 });
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -83,21 +86,20 @@ const Auth = () => {
   const handleSignup = async () => {
     if (validateSignup()) {
       try {
-        const res = await apiClient.post(
-          SIGNUP_ROUTE,
-          { email, password },
-          // { withCredentials: true },
-        );
-        console.log("res signup ==>", res);
+        setLoading(true);
+
+        const res = await apiClient.post(SIGNUP_ROUTE, { email, password });
+
         if (res.data.success) {
           setUserInfo(res.data.user);
-
           navigate("/profile");
         }
       } catch (error: any) {
-        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message/.response etc
+        // If you write catch (error), TypeScript will infer it as unknown , unknown may not have a .message or .response etc
         // Chrome console often shows AxiosError instances as a string (AxiosError: ...) for readability.
         toast.error(error.response.data.message, { duration: 1000 });
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -212,7 +214,11 @@ const Auth = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button className="rounded-full" onClick={handleLogin}>
-                  Login
+                  {loading ? (
+                    <Loader2 className="animate-spin w-5 h-5" />
+                  ) : (
+                    "Login"
+                  )}
                 </Button>
               </TabsContent>
               {/* login : TabsContent */}
@@ -248,6 +254,7 @@ const Auth = () => {
           {/* tabs ends */}
         </div>
         {/* col-1 ends */}
+
         {/*col-2 starts */}
         <div className="hidden xl:block">
           <img
