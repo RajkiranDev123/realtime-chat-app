@@ -131,13 +131,10 @@ const Auth = () => {
       >
         {/* grid-item-1 starts */}
         <div className="flex flex-col gap-10 items-center justify-center">
-
           {/* item-1 ==> welcome , logo and fill */}
           <div className="flex flex-col items-center justify-center p-1">
-
             {/* item-1 ==> welcome text and hand */}
             <div className="flex items-center justify-center ">
-
               <h1 className="text-4xl font-bold md:text-5xl text-black/70">
                 Welcome
               </h1>
@@ -147,7 +144,6 @@ const Auth = () => {
                 alt="victory"
                 className="h-[70px] animate-bounce"
               />
-              
             </div>
             {/* item-1 ends*/}
 
@@ -156,23 +152,19 @@ const Auth = () => {
               Fill in the details to get started.
             </p>
             {/* item-2 ends */}
-
           </div>
           {/* item-1 ends , welcome , logo and fill ends*/}
 
           {/* item-2 ==> tabs */}
           <div className="flex justify-center w-full">
-
             {/* if width full not given : it will take content width and width 3/4 is 75% */}
 
             {/* Tabs : Main container that controls the whole tabs system. */}
 
             <Tabs className="w-3/4" defaultValue="login">
-
               {/* TabsList : Wrapper for tab buttons (multiple TabsTrigger inisde) */}
 
               <TabsList className="bg-transparent w-full">
-                
                 {/* TabsTrigger 1 */}
                 <TabsTrigger
                   className="
@@ -197,21 +189,19 @@ const Auth = () => {
                 </TabsTrigger>
 
                 {/* TabsTrigger 2 ends */}
-
               </TabsList>
 
               {/* TabsList : Wrapper for all tab buttons (TabsTrigger) */}
 
               {/* login : TabsContent starts */}
               <TabsContent className="flex flex-col gap-5" value="login">
-
                 {/* copy email */}
                 <div className="flex gap-2 items-center">
                   Copy Test Email{" "}
                   <Copy
                     onClick={() => {
                       // navigator ==> It is a browser object that exposes APIs like Clipboard API , Geolocation API
-                      navigator.clipboard.writeText("rajtech645@gmail.com"); 
+                      navigator.clipboard.writeText("rajtech645@gmail.com");
                       toast.success("Email copied!", { duration: 1000 });
                     }}
                     className="cursor-pointer animate-pulse text-blue-500"
@@ -232,13 +222,12 @@ const Auth = () => {
                 />
                 {/* email ends */}
 
-
                 {/* copy test password */}
                 <div className="flex gap-2 items-center">
                   Copy Test Password{" "}
                   <Copy
                     onClick={() => {
-                      navigator.clipboard.writeText("123"); 
+                      navigator.clipboard.writeText("123");
                       toast.success("Password copied!", { duration: 1000 });
                     }}
                     className="cursor-pointer animate-pulse text-blue-500"
@@ -264,10 +253,8 @@ const Auth = () => {
                     "Login"
                   )}
                 </Button>
-
               </TabsContent>
               {/* login : TabsContent ends*/}
-
 
               {/* signup : TabsContent starts */}
               <TabsContent className="flex flex-col gap-5 " value="signup">
@@ -297,13 +284,9 @@ const Auth = () => {
                 </Button>
               </TabsContent>
               {/* signup : TabsContent ends */}
-
-
             </Tabs>
-
           </div>
           {/* item-2 , tabs ends */}
-
         </div>
         {/* grid-item-1 ends */}
 

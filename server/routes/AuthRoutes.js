@@ -25,7 +25,7 @@ import multer from "multer";
 const authRoutes = Router();
 
 const upload = multer({ dest: "uploads/profiles/" });
-// const upload = multer({ dest: "uploads/profiles" }); 
+// const upload = multer({ dest: "uploads/profiles" });
 // / means a path separator in file systems and URLs , ending / says the path ends at the "profiles" folder.
 
 // Attach file info to req.file
@@ -42,7 +42,7 @@ const upload = multer({ dest: "uploads/profiles/" });
 
 authRoutes.post("/signup", signup);
 authRoutes.post("/login", login);
-authRoutes.post("/logout", logout); 
+authRoutes.post("/logout", logout);
 
 authRoutes.get("/user-info", verifyToken, getUserInfo);
 authRoutes.post("/update-profile", verifyToken, updateProfile);
