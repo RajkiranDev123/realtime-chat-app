@@ -259,7 +259,7 @@ export const addProfileImage = async (req, res) => {
   }
 };
 
-//////////////////////// addProfileImage cloudinary /////////////////////
+//////////////////////////// addProfileImage cloudinary /////////////////////
 
 // export const addProfileImage = async (req, res) => {
 //   try {
