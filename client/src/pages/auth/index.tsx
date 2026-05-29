@@ -129,12 +129,15 @@ const Auth = () => {
         className="h-[80vh] w-[80vw] bg-white shadow-2xl 
         md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2"
       >
-        {/* grid-1 starts */}
-        <div className="flex flex-col gap-10 items-center justify-center ">
-          {/* welcome , logo and fill */}
-          <div className="flex flex-col items-center justify-center  p-1">
-            {/* col-1 ==> welcome text and hand */}
+        {/* grid-item-1 starts */}
+        <div className="flex flex-col gap-10 items-center justify-center">
+
+          {/* item-1 ==> welcome , logo and fill */}
+          <div className="flex flex-col items-center justify-center p-1">
+
+            {/* item-1 ==> welcome text and hand */}
             <div className="flex items-center justify-center ">
+
               <h1 className="text-4xl font-bold md:text-5xl text-black/70">
                 Welcome
               </h1>
@@ -142,61 +145,73 @@ const Auth = () => {
               <img
                 src={Victory}
                 alt="victory"
-                className="h-[80px] animate-bounce"
+                className="h-[70px] animate-bounce"
               />
+              
             </div>
-            {/* col-1 ends*/}
-            {/* col-2 ==> Fill in... */}
-            <p className="font-medium text-center">
-              Fill in the details to get started
-            </p>
-            {/* col-2 ends */}
-          </div>
-          {/* welcome , logo and fill ends*/}
+            {/* item-1 ends*/}
 
-          {/* tabs */}
+            {/* item-2 ==> Fill in... */}
+            <p className="font-medium text-center">
+              Fill in the details to get started.
+            </p>
+            {/* item-2 ends */}
+
+          </div>
+          {/* item-1 ends , welcome , logo and fill ends*/}
+
+          {/* item-2 ==> tabs */}
           <div className="flex justify-center w-full">
-            {/* if width full not given : it will take content width and width 3/4 : 75% */}
+
+            {/* if width full not given : it will take content width and width 3/4 is 75% */}
 
             {/* Tabs : Main container that controls the whole tabs system. */}
 
-            <Tabs className="w-3/4 " defaultValue="login">
-              {/* TabsList : Wrapper for all tab buttons (multiple TabsTrigger inisde) */}
-              <TabsList className="bg-transparent rounded-none w-full">
+            <Tabs className="w-3/4" defaultValue="login">
+
+              {/* TabsList : Wrapper for tab buttons (multiple TabsTrigger inisde) */}
+
+              <TabsList className="bg-transparent w-full">
+                
                 {/* TabsTrigger 1 */}
                 <TabsTrigger
                   className="
-                data-[state=active]:bg-transparent text-black text-opactity-90 border-b
-                rounded-none w-full data-[state=active]:text-black data-[state=active]:font-semibold
+                data-[state=active]:bg-transparent text-black/90 border-b
+                rounded-3xl w-full data-[state=active]:text-black data-[state=active]:font-semibold
                 data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
                   value="login"
                 >
                   Login
                 </TabsTrigger>
-                {/* TabsTrigger 1 */}
+                {/* TabsTrigger 1 ends */}
 
                 {/* TabsTrigger 2 */}
                 <TabsTrigger
                   className="
-                data-[state=active]:bg-transparent text-black text-opactity-90 border-b
-                rounded-none w-full data-[state=active]:text-black data-[state=active]:font-semibold
+                data-[state=active]:bg-transparent text-black/90 border-b  
+                rounded-3xl w-full data-[state=active]:text-black data-[state=active]:font-semibold
                 data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
                   value="signup"
                 >
                   Signup
                 </TabsTrigger>
-                {/* TabsTrigger 2 */}
+
+                {/* TabsTrigger 2 ends */}
+
               </TabsList>
+
               {/* TabsList : Wrapper for all tab buttons (TabsTrigger) */}
 
-              {/* login : TabsContent */}
+              {/* login : TabsContent starts */}
               <TabsContent className="flex flex-col gap-5" value="login">
+
                 {/* copy email */}
                 <div className="flex gap-2 items-center">
                   Copy Test Email{" "}
                   <Copy
                     onClick={() => {
-                      navigator.clipboard.writeText("rajtech645@gmail.com"); // ✅ fixed email
+                      // navigator ==> It is a browser object that exposes APIs like Clipboard API , Geolocation API
+                      navigator.clipboard.writeText("rajtech645@gmail.com"); 
                       toast.success("Email copied!", { duration: 1000 });
                     }}
                     className="cursor-pointer animate-pulse text-blue-500"
@@ -204,26 +219,35 @@ const Auth = () => {
                   />
                 </div>
                 {/* copy email ends */}
+
+                {/* email */}
                 <Input
                   placeholder="Email"
                   type="email"
                   className="rounded-full p-6  focus-visible:ring-0"
+                  // ring = fake border drawn outside the element using shadow
+                  // focus: == focus-visible: , some focus-visible works on mouse click too!
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {/*  */}
+                {/* email ends */}
+
+
+                {/* copy test password */}
                 <div className="flex gap-2 items-center">
                   Copy Test Password{" "}
                   <Copy
                     onClick={() => {
-                      navigator.clipboard.writeText("123"); // ✅ fixed email
+                      navigator.clipboard.writeText("123"); 
                       toast.success("Password copied!", { duration: 1000 });
                     }}
                     className="cursor-pointer animate-pulse text-blue-500"
                     size={18}
                   />
                 </div>
-                {/*  */}
+                {/* copy test password ends */}
+
+                {/* password starts  */}
                 <Input
                   placeholder="Password"
                   type="password"
@@ -231,6 +255,8 @@ const Auth = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {/* password ends */}
+
                 <Button className="rounded-full" onClick={handleLogin}>
                   {loading ? (
                     <Loader2 className="animate-spin w-5 h-5" />
@@ -238,9 +264,12 @@ const Auth = () => {
                     "Login"
                   )}
                 </Button>
-              </TabsContent>
-              {/* login : TabsContent */}
 
+              </TabsContent>
+              {/* login : TabsContent ends*/}
+
+
+              {/* signup : TabsContent starts */}
               <TabsContent className="flex flex-col gap-5 " value="signup">
                 <Input
                   placeholder="Email"
@@ -267,13 +296,18 @@ const Auth = () => {
                   Signup
                 </Button>
               </TabsContent>
-            </Tabs>
-          </div>
-          {/* tabs ends */}
-        </div>
-        {/* grid-1 ends */}
+              {/* signup : TabsContent ends */}
 
-        {/*grid-2 starts */}
+
+            </Tabs>
+
+          </div>
+          {/* item-2 , tabs ends */}
+
+        </div>
+        {/* grid-item-1 ends */}
+
+        {/*grid-item-2 starts */}
         <div className="hidden xl:block">
           <img
             src={Background}
@@ -281,7 +315,7 @@ const Auth = () => {
             className="h-[80vh] rounded-sm object-cover"
           />
         </div>
-        {/* grid-2 ends */}
+        {/* grid-item-2 ends */}
       </div>
     </div>
   );

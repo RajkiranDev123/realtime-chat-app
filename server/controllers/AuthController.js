@@ -3,6 +3,7 @@ import User from "../models/UserModel.js";
 
 import jwt from "jsonwebtoken"; // sign , verify ==> jwt
 import { renameSync, unlinkSync } from "fs"; // existsSync , mkdirSync , renameSync , unlinkSync ==> fs
+// import cloudinary from "../config/cloudinary.js";
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
@@ -258,6 +259,63 @@ export const addProfileImage = async (req, res) => {
   }
 };
 
+//////////////////////// addProfileImage cloudinary /////////////////////
+
+// export const addProfileImage = async (req, res) => {
+//   try {
+//     const { userId } = req;
+
+//     const user = await User.findById(userId);
+
+//     if (!user) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "User id not found.",
+//       });
+//     }
+
+//     if (!req.file) {
+//       return res.status(400).json({
+//         message: "File is required.",
+//         success: false,
+//       });
+//     }
+
+//     const date = Date.now();
+
+//     let fileName = "uploads/profiles/" + date + req.file.originalname;
+
+//     // move file inside uploads/profiles
+//     renameSync(req.file.path, fileName);
+
+//     // 🔥 upload to cloudinary from server file
+//     const result = await cloudinary.uploader.upload(fileName, {
+//       folder: "profile_images",
+//     });
+
+//     // delete local file after upload
+//     unlinkSync(fileName);
+
+//     const updatedUser = await User.findByIdAndUpdate(
+//       userId,
+//       {
+//         image: result.secure_url, // store cloudinary URL
+//       },
+//       { new: true, runValidators: true }
+//     );
+
+//     return res.status(200).json({
+//       success: true,
+//       image: updatedUser.image,
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       message: "Internal Server Error",
+//       success: false,
+//     });
+//   }
+// };
+
 ////////// removeProfileImage //////////////////////////////////////
 
 export const removeProfileImage = async (req, res) => {
@@ -291,7 +349,7 @@ export const removeProfileImage = async (req, res) => {
     // true ==> "true" and 12 ==> "12" : Mongoose  may convert types based on schema.
 
     await user.save();
-    
+
     // If email is missing and you do : user.save() , Mongoose will throw validation error if schema has : email {type : String , required : true}
     // Because save() validates the whole document.
     // ValidationError : email is required when we do email = null
@@ -306,6 +364,48 @@ export const removeProfileImage = async (req, res) => {
       .json({ message: "Internal Server Error", success: false });
   }
 };
+
+//////////////////////////// removeProfileImage cloudinary ////////////////
+
+// export const removeProfileImage = async (req, res) => {
+//   try {
+//     const { userId } = req;
+
+//     const user = await User.findById(userId);
+
+//     if (!user) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "User not found.",
+//       });
+//     }
+
+//     // if user has image in cloudinary
+//     if (user.image) {
+//       // extract public_id from url
+//       const parts = user.image.split("/");
+//       const fileWithExt = parts[parts.length - 1];
+//       const publicId = "profile_images/" + fileWithExt.split(".")[0];
+
+//       // delete from cloudinary
+//       await cloudinary.uploader.destroy(publicId);
+//     }
+
+//     // remove from DB
+//     user.image = null;
+//     await user.save();
+
+//     return res.status(200).json({
+//       success: true,
+//       message: "Profile image removed.",
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       success: false,
+//       message: "Internal Server Error",
+//     });
+//   }
+// };
 
 ////////////////////////////////// logout //////////////////////////////////
 

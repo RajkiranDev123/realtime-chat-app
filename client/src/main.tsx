@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")!).render(
   // “I am sure this value is not null or undefined.” ==> ! (Non-null assertion operator)
   <>
     {/* <StrictMode> */}
-    
+
     <SocketProvider>
       <App />
       <Toaster closeButton />

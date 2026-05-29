@@ -30,7 +30,7 @@ function App() {
   const { userInfo, setUserInfo } = useAppStore();
   const [loading, setLoading] = useState(true);
 
-  console.log("userInfo from App.tsx ==> ", userInfo);
+  // console.log("userInfo from App.tsx ==> ", userInfo);
   // If backend sends only : {email : "xxx@gmail.com"} then then runtime object is : {email : "xxx@gmail.com"}
   // even though TypeScript type says: firstName: string; email:string
   // ts is only for : autocomplete , error checking , hints etc
