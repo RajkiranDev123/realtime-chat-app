@@ -51,14 +51,18 @@ type SocketProviderProps = {
 };
 
 export const SocketProvider = ({ children }: SocketProviderProps) => {
+
+  // socket connection is not UI data. You don't need a re-render just because the socket object changed.
   const socket = useRef<Socket | null>(null);
 
   const { userInfo } = useAppStore();
 
   useEffect(() => {
-    if (userInfo) {
+
+    if (userInfo) { //
+      
       // io() ==> creates + returns socket instance/object
-      console.log(990, typeof userInfo.id, userInfo.id);
+    
       socket.current = io(HOST, {
         withCredentials: true,
         query: {
@@ -74,6 +78,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         console.log("Socket connect error =>", err);
       });
 
+      // handleReceiveMessage
       const handleReceiveMessage = (message: IncomingMessage) => {
         console.log("handleReceiveMsg ==>", message);
 
@@ -94,7 +99,9 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         }
         addContactsInDMContacts(message);
       };
-      //
+
+
+      // handleReceiveChannelMessage
       const handleReceiveChannelMessage = (message: IncomingMessage) => {
         console.log("handleReceiveChannelMsg ==>", message);
         const {
@@ -114,6 +121,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         addChannelInChannelList(message);
       };
 
+      // listen 
       socket.current.on("receiveMessage", handleReceiveMessage);
       socket.current.on("receive-channel-message", handleReceiveChannelMessage);
 
@@ -121,6 +129,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         socket.current?.disconnect();
       };
     }
+    //
   }, [userInfo]);
 
   return (

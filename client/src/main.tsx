@@ -14,7 +14,7 @@ createRoot(document.getElementById("root")!).render(
 
     <SocketProvider>
       <App />
-      <Toaster closeButton />
+      <Toaster closeButton position="top-center" />
     </SocketProvider>
 
     {/* </StrictMode>, */}

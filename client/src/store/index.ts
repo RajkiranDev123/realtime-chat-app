@@ -10,17 +10,12 @@ export const useAppStore = create<Store>()((...a) => ({
   ...createChatSlice(...a),
 }));
 
-
-
-
 // type outside (same thing) : Same meaning, just longer
 
 // import { sayHi } from "./types";
 // import type { User } from "./types";
 // vs
 // import { sayHi, type User } from "./types"; (shorter)
-
-
 
 // types.ts ===================================>
 
