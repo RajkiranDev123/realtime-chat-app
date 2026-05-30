@@ -41,16 +41,16 @@ function App() {
       try {
         setLoading(true);
 
-        const res = await apiClient.get<UserInfo>(GET_USER_INFO, {
+        const res = await apiClient.get(GET_USER_INFO, {
           // TypeScript does not inspect backend response at runtime.
           withCredentials: true,
         });
         console.log("res from App.ts x==> ", res);
         // res == {config , data , headers , request , status , statusText}
-        if (res.status === 200 && res.data.id) {
+        if (res.status === 200 && res.data.user.id) {
           // To truly validate backend data, you need runtime validation libraries like : zod , yup , joi
-          console.log("firstName from app.tsx ==> ", res.data.firstName); // undefined
-          setUserInfo(res.data);
+          console.log("firstName from app.tsx ==> ", res.data.user.firstName); // undefined
+          setUserInfo(res.data.user);
         } else {
           setUserInfo(null);
         }

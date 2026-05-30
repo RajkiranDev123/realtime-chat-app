@@ -51,18 +51,17 @@ type SocketProviderProps = {
 };
 
 export const SocketProvider = ({ children }: SocketProviderProps) => {
-
   // socket connection is not UI data. You don't need a re-render just because the socket object changed.
   const socket = useRef<Socket | null>(null);
 
   const { userInfo } = useAppStore();
 
   useEffect(() => {
+    if (userInfo) {
+      //
 
-    if (userInfo) { //
-      
       // io() ==> creates + returns socket instance/object
-    
+
       socket.current = io(HOST, {
         withCredentials: true,
         query: {
@@ -100,7 +99,6 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         addContactsInDMContacts(message);
       };
 
-
       // handleReceiveChannelMessage
       const handleReceiveChannelMessage = (message: IncomingMessage) => {
         console.log("handleReceiveChannelMsg ==>", message);
@@ -121,7 +119,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         addChannelInChannelList(message);
       };
 
-      // listen 
+      // listen
       socket.current.on("receiveMessage", handleReceiveMessage);
       socket.current.on("receive-channel-message", handleReceiveChannelMessage);
 
@@ -134,12 +132,9 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
   return (
     <SocketContext.Provider value={socket.current}>
-      {/* {value} → pass variable / expression
-      {{ key: value }} → pass inline object
-      Your case → no object creation → no double braces needed */}
-      {/* creates new object and changes reference every render (can trigger re-renders) */}
-      {/* Use {value} → when passing variable/value directly */}
-      {/* Use {{ }} → when creating a new object inline */}
+      {/* The outer {} means "enter JavaScript mode in JSX". */}
+      {/* The inner {} means "create an object". */}
+      {/* if value={{ socket: socket.current }} then const {socket} = useSocket() */}
       {children}
     </SocketContext.Provider>
   );

@@ -107,6 +107,7 @@ export const login = async (req, res) => {
       });
     }
     const comparePassword = await compare(password, user.password);
+
     if (!comparePassword) {
       return res.status(400).json({
         success: false,
@@ -119,6 +120,7 @@ export const login = async (req, res) => {
       secure: true,
       sameSite: "none",
     });
+
     return res.status(200).json({
       user: {
         id: user._id,
@@ -155,14 +157,17 @@ export const getUserInfo = async (req, res) => {
       });
     }
     return res.status(200).json({
-      id: userData._id,
-      email: userData.email,
-      profileSetup: userData.profileSetup,
-      //
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      image: userData.image,
-      color: userData.color,
+      user: {
+        id: userData._id,
+        email: userData.email,
+        profileSetup: userData.profileSetup,
+        //
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        image: userData.image,
+        color: userData.color,
+      },
+      success: true,
     });
   } catch (error) {
     // console.log("catch block of user info ==>", error.message);
