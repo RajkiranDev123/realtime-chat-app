@@ -1,8 +1,12 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Auth from "./pages/auth"; // "./pages/auth" is treated as : "./pages/auth/index.tsx"
+
+// components
+import Auth from "./pages/auth"; //  "./pages/auth" is treated as  "./pages/auth/index.tsx"
 // If you import a folder, it automatically looks for an index file inside it (Bundler : webpack)
 import Chat from "./pages/chat";
 import Profile from "./pages/profile";
+// components ends
+
 import { useAppStore } from "./store";
 import { useEffect, useState } from "react";
 import { apiClient } from "./lib/api-client";
