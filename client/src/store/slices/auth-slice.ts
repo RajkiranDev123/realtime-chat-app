@@ -39,7 +39,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   userInfo: null,
   loading: false,
 
-  setUserInfo: (userInfo) => {
+  setUserInfo: (userInfo) => { // userInfo is parameter
     set({
       userInfo,
     });

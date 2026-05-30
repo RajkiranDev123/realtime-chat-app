@@ -51,7 +51,7 @@ const Profile = () => {
     if (userInfo?.profileSetup) {
       navigate("/chat");
     } else {
-      toast.error("Please setup profile first.");
+      toast.error("Please setup your profile first.");
     }
   };
 
@@ -157,10 +157,17 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-[#1b1c24] h-[100vh] flex items-center justify-center ">
-      {/* arrow and inputs */}
+    <div className="bg-[#1b1c24] h-[100vh] w-[100vw] flex items-center justify-center ">
+
       {/* w-max : only as wide as content needs and w-full : 100% of parent container */}
-      <div className="flex flex-col gap-2 w-[80vw] md:w-max border border-white p-2 rounded-md shadow-md shadow-amber-100">
+     
+
+      <div className="flex flex-col gap-2 w-[80vw] md:w-max   p-2 rounded-md shadow-md shadow-amber-100">
+
+        {/* background-color is not inherited by default */}
+        {/* If you don’t set a background on a child, it’s just transparent,
+         so you see the parent’s background behind it */}
+
         {/* arrow */}
         <div onClick={handleNavigate}>
           <IoArrowBack className="text-2xl lg:text-4xl text-white/90 cursor-pointer" />
@@ -168,9 +175,13 @@ const Profile = () => {
         {/* arrow ends */}
 
         {/* avatar and inputs */}
-        <div className="grid md:grid-cols-2 gap-2 ">
-          {/* avatar starts : col-1 */}
+
+        <div className="grid md:grid-cols-2 gap-1 ">
+
+          {/* avatar starts : grid-item-1 */}
+
           {/* Don’t force alignment — use normal/default positioning” : md:justify-self-auto  */}
+
           <div
             className=" border  w-32 md:w-48 relative flex items-center justify-center justify-self-center md:justify-self-auto "
             onMouseEnter={() => setHovered(true)}
@@ -222,11 +233,18 @@ const Profile = () => {
             />
           </div>
           {/* avatar ends */}
+
           {/* --------------------------------------------------------- */}
-          {/* input fields : col-2 */}
-          <div className="flex min-w-32 md:min-w-64 flex-col gap-2 border text-white items-center justify-center">
+
+          {/* input fields : grid-item-2 */} 
+
+          {/* 1 = 0.25rem = 4px , 64 × 4px = 256px , m-w-? The element cannot go below this value, but it can go above it freely.*/}
+
+          <div className="flex flex-col gap-2 min-w-32 md:min-w-64  text-white items-center justify-center">
+            
             {/* email */}
-            <div className="w-full">
+            <div className="w-full">  {/* If you this div to follow container width (most common): w-full */}
+              {/* inputs default behave like block-level elements in many UI libs may take w-full */}
               <Input
                 placeholder="Email"
                 type="email"
@@ -236,6 +254,7 @@ const Profile = () => {
               />
             </div>
             {/* email ends*/}
+
             {/* firstname */}
             <div className="w-full">
               <Input
@@ -247,6 +266,7 @@ const Profile = () => {
               />
             </div>
             {/* firstname ends*/}
+
             {/* lastname */}
             <div className="w-full">
               <Input
@@ -274,13 +294,17 @@ const Profile = () => {
                 </div>
               ))}
             </div>
-
             {/* colors ends */}
+
           </div>
-          {/* input fields */}
+          {/* input fields ends*/}
+
         </div>
+
         {/* avatar and inputs ends*/}
 
+
+        {/* save button  */}
         <div className="w-full">
           <Button
             onClick={() => saveChanges()}
@@ -292,8 +316,11 @@ const Profile = () => {
             Save
           </Button>
         </div>
+        {/* save button ends */}
+
+
       </div>
-      {/* arrow and inputs */}
+
     </div>
   );
 };
