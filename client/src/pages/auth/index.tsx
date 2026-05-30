@@ -124,17 +124,20 @@ const Auth = () => {
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
       {/* width >= xs : 480 , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}
-      {/* border == border-1 border-black */}
+      {/* border == border-1 border-black/80 */}
       <div
         className="h-[80vh] w-[80vw] bg-white shadow-2xl 
         md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2"
       >
         {/* grid-item-1 starts */}
         <div className="flex flex-col gap-10 items-center justify-center">
-          {/* item-1 ==> welcome , logo and fill */}
+
+          {/* col-item-1 ==> welcome + logo and fill */}
           <div className="flex flex-col items-center justify-center p-1">
-            {/* item-1 ==> welcome text and hand */}
+
+          
             <div className="flex items-center justify-center ">
+
               <h1 className="text-4xl font-bold md:text-5xl text-black/70">
                 Welcome
               </h1>
@@ -144,24 +147,28 @@ const Auth = () => {
                 alt="victory"
                 className="h-[70px] animate-bounce"
               />
-            </div>
-            {/* item-1 ends*/}
 
-            {/* item-2 ==> Fill in... */}
+            </div>
+      
+
+       
             <p className="font-medium text-center">
               Fill in the details to get started.
             </p>
-            {/* item-2 ends */}
-          </div>
-          {/* item-1 ends , welcome , logo and fill ends*/}
+       
 
-          {/* item-2 ==> tabs */}
-          <div className="flex justify-center w-full">
+          </div>
+          {/* col-item-1 ends , welcome , logo and fill ends*/}
+
+          {/* col-item-2 ==> tabs */}
+          <div className="flex flex-col justify-center items-center w-full">
+
             {/* if width full not given : it will take content width and width 3/4 is 75% */}
 
             {/* Tabs : Main container that controls the whole tabs system. */}
 
             <Tabs className="w-3/4" defaultValue="login">
+
               {/* TabsList : Wrapper for tab buttons (multiple TabsTrigger inisde) */}
 
               <TabsList className="bg-transparent w-full">
@@ -198,6 +205,8 @@ const Auth = () => {
                 {/* copy email */}
                 <div className="flex gap-2 items-center">
                   Copy Test Email{" "}
+
+                  {/* copy icon */}
                   <Copy
                     onClick={() => {
                       // navigator ==> It is a browser object that exposes APIs like Clipboard API , Geolocation API
@@ -207,6 +216,8 @@ const Auth = () => {
                     className="cursor-pointer animate-pulse text-blue-500"
                     size={18}
                   />
+                  {/* copy icon ends */}
+
                 </div>
                 {/* copy email ends */}
 
@@ -214,7 +225,7 @@ const Auth = () => {
                 <Input
                   placeholder="Email"
                   type="email"
-                  className="rounded-full p-6  focus-visible:ring-0"
+                  className="rounded-md p-6  focus-visible:ring-0"
                   // ring = fake border drawn outside the element using shadow
                   // focus: == focus-visible: , some focus-visible works on mouse click too!
                   value={email}
@@ -240,7 +251,7 @@ const Auth = () => {
                 <Input
                   placeholder="Password"
                   type="password"
-                  className="rounded-full p-6 focus-visible:ring-0"
+                  className="rounded-md p-6 focus-visible:ring-0"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -261,21 +272,21 @@ const Auth = () => {
                 <Input
                   placeholder="Email"
                   type="email"
-                  className="rounded-full p-6"
+                  className="rounded-md p-6 focus-visible:ring-0"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                   placeholder="Password"
                   type="password"
-                  className="rounded-full p-6"
+                  className="rounded-md p-6 focus-visible:ring-0"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <Input
                   placeholder="Confirm Password"
                   type="password"
-                  className="rounded-full p-6"
+                  className="rounded-md p-6 focus-visible:ring-0"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
@@ -286,9 +297,10 @@ const Auth = () => {
               {/* signup : TabsContent ends */}
             </Tabs>
           </div>
-          {/* item-2 , tabs ends */}
+          {/* col-item-2 , tabs ends */}
         </div>
         {/* grid-item-1 ends */}
+
 
         {/*grid-item-2 starts */}
         <div className="hidden xl:block">
@@ -299,6 +311,7 @@ const Auth = () => {
           />
         </div>
         {/* grid-item-2 ends */}
+
       </div>
     </div>
   );
