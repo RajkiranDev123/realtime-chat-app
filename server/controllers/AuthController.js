@@ -18,6 +18,7 @@ export const signup = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
+      // (false || false ) ==> last false taken , false then go forward , true ==> stop
       return res.status(400).json({
         success: false,
         message: "All fields are required.",
@@ -44,16 +45,16 @@ export const signup = async (req, res) => {
       password,
     });
 
-    // res.cookie(name, value, options);
-    // small data stored in browser that is automatically sent to the server with every request
+    // res.cookie(name, value, {options});
+    // small data stored in browser that is automatically sent to the server with every request.
     res.cookie("jwt", createToken(email, user._id), {
-      httpOnly: true, // JS (frontend) cannot access cookie
+      httpOnly: true, // JS (frontend) cannot access cookie.
       maxAge,
       //
       secure: true, // cookie will only be sent over HTTPS.
       sameSite: "none", // cookie can be sent in cross-site requests
 
-      // "strict" → safest , "lax" → balanced (commonly used) , "none" → requires secure: true
+      // "strict" → safest , "lax" → balanced (commonly used) , "none" → requires ==> secure: true
 
       // “Allow cross-site cookie, but only over encrypted connection (https)” ==> secure : true , sameSite : "none"
 
@@ -63,7 +64,11 @@ export const signup = async (req, res) => {
 
       // https://raj.com        -> frontend
       // https://raj.com/api    -> backend
-      // Path does NOT make it cross-site. Browser mainly checks: protocol (https) and domain (raj.com) ==> sameSite: "Strict"
+      // Path does NOT make it cross-site. Browser mainly checks: protocol (https://) and domain (raj.com) ==> sameSite: "Strict"
+      // Generic TLDs (gTLD) : .com and Country Code TLDs (ccTLD) : .in
+      // raj → Second-level domain (the name you register)
+      // .com → TLD (Top-Level Domain)
+      // raj.com → Complete domain name
     });
     return res.status(201).json({
       // axios : const { user, message, success } = res.data;
