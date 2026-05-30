@@ -7,7 +7,7 @@ import { useAppStore } from "./store";
 import { useEffect, useState } from "react";
 import { apiClient } from "./lib/api-client";
 import { GET_USER_INFO } from "./utils/constants";
-import type { UserInfo } from "./store/slices/auth-slice";
+
 
 // Logged in ✅ → “you can enter chat/profile”
 // Not logged in ❌ → “go to login page first”
