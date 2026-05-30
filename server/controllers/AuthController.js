@@ -183,12 +183,14 @@ export const updateProfile = async (req, res) => {
   // req.userId = decoded.userId;
   try {
     const { userId } = req;
+
     const { firstName, lastName, color } = req.body;
     // if color value is 0 then ==> !0 == true
+
     if (!firstName || !lastName) {
       return res.status(400).json({
         success: false,
-        message: "firstName , lastName is required.",
+        message: "firstName & lastName is required.",
       });
     }
 
@@ -202,19 +204,23 @@ export const updateProfile = async (req, res) => {
       },
       { new: true, runValidators: true }, // Mongoose mainly validates only the fields being updated , not email etc.
       // but whole validation is done by ==> user.validate() , User.create({}) , user.save()
-      // These methods in Mongoose run schema validation automatically: user.save(), User.create() automatically
+      // These methods in Mongoose run schema validation automatically : user.save(), User.create() ==> automatically
       // updateOne() , updateMany() , findOneAndUpdate() , findByIdAndUpdate() , replaceOne() need runValidators : true
     );
 
     return res.status(200).json({
-      id: userData._id,
-      email: userData.email,
-      profileSetup: userData.profileSetup,
-      //
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      image: userData.image,
-      color: userData.color,
+      user: {
+        id: userData._id,
+        email: userData.email,
+        profileSetup: userData.profileSetup,
+        //
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        image: userData.image,
+        color: userData.color,
+      },
+
+      success: true,
     });
   } catch (error) {
     return res

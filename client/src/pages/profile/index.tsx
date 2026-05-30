@@ -26,7 +26,7 @@ const Profile = () => {
   const [selectedColor, setSelectedColor] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  console.log(userInfo?.email.split("").shift());
+  // console.log(userInfo?.email.split("").shift());
   // shift() is an Array method that removes the first element of an array and returns it.
 
   // let arr = [10, 20, 30];
@@ -41,7 +41,7 @@ const Profile = () => {
       setSelectedColor(userInfo.color ?? 0);
     }
     if (userInfo?.image) {
-      console.log(`${HOST}/${userInfo.image}`);
+      // console.log(`${HOST}/${userInfo.image}`);
 
       setImage(`${HOST}/${userInfo.image}`);
     }
@@ -67,6 +67,7 @@ const Profile = () => {
     return true;
   };
 
+  // save button api call
   const saveChanges = async () => {
     if (validateProfile()) {
       try {
@@ -76,28 +77,21 @@ const Profile = () => {
           { withCredentials: true },
         );
       
-        if (response.status === 200 && response.data) {
-          setUserInfo({ ...response.data });
-          ////////////////////////////////////////////////////
-          // setUserInfo(response.data) ==>
-          // ✔ calls your setter
-          // ✔ calls set(...)
-          // ✔ Zustand updates state
-          // ✔ UI re-renders
-          /////////////////////////////////////////////////
+        if (response.status === 200 && response.data.user) {
+          setUserInfo({ ...response.data.user });
+    
 
           ////////////////////////////////////////////////////////////
-          // setUserInfo(response.data);
-          // Zustand stores the same object reference
-          // No cloning, no protection
-          // This is perfectly valid ✅
-          // Problem : If you later do:
-          // const user = useStore.getState().userInfo;
-          // user.email = "new@mail.com"; // ❌ mutation
-          // You changed the object without calling set
-          // Zustand doesn’t know anything changed
-          // UI may not re-render
+            //    const user = {
+            //    name: "Raj",
+            //    age: 21
+            //    };
+            //   const newUser = { ...user };
+
+            //  console.log(newUser);
+            // { name: "Raj", age: 21 }
           //////////////////////////////////////////////////////////////
+
           toast.success("Profile updated successfully.");
           navigate("/chat");
         }
@@ -107,11 +101,21 @@ const Profile = () => {
     }
   };
 
+  
   const handleFileInputclick = () => {
-    fileInputRef.current?.click();
+
+    // fileInputRef.current?.click();
+
     // current is null
     // null has no properties
-    // so current.click is impossible : never
+    // if you dont want ?. then ==>
+    if (fileInputRef.current) {
+        fileInputRef.current.click(); // now TypeScript knows current cannot be null here.
+     }
+
+    //  So yes, TypeScript is tracking both possibilities (HTMLInputElement and null) until your
+    //  code proves that one of them cannot happen. This feature is called :
+    //  control flow analysis or type narrowing.
   };
 
   const handleImageChange = async (
@@ -127,11 +131,7 @@ const Profile = () => {
       const res = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, {
         withCredentials: true,
       });
-      // Browser / Axios detects FormData , Content-Type: multipart/form-data; boundary=----xyz ==> automatically
-      // ----abc123
-      // name: Rj
-      // ----abc123
-      // file: image.png
+ 
       if (res.status === 200 && res.data.image) {
         if (!userInfo) return; //c
         setUserInfo({ ...userInfo, image: res.data.image });
@@ -146,7 +146,7 @@ const Profile = () => {
         withCredentials: true,
       });
       if (res.status === 200) {
-        if (!userInfo) return; //c
+        if (!userInfo) return; 
         setUserInfo({ ...userInfo, image: null });
       }
       toast.success("Image removed");
@@ -174,20 +174,24 @@ const Profile = () => {
         </div>
         {/* arrow ends */}
 
-        {/* avatar and inputs */}
+        {/* avatar and inputs : grid*/}
 
         <div className="grid md:grid-cols-2 gap-1 ">
 
-          {/* avatar starts : grid-item-1 */}
+         
 
           {/* Don’t force alignment — use normal/default positioning” : md:justify-self-auto  */}
-
+          {/* self ==> Apply this alignment to this item only , centered horizontally : justify-self-center */}
+          
+          {/* avatar starts : grid-item-1 */}
           <div
             className=" border  w-32 md:w-48 relative flex items-center justify-center justify-self-center md:justify-self-auto "
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-            <Avatar className="h-32 w-32 md:w-48 md:h-48 rounded-full overflow-hidden">
+
+            {/*  */}
+            <Avatar className="h-32 w-32 md:w-48 md:h-48 rounded-full border border-amber-300 overflow-hidden">
               {image ? (
                 <AvatarImage
                   src={image}
@@ -206,12 +210,14 @@ const Profile = () => {
                 </div>
               )}
             </Avatar>
+            {/*  */}
+
             {hovered && (
               // inset-0 : Child covers entire parent
               <div
                 onClick={image ? handleDeleteImage : handleFileInputclick}
                 className="absolute inset-0 flex items-center justify-center 
-              bg-black/50 ring-2 ring-white rounded-full
+              bg-black/80 ring-8 ring-white rounded-full border-4 border-red-500
               "
               >
                 {/*ring : tailwind applies a very tight box-shadow around the element. */}
@@ -223,6 +229,7 @@ const Profile = () => {
                 )}
               </div>
             )}
+
             <input
               type="file"
               className="hidden"
@@ -231,6 +238,7 @@ const Profile = () => {
               accept=".png , .jpg , .jpeg , .webp , .svg"
               name="profile-image"
             />
+
           </div>
           {/* avatar ends */}
 
@@ -285,7 +293,7 @@ const Profile = () => {
                 <div
                   onClick={() => setSelectedColor(index)}
                   className={`${color} h-8 w-8 rounded-full cursor-pointer 
-                  transition-all duration-300 ${selectedColor === index ? " outline-white/50 outline-4" : ""}`}
+                  transition-all duration-300 ${selectedColor === index ? "outline-white/50 outline-2" : ""}`}
                   key={index}
                 >
                   {/* Border = real line (inside) , Outline = extra line (outside)
@@ -301,21 +309,24 @@ const Profile = () => {
 
         </div>
 
-        {/* avatar and inputs ends*/}
+        {/* avatar and inputs ends : grid*/}
 
 
         {/* save button  */}
+
         <div className="w-full">
           <Button
             onClick={() => saveChanges()}
-            className="h-16 w-full bg-purple-700 hover:bg-purple-900 transition duration-300"
+            className="h-16 w-full bg-purple-700 hover:bg-purple-800 transition duration-300"
           >
             {/* Color will change instantly (no smooth effect) : if no transition used */}
             {/* transition = shortcut for transition-all */}
-            {/* transition-colors : background , text color , border etc  */}
+            {/* duration-300 = “how long”
+            transition = “turn animation ON” , duration-300 by itself does nothing , must need transition , transition == transition-all*/}
             Save
           </Button>
         </div>
+
         {/* save button ends */}
 
 
