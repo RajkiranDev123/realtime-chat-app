@@ -75,7 +75,7 @@ const Profile = () => {
           { firstName, lastName, color: selectedColor },
           { withCredentials: true },
         );
-        console.log(23, response);
+      
         if (response.status === 200 && response.data) {
           setUserInfo({ ...response.data });
           ////////////////////////////////////////////////////

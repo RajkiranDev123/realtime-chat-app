@@ -1,14 +1,14 @@
-import { compare } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
+import { compare } from "bcrypt"; // genSalt , hash , compare ==> bcrypt
 import User from "../models/UserModel.js";
 
 import jwt from "jsonwebtoken"; // sign , verify ==> jwt
 import { renameSync, unlinkSync } from "fs"; // existsSync , mkdirSync , renameSync , unlinkSync ==> fs
-// import cloudinary from "../config/cloudinary.js";
+import cloudinary from "../config/cloudinary.js";
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
 const createToken = (email, userId) => {
-  // jwt.sign(payload, secretKey, options)
+  // jwt.sign({payload}, secretKey, {options})
   return jwt.sign({ email, userId }, process.env.JWT_KEY, { expiresIn: "3d" });
 };
 
