@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useAppStore } from "@/store";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+
+// components
 import ContactsContainer from "./components/contacts-container";
 import EmptyChatContainer from "./components/empty-chat-container";
 import ChatContainer from "./components/chat-container";
@@ -10,12 +12,14 @@ const Chat = () => {
   const {
     userInfo,
     selectedChatType,
-    // 
+    //
     isUploading,
     isDownloading,
+    //
     fileUploadProgress,
     fileDownloadProgress,
   } = useAppStore();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +31,7 @@ const Chat = () => {
     // navigate → used inside effect , navigate from React Router is usually stable and won't change.
     // But ESLint still asks to include it.
   }, [userInfo, navigate]);
+  
   return (
     <div className="flex h-[100vh] text-white overflow-hidden gap-1 bg-gray-300 p-2">
       {isUploading && (

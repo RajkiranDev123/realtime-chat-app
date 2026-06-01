@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useAppStore } from "@/store";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // BrowserRouter, Navigate, Route, Routes , useNavigate
 import { IoArrowBack } from "react-icons/io5";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { colors, getColor } from "@/lib/utils";
@@ -19,16 +19,16 @@ import {
 const Profile = () => {
   const { userInfo, setUserInfo } = useAppStore();
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const [image, setImage] = useState<string | null>(null);
-  const [hovered, setHovered] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(0);
+  // null ==> Because you don’t have an image yet when the component first loads.
+
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [selectedColor, setSelectedColor] = useState<number>(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // console.log(userInfo?.email.split("").shift());
   // shift() is an Array method that removes the first element of an array and returns it.
-
   // let arr = [10, 20, 30];
   // let removed = arr.shift();
   // console.log(arr);     // [20, 30]
@@ -41,8 +41,6 @@ const Profile = () => {
       setSelectedColor(userInfo.color ?? 0);
     }
     if (userInfo?.image) {
-      // console.log(`${HOST}/${userInfo.image}`);
-
       setImage(`${HOST}/${userInfo.image}`);
     }
   }, [userInfo]);
@@ -76,20 +74,19 @@ const Profile = () => {
           { firstName, lastName, color: selectedColor },
           { withCredentials: true },
         );
-      
+
         if (response.status === 200 && response.data.user) {
           setUserInfo({ ...response.data.user });
-    
 
           ////////////////////////////////////////////////////////////
-            //    const user = {
-            //    name: "Raj",
-            //    age: 21
-            //    };
-            //   const newUser = { ...user };
+          //    const user = {
+          //    name: "Raj",
+          //    age: 21
+          //    };
+          //   const newUser = { ...user };
 
-            //  console.log(newUser);
-            // { name: "Raj", age: 21 }
+          //  console.log(newUser);
+          // { name: "Raj", age: 21 }
           //////////////////////////////////////////////////////////////
 
           toast.success("Profile updated successfully.");
@@ -101,39 +98,47 @@ const Profile = () => {
     }
   };
 
-  
   const handleFileInputclick = () => {
-
     // fileInputRef.current?.click();
 
     // current is null
     // null has no properties
+
     // if you dont want ?. then ==>
     if (fileInputRef.current) {
-        fileInputRef.current.click(); // now TypeScript knows current cannot be null here.
-     }
+      fileInputRef.current.click(); // now TypeScript knows current cannot be null here.
+    }
 
     //  So yes, TypeScript is tracking both possibilities (HTMLInputElement and null) until your
     //  code proves that one of them cannot happen. This feature is called :
     //  control flow analysis or type narrowing.
   };
 
+
+  // <input type="file"  ref={fileInputRef} onChange={handleImageChange} name="profile-image"/>
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
     // ChangeEvent = value changed
     // MouseEvent = click / pointer action
-    // for div click : event: React.MouseEvent<HTMLDivElement>
+    // for div click ==> event: React.MouseEvent<HTMLDivElement>
   ) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0]; // FileList object
+    // FileList { 0: File, 1: File, length: 2 }
+    // Why "array-like"? You can access items by index : files[0]
+    // But it's not a true JavaScript array : no map , filter etc
+
     if (file) {
+
       const formData = new FormData();
-      formData.append("profile-image", file);
+      formData.append("profile-image", file); // This adds a file to a FormData object so it can be uploaded in an HTTP request.
+      // upload.single("profile-image") ==> Both names must match.
+
       const res = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, {
         withCredentials: true,
       });
- 
+
       if (res.status === 200 && res.data.image) {
-        if (!userInfo) return; //c
+        if (!userInfo) return; // requires a valid object to spread (...userInfo).
         setUserInfo({ ...userInfo, image: res.data.image });
         toast.success("Image updated.");
       }
@@ -145,10 +150,13 @@ const Profile = () => {
       const res = await apiClient.delete(REMOVE_PROFILE_IMAGE_ROUTE, {
         withCredentials: true,
       });
+
       if (res.status === 200) {
-        if (!userInfo) return; 
-        setUserInfo({ ...userInfo, image: null });
+        if (!userInfo) return;
+        setUserInfo({ ...userInfo, image: null }); // userInfo changes → useEffect runs.
+        // image becomes null because you explicitly set it to null here : that's why < string | null >
       }
+
       toast.success("Image removed");
       setImage(null);
     } catch (error) {
@@ -158,12 +166,9 @@ const Profile = () => {
 
   return (
     <div className="bg-[#1b1c24] h-[100vh] w-[100vw] flex items-center justify-center ">
-
       {/* w-max : only as wide as content needs and w-full : 100% of parent container */}
-     
 
-      <div className="flex flex-col gap-2 w-[80vw] md:w-max   p-2 rounded-md shadow-md shadow-amber-100">
-
+      <div className="flex flex-col gap-2 w-[80vw] md:w-max   p-2 rounded-md shadow-sm shadow-amber-100">
         {/* background-color is not inherited by default */}
         {/* If you don’t set a background on a child, it’s just transparent,
          so you see the parent’s background behind it */}
@@ -177,21 +182,17 @@ const Profile = () => {
         {/* avatar and inputs : grid*/}
 
         <div className="grid md:grid-cols-2 gap-1 ">
-
-         
-
           {/* Don’t force alignment — use normal/default positioning” : md:justify-self-auto  */}
           {/* self ==> Apply this alignment to this item only , centered horizontally : justify-self-center */}
-          
+
           {/* avatar starts : grid-item-1 */}
           <div
-            className=" border  w-32 md:w-48 relative flex items-center justify-center justify-self-center md:justify-self-auto "
+            className="w-32 md:w-48 relative flex items-center justify-center justify-self-center md:justify-self-auto "
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-
             {/*  */}
-            <Avatar className="h-32 w-32 md:w-48 md:h-48 rounded-full border border-amber-300 overflow-hidden">
+            <Avatar className="h-32 w-32 md:w-48 md:h-48 rounded-full border-0 overflow-hidden">
               {image ? (
                 <AvatarImage
                   src={image}
@@ -200,7 +201,7 @@ const Profile = () => {
                 />
               ) : (
                 <div
-                  className={`uppercase h-32 w-32 md:w-48 md:h-48 text-5xl border-[1px] flex items-center justify-center
+                  className={`uppercase h-32 w-32 md:w-48 md:h-48 text-5xl flex items-center justify-center
                 rounded-full ${getColor(selectedColor)}
                 `}
                 >
@@ -213,11 +214,11 @@ const Profile = () => {
             {/*  */}
 
             {hovered && (
-              // inset-0 : Child covers entire parent
+              // absolute inset-0 ==> is a very common Tailwind combo used to make an element cover its parent completely.
               <div
                 onClick={image ? handleDeleteImage : handleFileInputclick}
                 className="absolute inset-0 flex items-center justify-center 
-              bg-black/80 ring-8 ring-white rounded-full border-4 border-red-500
+              bg-black/60  rounded-full 
               "
               >
                 {/*ring : tailwind applies a very tight box-shadow around the element. */}
@@ -230,28 +231,33 @@ const Profile = () => {
               </div>
             )}
 
+
+            {/* input */}
             <input
               type="file"
-              className="hidden"
+              className="hidden" // still exists in DOM , can still be accessed via ref
               ref={fileInputRef}
               onChange={handleImageChange}
               accept=".png , .jpg , .jpeg , .webp , .svg"
               name="profile-image"
             />
+           {/* input ends */}
+
 
           </div>
           {/* avatar ends */}
 
           {/* --------------------------------------------------------- */}
 
-          {/* input fields : grid-item-2 */} 
+          {/* input fields : grid-item-2 */}
 
           {/* 1 = 0.25rem = 4px , 64 × 4px = 256px , m-w-? The element cannot go below this value, but it can go above it freely.*/}
 
           <div className="flex flex-col gap-2 min-w-32 md:min-w-64  text-white items-center justify-center">
-            
             {/* email */}
-            <div className="w-full">  {/* If you this div to follow container width (most common): w-full */}
+            <div className="w-full">
+              {" "}
+              {/* If you this div to follow container width (most common): w-full */}
               {/* inputs default behave like block-level elements in many UI libs may take w-full */}
               <Input
                 placeholder="Email"
@@ -303,23 +309,20 @@ const Profile = () => {
               ))}
             </div>
             {/* colors ends */}
-
           </div>
           {/* input fields ends*/}
-
         </div>
 
         {/* avatar and inputs ends : grid*/}
-
 
         {/* save button  */}
 
         <div className="w-full">
           <Button
             onClick={() => saveChanges()}
-            className="h-16 w-full bg-purple-700 hover:bg-purple-800 transition duration-300"
+            className="h-10 w-full bg-purple-700 hover:bg-purple-800 transition duration-300"
           >
-            {/* Color will change instantly (no smooth effect) : if no transition used */}
+            {/* Color will change instantly (no smooth effect) : if no "transition" used */}
             {/* transition = shortcut for transition-all */}
             {/* duration-300 = “how long”
             transition = “turn animation ON” , duration-300 by itself does nothing , must need transition , transition == transition-all*/}
@@ -328,10 +331,7 @@ const Profile = () => {
         </div>
 
         {/* save button ends */}
-
-
       </div>
-
     </div>
   );
 };
