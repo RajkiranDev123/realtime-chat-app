@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppStore } from "@/store";
+import { useAppStore } from "@/store"; // @ = alias for src/ (usually)
 import { useNavigate } from "react-router-dom"; // BrowserRouter, Navigate, Route, Routes , useNavigate
 import { IoArrowBack } from "react-icons/io5";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -41,7 +41,7 @@ const Profile = () => {
       setSelectedColor(userInfo.color ?? 0);
     }
     if (userInfo?.image) {
-      setImage(`${HOST}/${userInfo.image}`);
+      setImage(userInfo.image);
     }
   }, [userInfo]);
 
@@ -114,8 +114,7 @@ const Profile = () => {
     //  control flow analysis or type narrowing.
   };
 
-
-  // <input type="file"  ref={fileInputRef} onChange={handleImageChange} name="profile-image"/>
+  // <input type="file"  triggers when ==> onChange={handleImageChange} name="profile-image"/>
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
     // ChangeEvent = value changed
@@ -128,10 +127,9 @@ const Profile = () => {
     // But it's not a true JavaScript array : no map , filter etc
 
     if (file) {
-
       const formData = new FormData();
       formData.append("profile-image", file); // This adds a file to a FormData object so it can be uploaded in an HTTP request.
-      // upload.single("profile-image") ==> Both names must match.
+      // upload.single("profile-image") in backend side ==> Both names must match.
 
       const res = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, {
         withCredentials: true,
@@ -140,7 +138,11 @@ const Profile = () => {
       if (res.status === 200 && res.data.image) {
         if (!userInfo) return; // requires a valid object to spread (...userInfo).
         setUserInfo({ ...userInfo, image: res.data.image });
+        // const user = { name: "Ravi", age: 20 };
+        // const updatedUser = { ...user, age: 21 };
         toast.success("Image updated.");
+      } else {
+        toast.error("Profile Image failed to upload. Try again!");
       }
     }
   };
@@ -156,7 +158,6 @@ const Profile = () => {
         setUserInfo({ ...userInfo, image: null }); // userInfo changes → useEffect runs.
         // image becomes null because you explicitly set it to null here : that's why < string | null >
       }
-
       toast.success("Image removed");
       setImage(null);
     } catch (error) {
@@ -231,7 +232,6 @@ const Profile = () => {
               </div>
             )}
 
-
             {/* input */}
             <input
               type="file"
@@ -241,9 +241,7 @@ const Profile = () => {
               accept=".png , .jpg , .jpeg , .webp , .svg"
               name="profile-image"
             />
-           {/* input ends */}
-
-
+            {/* input ends */}
           </div>
           {/* avatar ends */}
 

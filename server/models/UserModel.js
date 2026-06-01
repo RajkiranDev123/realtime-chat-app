@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    imagePublicId: String,
     color: {
       type: Number,
     },
@@ -31,7 +32,11 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    strict: true, // 🔥false to disables strict mode , This is already enabled by default
+    // true ==> “Only schema fields allowed”
+  }
 );
 
 userSchema.pre("save", async function () {
@@ -42,7 +47,6 @@ userSchema.pre("save", async function () {
 
   const salt = await genSalt(10);
   this.password = await hash(this.password, salt);
-
 });
 
 // A document is an instance of a Mongoose model, and the model is built from ==> schema
