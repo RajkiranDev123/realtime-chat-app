@@ -44,6 +44,7 @@ const ContactList = ({
   };
   return (
     <div className="mt-5">
+
       {contacts.map((contact) => (
         <div
           onClick={() => handleClick(contact)}
@@ -108,6 +109,7 @@ const ContactList = ({
           </div>
         </div>
       ))}
+      
     </div>
   );
 };

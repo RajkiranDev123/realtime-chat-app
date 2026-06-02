@@ -34,7 +34,6 @@ const Chat = () => {
 
   return (
     <div className="flex h-[100vh] text-white overflow-hidden gap-0.5 bg-gray-500 p-1">
-
       {isUploading && (
         <div
           className="
@@ -46,6 +45,9 @@ const Chat = () => {
           {fileUploadProgress}%
         </div>
       )}
+      {/* 
+      Cover the parent → absolute inset-0
+      Cover the screen → fixed inset-0 */}
 
       {isDownloading && (
         <div

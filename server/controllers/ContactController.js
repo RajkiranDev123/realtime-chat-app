@@ -19,6 +19,7 @@ export const searchContacts = async (req, res) => {
     );
 
     const regex = new RegExp(sanitizeSearchTerm, "i");
+    
     const contacts = await User.find({
       $and: [
         { _id: { $ne: req.userId } },
@@ -28,10 +29,11 @@ export const searchContacts = async (req, res) => {
       ],
     });
     return res.status(200).json({
-      data: contacts,
+      contacts: contacts,
       success: true,
       message: "Contacts fetched.",
     });
+
   } catch (error) {
     return res.status(500).json({
       message: "Internal Server Error",
@@ -44,6 +46,10 @@ export const searchContacts = async (req, res) => {
 // 👤 User details (name, email, image, color)
 // ⏱️ Time of last message with them
 // 📌 Sorted by most recent chat
+
+// $ on the LEFT  -> MongoDB operator
+// $ inside a STRING -> document field
+
 export const getContactsForDMList = async (req, res) => {
   try {
     let { userId } = req;
@@ -56,10 +62,18 @@ export const getContactsForDMList = async (req, res) => {
           $or: [{ sender: userId }, { recipient: userId }],
         },
       },
+      // [
+      //   { sender: "U1", recipient: "U2" }, // keep
+      //   { sender: "U3", recipient: "U1" }, // keep
+      //   { sender: "U4", recipient: "U5" }  // remove
+      // ]
+
+      // stage 2 ==> This sorts the messages by the createdAt field in descending order.
       {
         $sort: { createdAt: -1 },
       },
-      // stage 2
+
+      // stage 3
       {
         $group: {
           _id: {
@@ -72,7 +86,8 @@ export const getContactsForDMList = async (req, res) => {
           lastMessageTime: { $first: "$createdAt" },
         },
       },
-      // stage 3
+
+      // stage 4
       {
         $lookup: {
           from: "users",
@@ -81,11 +96,13 @@ export const getContactsForDMList = async (req, res) => {
           as: "contactInfo",
         },
       },
-      // state 4
+
+      // stage 5 
       {
         $unwind: "$contactInfo",
       },
-      // stage 5
+
+      // stage 6
       {
         $project: {
           _id: 1,
@@ -97,7 +114,7 @@ export const getContactsForDMList = async (req, res) => {
           color: "$contactInfo.color",
         },
       },
-      // stage 6
+      // stage 7
       {
         $sort: { lastMessageTime: -1 },
       },
@@ -124,7 +141,7 @@ export const getAllContacts = async (req, res) => {
     );
     const contacts = users.map((user) => ({
       label: user.firstName ? `${user.firstName} ${user.lastName}` : user.email,
-      value:user._id
+      value: user._id,
     }));
     return res.status(200).json({ success: true, contacts });
   } catch (error) {

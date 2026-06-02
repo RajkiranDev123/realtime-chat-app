@@ -48,13 +48,13 @@ const NewDm = () => {
           { withCredentials: true },
         );
 
-        if (res.status === 200 && res.data.data) {
+        if (res.status === 200 && res.data.contacts) {
           //   return res.status(200).json({
           //   data: contacts,
           //   success: true,
           //   message: "Contacts fetched.",
           // });
-          setSearchedContacts(res.data.data);
+          setSearchedContacts(res.data.contacts);
         }
       } else {
         setSearchedContacts([]);
@@ -65,6 +65,21 @@ const NewDm = () => {
   };
 
   const selectNewContact = (contact: Contact) => {
+    console.log("contact from dm ==> ", contact);
+
+    // {
+    //       "_id": "6a0708a181849d247e796d0f",
+    //       "email": "rajkir783@gmail.com",
+    //       "password": "$2b$10$EnQCRg1y070wTGWnQCviYuKlEp/1dcmzlGgIADElfNqmVKPhsUD4W",
+    //       "profileSetup": true,
+    //       "createdAt": "2026-05-15T11:50:57.263Z",
+    //       "updatedAt": "2026-05-20T06:45:32.302Z",
+    //       "__v": 0,
+    //       "color": 0,
+    //       "firstName": "raj2",
+    //       "lastName": "raj2"
+    //   }
+
     setOpenNewContactModal(false);
     setSelectedChatType("contact");
     setSelectedChatData(contact);
@@ -82,6 +97,7 @@ const NewDm = () => {
           cursor-pointer transition-all duration-300"
             />
           </TooltipTrigger>
+
           <TooltipContent className="bg-black border-none text-white p-2">
             Select New Contact
           </TooltipContent>
@@ -96,6 +112,7 @@ const NewDm = () => {
             <DialogTitle>Please select a contact</DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
+
           <div>
             <Input
               placeholder="Search Contacts"
@@ -106,7 +123,9 @@ const NewDm = () => {
 
           {searchedContacts.length > 0 && (
             <ScrollArea className="h-[250px]">
+
               <div className="flex flex-col gap-5">
+
                 {searchedContacts.map((contact) => (
                   <div
                     onClick={() => selectNewContact(contact)}
@@ -114,6 +133,7 @@ const NewDm = () => {
                     className="flex gap-3 items-center cursor-pointer"
                   >
                     <div className="w-12 h-12 relative">
+
                       <Avatar className="h-12 w-12 rounded-full overflow-hidden">
                         {contact?.image ? (
                           <AvatarImage
@@ -137,6 +157,7 @@ const NewDm = () => {
                           </div>
                         )}
                       </Avatar>
+
                     </div>
                     {/*  */}
 
@@ -154,6 +175,7 @@ const NewDm = () => {
                   </div>
                 ))}
               </div>
+              
             </ScrollArea>
           )}
 
