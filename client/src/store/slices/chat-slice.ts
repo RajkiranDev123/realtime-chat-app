@@ -9,10 +9,12 @@ type User = {
   image?: string;
   color?: number;
 };
+
 export type Channel = {
   _id: string;
   name: string;
 };
+
 export type Contact = {
   _id: string;
   lastMessageTime: string;
@@ -24,6 +26,7 @@ export type Contact = {
 
   color?: number;
 };
+
 type UserRef = User | string;
 
 type Message = {
@@ -49,6 +52,7 @@ type Message = {
 //   color?: number;
 //   image?: string | null;
 // };
+
 const isUser = (val: User | string): val is User => {
   return typeof val !== "string";
 };
@@ -66,7 +70,7 @@ export type ChatSlice = {
   setFileDownloadProgress: (fileDownloadProgress: number) => void;
 
   //
-  selectedChatType: "contact" | "channel" | undefined;
+  selectedChatType: "contact" | "channel" | undefined; // is a union of string literal types.
   selectedChatData: Contact | Channel | undefined;
   selectedChatMessages: Message[];
   directMessagesContacts: Contact[];
@@ -104,20 +108,17 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
   fileDownloadProgress: 0,
   setIsUploading: (isUploading) => set({ isUploading }),
   setIsDownloading: (isDownloading) => set({ isDownloading }),
-
   setFileUploadProgress: (fileUploadProgress) => set({ fileUploadProgress }),
   setFileDownloadProgress: (fileDownloadProgress) =>
     set({ fileDownloadProgress }),
 
   //
   selectedChatType: undefined,
-
   selectedChatData: undefined,
-
   selectedChatMessages: [],
-
   directMessagesContacts: [],
   //
+  
   channels: [],
   setChannels: (channels) => set({ channels }),
   addChannel: (channel) => {

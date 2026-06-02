@@ -17,6 +17,8 @@ const ContactsContainer = () => {
     channels,
     setChannels,
   } = useAppStore();
+
+
   useEffect(() => {
     const getContacts = async () => {
       const res = await apiClient.get(GET_DM_CONTACTS_ROUTE, {
@@ -37,6 +39,8 @@ const ContactsContainer = () => {
     };
     getChannels();
   }, [setChannels, setDirectMessagesContacts]);
+
+
   return (
     // xs sm  md lg xl 2xl ......... 7xl
     <div className="relative rounded-sm md:w-[35vw] lg:w-[30vw] xl:w-[20vw] bg-[#1b1c24] border-r-2 border-[#2f303b] w-full">
@@ -130,8 +134,7 @@ const Title = ({ text }: TitleProps) => {
   return (
     <h6
       className="uppercase tracking-widest text-neutral-400 pl-10 font-light text-opacity-90
-  
-  text-sm "
+      text-sm "
     >
       {text}
     </h6>
