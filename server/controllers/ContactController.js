@@ -19,7 +19,7 @@ export const searchContacts = async (req, res) => {
     );
 
     const regex = new RegExp(sanitizeSearchTerm, "i");
-    
+
     const contacts = await User.find({
       $and: [
         { _id: { $ne: req.userId } },
@@ -28,12 +28,13 @@ export const searchContacts = async (req, res) => {
         },
       ],
     });
+
     return res.status(200).json({
       contacts: contacts,
       success: true,
       message: "Contacts fetched.",
     });
-
+    
   } catch (error) {
     return res.status(500).json({
       message: "Internal Server Error",
@@ -54,6 +55,10 @@ export const getContactsForDMList = async (req, res) => {
   try {
     let { userId } = req;
     userId = new mongoose.Types.ObjectId(userId);
+
+    // find(), findOne(), findById(), updateOne() → Mongoose casts automatically.
+
+    // aggregate() → convert strings to ObjectId yourself when matching ObjectId fields.
 
     const contacts = await Message.aggregate([
       // stage 1
@@ -97,7 +102,7 @@ export const getContactsForDMList = async (req, res) => {
         },
       },
 
-      // stage 5 
+      // stage 5
       {
         $unwind: "$contactInfo",
       },
@@ -151,3 +156,12 @@ export const getAllContacts = async (req, res) => {
     });
   }
 };
+
+
+///////////////////////////////////////////////
+
+// Query
+// { age: { $gt: 18 } }   =========> field    ==> operator
+
+// Update
+// { $set: { age: 18 } }  =========> operator ==> field 

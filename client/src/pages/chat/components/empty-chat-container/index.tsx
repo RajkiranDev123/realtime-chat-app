@@ -9,12 +9,14 @@ const EmptyChatContainer = () => {
     // The other items keep their natural/content width. same for grow too!
     // if one item has bigger content, that item can become wider because items start from their content size first, if grow on all 3
     <div className="flex-1 md:bg-[#1c1d25] md:flex flex-col justify-center items-center hidden duration-1000 transition-all">
+
       <Lottie
         isClickToPauseDisabled={true}
         height={200}
         width={200}
         options={animationDefaultOptions}
       />
+      
       <div
         className=" text-white/80   mt-10 
       lg:text-4xl text-3xl  text-center "

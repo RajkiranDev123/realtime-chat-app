@@ -186,6 +186,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
       channels.unshift(data);
     }
   },
+  
   addContactsInDMContacts: (message: Message) => {
     const userId = get().userInfo?.id;
 
