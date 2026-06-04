@@ -63,7 +63,7 @@ const ContactList = ({
               <Avatar className="h-10 w-10 rounded-full overflow-hidden">
                 {contact?.image ? (
                   <AvatarImage
-                    src={`${HOST}/${contact.image}`}
+                    src={`${contact.image}`}
                     alt="profile"
                     className="object-cover w-full h-full"
                   />

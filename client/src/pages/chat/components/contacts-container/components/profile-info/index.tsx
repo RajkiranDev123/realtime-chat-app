@@ -8,7 +8,7 @@ import {
 import { apiClient } from "@/lib/api-client";
 import { getColor } from "@/lib/utils";
 import { useAppStore } from "@/store";
-import { HOST, LOGOUT_ROUTE } from "@/utils/constants";
+import { LOGOUT_ROUTE } from "@/utils/constants";
 import { FiEdit2 } from "react-icons/fi";
 import { IoPowerSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ const ProfileInfo = () => {
           <Avatar className="h-12 w-12 rounded-full overflow-hidden">
             {userInfo?.image ? (
               <AvatarImage
-                src={`${HOST}/${userInfo.image}`}
+                src={`${userInfo.image}`}
                 alt="profile"
                 className="object-cover w-full h-full"
               />

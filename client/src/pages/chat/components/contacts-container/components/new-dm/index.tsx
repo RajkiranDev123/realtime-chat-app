@@ -17,7 +17,7 @@ import {
 import { apiClient } from "@/lib/api-client";
 import { animationDefaultOptions, getColor } from "@/lib/utils";
 import { useAppStore } from "@/store";
-import { HOST, SEARCH_CONTACTS_ROUTE } from "@/utils/constants";
+import { SEARCH_CONTACTS_ROUTE } from "@/utils/constants";
 import { useState } from "react";
 
 import { FaPlus } from "react-icons/fa";
@@ -65,7 +65,7 @@ const NewDm = () => {
   };
 
   const selectNewContact = (contact: Contact) => {
-    console.log("contact from dm ==> ", contact);
+    // console.log("contact from dm ==> ", contact);
 
     // {
     //       "_id": "6a0708a181849d247e796d0f",
@@ -92,7 +92,10 @@ const NewDm = () => {
         <Tooltip>
           <TooltipTrigger>
             <FaPlus
-              onClick={() => setOpenNewContactModal(true)}
+              onClick={() => {
+                setOpenNewContactModal(true);
+                setSearchedContacts([]);
+              }}
               className="text-neutral-400/90 text-xl font-light text-start hover:text-neutral-100
           cursor-pointer transition-all duration-300"
             />
@@ -123,9 +126,7 @@ const NewDm = () => {
 
           {searchedContacts.length > 0 && (
             <ScrollArea className="h-[250px]">
-
               <div className="flex flex-col gap-5">
-
                 {searchedContacts.map((contact) => (
                   <div
                     onClick={() => selectNewContact(contact)}
@@ -133,12 +134,11 @@ const NewDm = () => {
                     className="flex gap-3 items-center cursor-pointer"
                   >
                     <div className="w-12 h-12 relative">
-
                       <Avatar className="h-12 w-12 rounded-full overflow-hidden">
                         {contact?.image ? (
                           <AvatarImage
-                            src={`${HOST}/${contact.image}`}
-                            alt="profile"
+                            src={`${contact.image}`}
+                            alt="pr"
                             className="object-cover w-full h-full"
                           />
                         ) : (
@@ -157,7 +157,6 @@ const NewDm = () => {
                           </div>
                         )}
                       </Avatar>
-
                     </div>
                     {/*  */}
 
@@ -175,10 +174,10 @@ const NewDm = () => {
                   </div>
                 ))}
               </div>
-              
             </ScrollArea>
           )}
 
+          {/* when empty */}
           {searchedContacts.length <= 0 && (
             <div
               className="flex-1 mt-5 md:bg-[#1c1d25] lg:mt-0 md:flex flex-col justify-center 
@@ -186,10 +185,12 @@ const NewDm = () => {
             >
               <Lottie
                 isClickToPauseDisabled={true}
+                // isClickToPauseDisabled={true} is a prop used in react-lottie to prevent the animation from pausing when the user clicks on it.
                 height={100}
                 width={100}
                 options={animationDefaultOptions}
               />
+
               <div
                 className=" text-white/80   mt-5
                             lg:text-2xl text-xl  text-center "
@@ -202,6 +203,9 @@ const NewDm = () => {
               </div>
             </div>
           )}
+          {/* when empty */}
+
+
         </DialogContent>
       </Dialog>
 

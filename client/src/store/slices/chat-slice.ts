@@ -71,9 +71,21 @@ export type ChatSlice = {
 
   //
   selectedChatType: "contact" | "channel" | undefined; // is a union of string literal types.
+  setSelectedChatType: (
+    selectedChatType: "contact" | "channel" | undefined,
+  ) => void;
+
   selectedChatData: Contact | Channel | undefined;
+  setSelectedChatData: (
+    selectedChatData: Contact | Channel | undefined,
+  ) => void;
+
   selectedChatMessages: Message[];
+  setSelectedChatMessages: (selectedChatMessages: Message[]) => void;
+
   directMessagesContacts: Contact[];
+  setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
+
   //
   channels: Channel[];
 
@@ -81,13 +93,8 @@ export type ChatSlice = {
   setChannels: (channels: Channel[]) => void;
   //
 
-  setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
 
-  setSelectedChatType: (selectedChatType: "contact" | "channel") => void;
-
-  setSelectedChatData: (selectedChatData: Contact | Channel) => void;
-
-  setSelectedChatMessages: (selectedChatMessages: Message[]) => void;
+  
 
   closeChat: () => void;
 
@@ -118,7 +125,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
   selectedChatMessages: [],
   directMessagesContacts: [],
   //
-  
+
   channels: [],
   setChannels: (channels) => set({ channels }),
   addChannel: (channel) => {
@@ -186,7 +193,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
       channels.unshift(data);
     }
   },
-  
+
   addContactsInDMContacts: (message: Message) => {
     const userId = get().userInfo?.id;
 
