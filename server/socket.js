@@ -3,8 +3,8 @@ import Message from "./models/MessageModel.js";
 import Channel from "./models/ChannelModel.js";
 
 const setupSocket = (server) => {
-  //
-
+  // This code creates a Socket.IO server and attaches it to your existing HTTP server.
+  // io is a socket server.
   const io = new SocketIOServer(server, {
     cors: {
       origin: process.env.ORIGIN,
@@ -14,26 +14,56 @@ const setupSocket = (server) => {
   });
 
   const userSocketMap = new Map();
-  console.log("usm ==> ",userSocketMap)
+
+  console.log("userSocketMap ==> ", userSocketMap);
+
+  // Another user connects:
+  // Map(2) {
+  //   "101" => "abc123",
+  //   "205" => "xyz789"
+  // }
+
+  // map.set("1", "socket123") userId and socket.id
+  // map.get("1")
+  // map.has("1")
+
+
+  // disconnect ======================================>
 
   const disconnect = (socket) => {
     console.log(`Client Disconnected ${socket.id}`);
+
     for (const [userId, socketId] of userSocketMap.entries()) {
       if (socketId === socket.id) {
         userSocketMap.delete(userId);
         break;
+        // The break keyword is used to immediately exit the nearest enclosing loop
+        // or switch statement. It is written inside an if block or a case block
       }
     }
   };
 
-  // sendMessage : This function saves a message in the database and sends it in real time using Socket.IO.
+  // sendMessage ==============================> 
+
+  // This function saves a message in the database and sends it in real time using Socket.IO.
+
   const sendMessage = async (message) => {
+    
     const senderSocketId = userSocketMap.get(message.sender);
-    console.log("ssid ==> ",senderSocketId ," messageSender ==>", message.sender)
+    console.log(
+      "ssid ==> ",
+      senderSocketId,
+      " messageSender ==>",
+      message.sender,
+    );
 
     const recipientSocketId = userSocketMap.get(message.recipient);
-    console.log("rsid ==> ",recipientSocketId ," messageRecipient ==>", message.recipient)
-
+    console.log(
+      "rsid ==> ",
+      recipientSocketId,
+      " messageRecipient ==>",
+      message.recipient,
+    );
 
     const createdMessage = await Message.create(message);
     const messageData = await Message.findById(createdMessage._id)
@@ -53,7 +83,8 @@ const setupSocket = (server) => {
     }
   };
 
-  //channel
+  //sendChannelMessage ============================>
+
   const sendChannelMessage = async (message) => {
     const { channelId, sender, content, messageType, fileUrl } = message;
     const createdMessage = await Message.create({
@@ -87,9 +118,14 @@ const setupSocket = (server) => {
     }
   };
 
-  // Before this runs, Socket.IO does a handshake.
+  // Before io.on() runs, Socket.IO does a handshake.
+
+  // io.emit() → Broadcast to all connected clients.
+  // io.to(socketId).emit() → Send to one specific client.
+  // socket.emit() → Send only to the client represented by that socket.
+
   io.on("connection", (socket) => {
-    // socket : is an object that represents one user + has methods to communicate with them
+    // socket : is an object that represents one user & has methods to communicate with them.
     // it  has : id , Event methods ==> socket.on("event", handler) , socket.emit("event", data)
     // socket.handshake , Rooms system and Disconnect event
     const userId = socket.handshake.query.userId;
@@ -98,10 +134,10 @@ const setupSocket = (server) => {
       userSocketMap.set(userId, socket.id);
       console.log(`User connected : ${userId} with socket id : ${socket.id}`);
     } else {
-      console.log(`user id not provided during connection`);
+      console.log(`user id is not provided during connection.`);
     }
 
-    console.log("map after connect", userSocketMap);
+    console.log("userSocketMap after connect ==> ", userSocketMap);
 
     // send message
     socket.on("sendMessage", sendMessage);
@@ -111,8 +147,6 @@ const setupSocket = (server) => {
     // Disconnect event
     socket.on("disconnect", () => disconnect(socket));
   });
-
-  //
 };
 
 export default setupSocket;
@@ -121,13 +155,16 @@ export default setupSocket;
 
 // Objects as keys → allowed in Map
 // set(key, value) , has(key) , size
+
 // userMap.set("name", "Ravi");
 // userMap.set("age", 22);
 // console.log(userMap) // Map(2) { 'name' => 'Ravi', 'age' => 22 }
 // console.log(userMap.get("name")); // Ravi
 // userMap.delete("name");
+
 // Map in JavaScript does not allow duplicate keys.
 // If you add the same key again, the old value gets replaced.
 
 // Problems with plain objects : Keys were only strings
+
 // WeakMap : keys MUST be objects only.

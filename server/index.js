@@ -1,9 +1,11 @@
+// express , dotenv , cors , cookieParser , mongoose
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 
+// Routes
 import authRoutes from "./routes/AuthRoutes.js";
 import contactRoutes from "./routes/ContactRoutes.js";
 import messageRoutes from "./routes/MessageRoutes.js";
@@ -22,24 +24,25 @@ import setupSocket from "./socket.js";
 dotenv.config();
 
 const app = express();
+
 const PORT = process.env.PORT || 8000;
 
 // Env validation
 if (!process.env.DATABASE_URL) {
-  console.error("DATABASE_URL is missing");
-  process.exit(1);
+  console.error("DATABASE_URL is missing.");
+  process.exit(1); // It stops the program immediately, but indicates a error exit instead of an successful exit.
 }
 
 // create folder :
 // existsSync : checks synchronously whether a file or folder exists.
-// mkdirSync  : create a directory synchronously.
+// mkdirSync  : create a directory/folder synchronously.
 
 if (!fs.existsSync("logs")) {
   // !fs.existsSync("logs.txt") // for file
   fs.mkdirSync("logs"); // fs.writeFileSync("logs.txt", "") // for file
 }
 
-// RIGHT HERE (just before sending response), rate limiter adds headers ==>
+// RIGHT HERE (just before sending response), rate limiter adds headers :
 // RateLimit-Limit: 100 , RateLimit-Remaining: 99 , RateLimit-Reset: 60 ==> tells the client : Wait 60 seconds before the rate limit resets.
 
 const limiter = rateLimit({
@@ -65,7 +68,7 @@ const stream = {
 
 app.use(
   helmet({
-    crossOriginResourcePolicy: { policy: "cross-origin" }, // Can frontend DISPLAY backend resources?
+    crossOriginResourcePolicy: { policy: "cross-origin" }, // Can frontend DISPLAY from backend resources?
   }),
 );
 
@@ -76,7 +79,7 @@ app.use(
 app.use(
   cors({
     origin: process.env.ORIGIN, // Can this origin TALK to backend?
-    credentials: true,
+    credentials: true, // Allow the browser to send credentials like cookies etc.
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   }),
 );
@@ -95,12 +98,13 @@ app.use(morgan("combined", { stream }));
 app.use("/uploads/profiles", express.static("uploads/profiles"));
 app.use("/uploads/files", express.static("uploads/files"));
 
-// This tells Express.js : When someone visits ==> /uploads/profiles/..., send files from the uploads/profiles folder.
+// This tells Express.js : When someone visits ==> /uploads/profiles/filename.ext , send files from the uploads/profiles folder.
 
 // image : "http://localhost:5000/uploads/profiles/1778140869800login2.png"
 
 app.use(cookieParser()); // It parses cookies from the request and makes them available in req.cookies.
 app.use(express.json()); // It parses incoming JSON request bodies and makes data available in req.body.
+// req.params , req.query , req.headers
 
 // custom performance tracking using Winston directly
 
@@ -133,6 +137,7 @@ app.use("/api/v1/messages", messageRoutes);
 app.use("/api/v1/channel", channelRoutes);
 
 app.get("/api/v1/health", (req, res) => {
+  // http://localhost:8080/api/v1/health
   res.send("API is running...");
 });
 
@@ -158,6 +163,7 @@ const startServer = async () => {
 startServer();
 
 // Graceful shutdown ==>
+// SIGINT is usually sent by the operating system when the user interrupts a program.
 // SIGINT (Signal Interrupt) is a signal sent to your Node.js app when you try to stop it manually.
 // SIGINT = signal sent when you press Ctrl + C , it triggers SIGINT
 
