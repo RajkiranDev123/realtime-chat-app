@@ -11,7 +11,7 @@ export const verifyToken = (req, res, next) => {
     });
   }
 
-  // const decoded = jwt.verify(token, secret) // Synchronous (blocking) version (no callback) 
+  // const decoded = jwt.verify(token, secret) // Synchronous (blocking) version (no callback)
   // jwt don't return promise , Because its API (jwt.verify()) is callback-based, not promise-based.
   // So it returns undefined, not a Promise.
 

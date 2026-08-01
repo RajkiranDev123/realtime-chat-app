@@ -60,7 +60,7 @@ const ContactsContainer = () => {
       <div className="my-5">
  
        {/* Direct Messages and + */}
-        <div className="flex items-center justify-between pr-10">
+        <div className="flex items-center justify-between pr-10 border-b p-2">
           <Title text="Direct Messages" />
           <NewDm />
         </div>
@@ -80,7 +80,7 @@ const ContactsContainer = () => {
       {/* channels */}
       <div className="my-5">
 
-        <div className="flex items-center justify-between pr-10">
+        <div className="flex items-center justify-between pr-10 border-b p-2">
           <Title text="Channels" />
           <CreateChannel />
         </div>

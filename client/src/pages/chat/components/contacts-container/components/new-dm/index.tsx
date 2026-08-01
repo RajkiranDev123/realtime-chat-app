@@ -2,7 +2,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
+  // DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -24,19 +24,12 @@ import { FaPlus } from "react-icons/fa";
 import Lottie from "react-lottie";
 import type { Contact } from "@/store/slices/chat-slice";
 
-// type Contact = {
-//   email: string;
-//   profileSetup: boolean;
-//   _id: string;
-//   firstName?: string;
-//   lastName?: string;
-//   color?: number;
-//   image?: string | null;
-// };
+
 
 const NewDm = () => {
   const { setSelectedChatType, setSelectedChatData } = useAppStore();
   const [openNewContactModal, setOpenNewContactModal] = useState(false);
+   // if you put this in store , it may impact other models on other pages , keep it private to component.
   const [searchedContacts, setSearchedContacts] = useState<Contact[]>([]);
 
   const searchContacts = async (searchTerm: string) => {
@@ -110,10 +103,12 @@ const NewDm = () => {
 
       {/* dialog */}
       <Dialog open={openNewContactModal} onOpenChange={setOpenNewContactModal}>
+
         <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
+
           <DialogHeader>
             <DialogTitle>Please select a contact</DialogTitle>
-            <DialogDescription></DialogDescription>
+            {/* <DialogDescription></DialogDescription> */}
           </DialogHeader>
 
           <div>
@@ -138,7 +133,7 @@ const NewDm = () => {
                         {contact?.image ? (
                           <AvatarImage
                             src={`${contact.image}`}
-                            alt="pr"
+                            alt="profile"
                             className="object-cover w-full h-full"
                           />
                         ) : (
@@ -204,8 +199,6 @@ const NewDm = () => {
             </div>
           )}
           {/* when empty */}
-
-
         </DialogContent>
       </Dialog>
 

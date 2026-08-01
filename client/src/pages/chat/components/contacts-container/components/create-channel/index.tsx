@@ -31,8 +31,7 @@ type Option = {
   label: string;
 };
 const CreateChannel = () => {
-  const { setSelectedChatType, setSelectedChatData, addChannel } =
-    useAppStore();
+  const { addChannel } = useAppStore();
   const [newChannelModal, setNewChannelModal] = useState(false);
 
   //

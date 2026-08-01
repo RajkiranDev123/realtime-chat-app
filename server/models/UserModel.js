@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
     strict: true, // 🔥false to disables strict mode , This is already enabled by default
     // true ==> “Only schema fields allowed”
-  }
+  },
 );
 
 userSchema.pre("save", async function () {

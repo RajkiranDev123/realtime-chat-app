@@ -48,6 +48,7 @@ const Chat = () => {
       {/* 
       Cover the parent → absolute inset-0
       Cover the screen → fixed inset-0 */}
+      {/* inset-0 = top : 0 , right : 0 ,  bottom : 0 and left : 0 */}
 
       {isDownloading && (
         <div

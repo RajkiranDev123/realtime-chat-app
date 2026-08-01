@@ -17,9 +17,7 @@ const logger = winston.createLogger({
   //     filename: "logs/combined.log", // Everything (info + warn + error)
   //   }),
   // ],
-
 });
-
 
 // It tells Winston : “Also print logs to terminal (console)”
 //  new winston.transports.Console({}) vs  new winston.transports.File({})

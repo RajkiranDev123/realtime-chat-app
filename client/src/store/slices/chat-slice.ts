@@ -80,28 +80,28 @@ export type ChatSlice = {
     selectedChatData: Contact | Channel | undefined,
   ) => void;
 
+  //
   selectedChatMessages: Message[];
   setSelectedChatMessages: (selectedChatMessages: Message[]) => void;
+  //
 
+  //
   directMessagesContacts: Contact[];
   setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
+  addContactsInDMContacts: (message: Message) => void;
+  addMessage: (message: Message) => void;
+  //
 
   //
   channels: Channel[];
-
   addChannel: (channel: Channel) => void;
   setChannels: (channels: Channel[]) => void;
+  addChannelInChannelList: (message: Message) => void;
   //
-
-
-  
 
   closeChat: () => void;
 
-  addMessage: (message: Message) => void;
 
-  addContactsInDMContacts: (message: Message) => void;
-  addChannelInChannelList: (message: Message) => void;
 };
 
 export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
@@ -121,37 +121,17 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
 
   //
   selectedChatType: undefined,
-  selectedChatData: undefined,
-  selectedChatMessages: [],
-  directMessagesContacts: [],
-  //
-
-  channels: [],
-  setChannels: (channels) => set({ channels }),
-  addChannel: (channel) => {
-    const channels = get().channels;
-    set({ channels: [channel, ...channels] });
-  },
-  //
-
-  setDirectMessagesContacts: (directMessagesContacts) =>
-    set({ directMessagesContacts }),
-
   setSelectedChatType: (selectedChatType) => set({ selectedChatType }),
 
+  selectedChatData: undefined,
   setSelectedChatData: (selectedChatData) => set({ selectedChatData }),
 
+  //
+  selectedChatMessages: [],
   setSelectedChatMessages: (selectedChatMessages) =>
     set({ selectedChatMessages }),
 
-  closeChat: () =>
-    set({
-      selectedChatData: undefined,
-      selectedChatType: undefined,
-      selectedChatMessages: [],
-    }),
-
-  addMessage: (message: Message) => {
+    addMessage: (message: Message) => {
     const selectedChatMessages = get().selectedChatMessages;
 
     const selectedChatType = get().selectedChatType;
@@ -180,19 +160,13 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
       ],
     });
   },
-  addChannelInChannelList: (message: Message) => {
-    const channels = get().channels;
-    const data = channels.find((channel) => channel._id === message.channelId);
-    // find can return channel | undefined
-    const index = channels.findIndex(
-      (channel) => channel._id === message.channelId,
-    );
-    // must && data
-    if (index !== -1 && data) {
-      channels.splice(index, 1);
-      channels.unshift(data);
-    }
-  },
+  //
+
+  //
+  directMessagesContacts: [],
+
+  setDirectMessagesContacts: (directMessagesContacts) =>
+    set({ directMessagesContacts }),
 
   addContactsInDMContacts: (message: Message) => {
     const userId = get().userInfo?.id;
@@ -226,4 +200,36 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
 
     set({ directMessagesContacts: updated });
   },
+  //
+
+  //
+  channels: [],
+  setChannels: (channels) => set({ channels }),
+  addChannel: (channel) => {
+    const channels = get().channels;
+    set({ channels: [channel, ...channels] });
+  },
+  addChannelInChannelList: (message: Message) => {
+    const channels = get().channels;
+    const data = channels.find((channel) => channel._id === message.channelId);
+    // find can return channel | undefined
+    const index = channels.findIndex(
+      (channel) => channel._id === message.channelId,
+    );
+    // must && data
+    if (index !== -1 && data) {
+      channels.splice(index, 1);
+      channels.unshift(data);
+    }
+  },
+  //
+
+  closeChat: () =>
+    set({
+      selectedChatData: undefined,
+      selectedChatType: undefined,
+      selectedChatMessages: [],
+    }),
+
+
 });
