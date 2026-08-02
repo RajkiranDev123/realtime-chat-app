@@ -151,6 +151,9 @@ const startServer = async () => {
     console.log(`Server running on ${process.env.BACKEND_URL}${PORT}`);
   });
 
+  // So even though you never explicitly imported the http module, 
+  // server is still a Node.js HTTP server under the hood, and that's exactly what Socket.IO needs.
+
   setupSocket(server);
   // setupSocket(server) simply connects Socket.IO to the HTTP server created by app.listen(),
   // allowing your Express routes and real-time Socket.IO connections to share the same server and port.
