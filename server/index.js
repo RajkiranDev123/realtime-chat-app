@@ -14,7 +14,7 @@ import channelRoutes from "./routes/ChannelRoutes.js";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 
-import morgan from "morgan"; // morgan generates logs and winston stores
+import morgan from "morgan"; // morgan generates logs and winston stores.
 import fs from "fs";
 
 import logger from "./utils/logger.js";
@@ -68,13 +68,13 @@ const stream = {
 
 app.use(
   helmet({
-    crossOriginResourcePolicy: { policy: "cross-origin" }, // Can frontend DISPLAY from backend resources?
+    crossOriginResourcePolicy: { policy: "cross-origin" },
   }),
-);
 
-// Helmet = adds protective headers to every HTTP response , XSS (Cross-Site Scripting) : Prevents malicious scripts from being injected.
-// Content-Security-Policy : default-src 'self' ==> “Only allow resources (scripts, images, styles, etc.) from my own domain.”
-// Hyphen-separated words with each word capitalized , Title Case with hyphens (HTTP standard style) : header naming convention.
+  // same-origin (default) :	Only the same origin can access the resource.
+  // cross-origin	: Any origin can ascess the resource.
+  // Helmet only modifies the HTTP response by adding security headers.
+);
 
 app.use(
   cors({
@@ -127,7 +127,6 @@ app.use((req, res, next) => {
 
 // Middleware function runs before route , finish callback ==> runs after response is sent & next() is what moves request forward
 
-// end of custom performance tracking using Winston directly
 
 //Routes
 

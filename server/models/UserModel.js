@@ -39,10 +39,11 @@ const userSchema = new mongoose.Schema(
   },
 );
 
+// pre("save") is triggered by the document's .save() method
 userSchema.pre("save", async function () {
   // async : So is it blocking or non-blocking
   // Node.js level : Not blocking (good) , event loop can handle other requests
-  // Mongoose flow level : Still sequential , save waits for pre hook to finish
+  // Mongoose flow level : Still sequential , save waits for pre hook to finish before writing to the database.
   if (!this.isModified("password")) return;
 
   const salt = await genSalt(10);

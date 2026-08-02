@@ -44,4 +44,7 @@ const messageSchema = new mongoose.Schema(
 
 const Message = mongoose.model("Messages", messageSchema);
 
+// Variable = Message
+// Model name = "Messages"  // ref looks for the Mongoose model name
+
 export default Message;
