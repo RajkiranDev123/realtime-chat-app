@@ -125,7 +125,9 @@ const setupSocket = (server) => {
     const channel = await Channel.findById(channelId).populate("members");
 
     const finalData = { ...messageData._doc, channelId: channel._id };
-    // _doc converts a Mongoose document into a normal JavaScript object so you can easily send or modify the data.
+    //  _doc converts a Mongoose document into a normal JavaScript object so you can easily send or modify the data.
+    //  ._doc is an internal Mongoose property and is generally not recommended for application code.
+    //  Use direct fields (user.name) or .lean() when you need plain objects.
 
     if (channel && channel.members) {
       // So your current code is basically manually broadcasting to channel members one by one.
@@ -134,7 +136,7 @@ const setupSocket = (server) => {
       channel.members.forEach((member) => {
         const memberSocketId = userSocketMap.get(member._id.toString());
         if (memberSocketId) {
-          //if online
+        
           io.to(memberSocketId).emit("receive-channel-message", finalData);
         }
       });
