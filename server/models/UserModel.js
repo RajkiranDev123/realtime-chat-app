@@ -2,20 +2,21 @@ import mongoose from "mongoose";
 import { hash, genSalt } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
 
 const userSchema = new mongoose.Schema(
-  // email  , password , firstName , lastName , image , color , profileSetup
+  // email  , password , firstName , lastName , image , color , profileSetup , imagePublicId
   {
     email: {
       type: String,
       required: [true, "Email is required."],
-      unique: true,
+      unique: true, // unique → Checked by MongoDB during the write, not during Mongoose's validation.
     },
     password: {
       type: String,
       required: [true, "Password is required."],
+      // Use required only for fields that must exist when a document is created.
     },
     firstName: {
       type: String,
-      // if firstName is not provided and no default value too, mongoose will internally set it as undefined
+      // if firstName is not provided in req.body and no default value too, mongoose will internally set it as undefined
       // firstName field is usually not stored in MongoDB when value is undefined
     },
     lastName: {

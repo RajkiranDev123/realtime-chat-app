@@ -14,6 +14,8 @@ const channelSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+// mongoose.Schema.Types.ObjectId and mongoose.Schema.ObjectId are same
+
 const Channel = mongoose.model("Channel", channelSchema);
 
 export default Channel;

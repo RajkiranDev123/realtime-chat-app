@@ -136,7 +136,6 @@ const setupSocket = (server) => {
       channel.members.forEach((member) => {
         const memberSocketId = userSocketMap.get(member._id.toString());
         if (memberSocketId) {
-        
           io.to(memberSocketId).emit("receive-channel-message", finalData);
         }
       });
