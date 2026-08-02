@@ -1,3 +1,5 @@
+
+
 npm init -y
 
 npm i express cors dotenv cookie-parser mongoose bcrypt jsonwebtoken
@@ -18,12 +20,64 @@ npm i cloudinary
 
 
 
-npm install --save-dev jest
-Create folder: tests
-Create file:AuthController.test.js
-"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
-npm test
-npm test AuthController.test.js
+//////////////////////////
+
+"nodemon": "^3.1.14" in package.json means:
+
+^ (caret) → allow compatible updates
+
+✅ Can update to 3.1.15, 3.2.0 (minor/patch updates)
+❌ Will not update to 4.0.0 (major version change)
+
+3 (Major) → Big changes. May include breaking changes (old code may not work).
+1 (Minor) → New features added, but should remain backward compatible.
+14 (Patch) → Bug fixes, small improvements, security fixes.
+
+//////////////////////////
+
+
+/////////////////////////
+
+npm uninstall nodemon
+npm uninstall -D nodemon
+
+////////////////////////
+
+
+/////////////////////////
+
+Types allowed in JSON:
+
+String → "hello"
+Number → 123
+Boolean → true/false
+Array → []
+Object → {}
+Null → null
+
+JSON does not allow:
+
+❌ functions
+❌ comments
+❌ undefined
+
+/////////////////////////
+
+////////////////////////
+
+
+
+
+
+///////////////////////
+
+
+
+
+
+
+
+
 
 
 
