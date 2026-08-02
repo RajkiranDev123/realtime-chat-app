@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { hash, genSalt } from "bcrypt"; // hash, genSalt , compare ==> bcrypt
 
 const userSchema = new mongoose.Schema(
+  // email  , password , firstName , lastName , image , color , profileSetup
   {
     email: {
       type: String,

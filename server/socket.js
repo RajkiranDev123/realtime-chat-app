@@ -2,6 +2,14 @@ import { Server as SocketIOServer } from "socket.io";
 import Message from "./models/MessageModel.js";
 import Channel from "./models/ChannelModel.js";
 
+// socket.emit()	            Current client only
+// socket.broadcast.emit()	  Everyone except current client
+
+// io.emit()	                All connected clients
+
+// io.to(room).emit()	        All clients in a specific room
+// io.to(socketId).emit()	    One specific client (by socket ID)
+
 const setupSocket = (server) => {
   // This code creates a Socket.IO server and attaches it to your existing HTTP server.
   // io is a socket server.
@@ -27,7 +35,6 @@ const setupSocket = (server) => {
   // map.get("1")
   // map.has("1")
 
-
   // disconnect ======================================>
 
   const disconnect = (socket) => {
@@ -43,29 +50,34 @@ const setupSocket = (server) => {
     }
   };
 
-  // sendMessage ==============================> 
+  // sendMessage ==============================>
 
   // This function saves a message in the database and sends it in real time using Socket.IO.
 
   const sendMessage = async (message) => {
-    
+    // get sender socket id
     const senderSocketId = userSocketMap.get(message.sender);
     console.log(
-      "ssid ==> ",
+      "senderSocketId ==> ",
       senderSocketId,
-      " messageSender ==>",
+      "message.sender ==> ",
       message.sender,
     );
 
+    // get recepient socket id
     const recipientSocketId = userSocketMap.get(message.recipient);
+
     console.log(
-      "rsid ==> ",
+      "recipientSocketId ==> ",
       recipientSocketId,
-      " messageRecipient ==>",
+      " message.recipient ==>",
       message.recipient,
     );
 
+    // save in db ==>
     const createdMessage = await Message.create(message);
+
+    // get message from db ==>
     const messageData = await Message.findById(createdMessage._id)
       .populate("sender", "id firstName lastName email image color")
       .populate("recipient", "id firstName lastName email image color");
@@ -74,6 +86,7 @@ const setupSocket = (server) => {
     // Emit to recipient
     if (recipientSocketId) {
       // Send event only to this specific connected socket id, Not broadcast to everyone.
+      // io.to(recipientSocketId).emit("receiveMessage", "Hello!");
       io.to(recipientSocketId).emit("receiveMessage", messageData);
     }
 
@@ -87,6 +100,8 @@ const setupSocket = (server) => {
 
   const sendChannelMessage = async (message) => {
     const { channelId, sender, content, messageType, fileUrl } = message;
+
+    // sender , recipient , messageType , content , fileUrl
     const createdMessage = await Message.create({
       sender,
       recipient: null,
@@ -94,15 +109,28 @@ const setupSocket = (server) => {
       messageType,
       fileUrl,
     });
+
     const messageData = await Message.findById(createdMessage._id)
-      .populate("sender", "id email firstName lastName image color")
+      .populate("sender", "id email firstName lastName image color") // email  , password , firstName , lastName , image , color , profileSetup : User
       .exec();
+
+    // await query → Mongoose executes the query automatically.
+    // await query.exec() → you explicitly tell Mongoose to execute it.
+    // For normal async/await code, you can usually omit exec().
+
     await Channel.findByIdAndUpdate(channelId, {
       $push: { messages: createdMessage._id },
     });
+
     const channel = await Channel.findById(channelId).populate("members");
+
     const finalData = { ...messageData._doc, channelId: channel._id };
+    // _doc converts a Mongoose document into a normal JavaScript object so you can easily send or modify the data.
+
     if (channel && channel.members) {
+      // So your current code is basically manually broadcasting to channel members one by one.
+      // It works, but Socket.IO rooms are the built-in feature for this use case.
+
       channel.members.forEach((member) => {
         const memberSocketId = userSocketMap.get(member._id.toString());
         if (memberSocketId) {
@@ -110,6 +138,7 @@ const setupSocket = (server) => {
           io.to(memberSocketId).emit("receive-channel-message", finalData);
         }
       });
+
       const adminSocketId = userSocketMap.get(channel.admin._id.toString());
 
       if (adminSocketId) {
@@ -139,8 +168,12 @@ const setupSocket = (server) => {
 
     console.log("userSocketMap after connect ==> ", userSocketMap);
 
-    // send message
+    // sendMessage :
+    // Register the callback
+    // Later... when Event arrives from the server
+    // Socket.IO automatically does : sendMessage(message);
     socket.on("sendMessage", sendMessage);
+
     // send channel message
     socket.on("send-channel-message", sendChannelMessage);
 

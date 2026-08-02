@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema(
+  // sender , recipient , messageType , content , fileUrl
   {
     sender: {
       type: mongoose.Schema.Types.ObjectId,
@@ -28,6 +29,7 @@ const messageSchema = new mongoose.Schema(
       required: function () {
         return this.messageType === "file";
         // this = the current document you are saving
+
         //   Message.create({
         //   messageType: "text",
         //   content: "Hello"
@@ -36,6 +38,7 @@ const messageSchema = new mongoose.Schema(
         // 1. mongoose creates an object in memory
         // 2. Validation happens ==> validation runs on the document instance and this points to that document.
         // 3. saved to db
+
       },
     },
   },
