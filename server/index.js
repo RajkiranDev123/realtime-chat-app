@@ -127,7 +127,6 @@ app.use((req, res, next) => {
 
 // Middleware function runs before route , finish callback ==> runs after response is sent & next() is what moves request forward
 
-
 //Routes
 
 app.use("/api/v1/auth", authRoutes);
@@ -153,6 +152,8 @@ const startServer = async () => {
   });
 
   setupSocket(server);
+  // setupSocket(server) simply connects Socket.IO to the HTTP server created by app.listen(),
+  // allowing your Express routes and real-time Socket.IO connections to share the same server and port.
   // HTTP server = railway station
   // Express = platform for API trains
   // Socket.IO = platform for realtime trains

@@ -149,6 +149,11 @@ const setupSocket = (server) => {
   });
 };
 
+// ✅ io.on("connection") → runs once when the user connects.
+// ✅ socket.on("message") → runs every time that connected user sends a "message" event.
+
+// If the user disconnects and later reconnects, then io.on("connection") runs again because a new socket connection is created.
+
 export default setupSocket;
 
 // const userMap = new Map();
