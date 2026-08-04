@@ -2,14 +2,6 @@ import { Server as SocketIOServer } from "socket.io";
 import Message from "./models/MessageModel.js";
 import Channel from "./models/ChannelModel.js";
 
-// socket.emit()	            Current client only
-// socket.broadcast.emit()	  Everyone except current client
-
-// io.emit()	                All connected clients
-
-// io.to(room).emit()	        All clients in a specific room
-// io.to(socketId).emit("event",message)	    One specific client (by socket ID)
-
 const setupSocket = (server) => {
   // This code creates a Socket.IO server and attaches it to your existing HTTP server.
 
@@ -158,10 +150,8 @@ const setupSocket = (server) => {
         io.to(adminSocketId).emit("receive-channel-message", finalData);
       }
 
-      // if Sender is both member and admin
-      // The sender can receive it twice:
-      // Once from channel.members.forEach
-      // Once from adminSocketId
+      // if Sender is both member and admin :
+      // The sender can receive it twice: Once from channel.members.forEach and Once from adminSocketId
     }
   };
 
@@ -224,3 +214,38 @@ export default setupSocket;
 // Problems with plain objects : Keys were only strings
 
 // WeakMap : keys MUST be objects only.
+
+//////////////////////////////// xxxxxxxxxxxxxxxxxxxx//////////////////////////////
+
+// Send to the same client using ==> io.to(socket.id).emit() vs socket.emit()
+
+// io.on("connection", (socket) => {
+
+//   socket.emit() can also be used outside socket.on()
+//   For example, send a welcome message immediately after a client connects :
+
+//   io.on("connection", (socket) => {
+//    socket.emit("welcome", {
+//     text: "Welcome!"
+//    });
+//   });
+
+//   socket.on("message", (data) => {
+
+//     console.log(data);
+
+//     io.to(socket.id).emit("messageReceived", {
+//       status: "OK"
+//     });
+
+///////////////////// or ///////////////////////////
+
+//    socket.emit("messageReceived", {
+//    status: "OK"
+//    });
+
+//   });
+
+// });
+
+//////////////////////////////// xxxxxxxxxxxxxxxxxxxx//////////////////////////////
