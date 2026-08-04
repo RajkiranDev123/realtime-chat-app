@@ -12,6 +12,7 @@ import Channel from "./models/ChannelModel.js";
 
 const setupSocket = (server) => {
   // This code creates a Socket.IO server and attaches it to your existing HTTP server.
+
   // io is a socket server.
   const io = new SocketIOServer(server, {
     cors: {
@@ -101,10 +102,10 @@ const setupSocket = (server) => {
   const sendChannelMessage = async (message) => {
     const { channelId, sender, content, messageType, fileUrl } = message;
 
-    // sender , recipient , messageType , content , fileUrl
+    // sender{} , recipient{} , messageType , content , fileUrl ==> Message
     const createdMessage = await Message.create({
       sender,
-      recipient: null,
+      recipient: null, // no need recipient when sending to channel
       content,
       messageType,
       fileUrl,
@@ -119,15 +120,22 @@ const setupSocket = (server) => {
     // For normal async/await code, you can usually omit exec().
 
     await Channel.findByIdAndUpdate(channelId, {
+      // (_id / id / channelId), name , members[] , admin{} , messages[] ==> Channel
       $push: { messages: createdMessage._id },
     });
 
     const channel = await Channel.findById(channelId).populate("members");
 
     const finalData = { ...messageData._doc, channelId: channel._id };
+
     //  _doc converts a Mongoose document into a normal JavaScript object so you can easily send or modify the data.
     //  ._doc is an internal Mongoose property and is generally not recommended for application code.
-    //  Use direct fields (user.name) or .lean() when you need plain objects.
+
+    // Query time → .lean()
+    // After getting a document → .toObject()
+
+    // lean() is not a method on a Mongoose document. It is a query method that must be called before the query executes.
+    // Message.findById(id).lean() // "When MongoDB returns the result, give me a plain object instead of a Mongoose Document."
 
     if (channel && channel.members) {
       // So your current code is basically manually broadcasting to channel members one by one.
