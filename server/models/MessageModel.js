@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema(
-  // sender , recipient , messageType , content , fileUrl
+  // sender{} , recipient{} , messageType , content , fileUrl
   {
     sender: {
       type: mongoose.Schema.Types.ObjectId,

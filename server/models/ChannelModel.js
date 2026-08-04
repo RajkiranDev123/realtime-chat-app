@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const channelSchema = new mongoose.Schema(
-  // name , members , admin , messages
+  // name , members[] , admin{} , messages[]
   {
     name: {
       type: String,

@@ -147,6 +147,8 @@ const setupSocket = (server) => {
         const memberSocketId = userSocketMap.get(member._id.toString());
         if (memberSocketId) {
           io.to(memberSocketId).emit("receive-channel-message", finalData);
+          // socket isn't available inside this function (unless you pass it).
+          // Even if it were, it only represents the sender, while io.to(socketId) can send to any connected user.
         }
       });
 
@@ -160,7 +162,6 @@ const setupSocket = (server) => {
       // The sender can receive it twice:
       // Once from channel.members.forEach
       // Once from adminSocketId
-      
     }
   };
 
