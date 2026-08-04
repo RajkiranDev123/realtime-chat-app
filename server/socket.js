@@ -8,7 +8,7 @@ import Channel from "./models/ChannelModel.js";
 // io.emit()	                All connected clients
 
 // io.to(room).emit()	        All clients in a specific room
-// io.to(socketId).emit()	    One specific client (by socket ID)
+// io.to(socketId).emit("event",message)	    One specific client (by socket ID)
 
 const setupSocket = (server) => {
   // This code creates a Socket.IO server and attaches it to your existing HTTP server.
@@ -100,7 +100,7 @@ const setupSocket = (server) => {
   //sendChannelMessage ============================>
 
   const sendChannelMessage = async (message) => {
-    const { channelId, sender, content, messageType, fileUrl } = message;
+    const { channelId, sender, messageType, content, fileUrl } = message;
 
     // sender{} , recipient{} , messageType , content , fileUrl ==> Message
     const createdMessage = await Message.create({
@@ -124,6 +124,7 @@ const setupSocket = (server) => {
       $push: { messages: createdMessage._id },
     });
 
+    // (_id / id / channelId), name , members[] , admin{} , messages[] ==> Channel
     const channel = await Channel.findById(channelId).populate("members");
 
     const finalData = { ...messageData._doc, channelId: channel._id };
@@ -140,6 +141,7 @@ const setupSocket = (server) => {
     if (channel && channel.members) {
       // So your current code is basically manually broadcasting to channel members one by one.
       // It works, but Socket.IO rooms are the built-in feature for this use case.
+      // broadcast means sending the same message/data to multiple connected clients (users) at the same time.
 
       channel.members.forEach((member) => {
         const memberSocketId = userSocketMap.get(member._id.toString());
@@ -153,6 +155,12 @@ const setupSocket = (server) => {
       if (adminSocketId) {
         io.to(adminSocketId).emit("receive-channel-message", finalData);
       }
+
+      // if Sender is both member and admin
+      // The sender can receive it twice:
+      // Once from channel.members.forEach
+      // Once from adminSocketId
+      
     }
   };
 
