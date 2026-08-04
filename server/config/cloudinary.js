@@ -11,3 +11,8 @@ cloudinary.config({
 
 // export configured instance
 export default cloudinary;
+
+
+// Website URL → Which website? (like Cloud Name)
+// Username    → Who are you? (like API Key)
+// Password    → Prove it's you. (like API Secret)
