@@ -14,3 +14,9 @@ contactRoutes.get("/get-contacts-for-dm", verifyToken, getContactsForDMList);
 contactRoutes.get("/get-all-contacts", verifyToken, getAllContacts);
 
 export default contactRoutes;
+
+// Recommended , REST API conventions :
+
+// contactRoutes.post("/search", verifyToken, searchContacts);
+// contactRoutes.get("/dm", verifyToken, getContactsForDMList);
+// contactRoutes.get("/", verifyToken, getAllContacts);

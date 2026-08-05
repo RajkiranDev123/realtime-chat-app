@@ -17,3 +17,9 @@ channelRoutes.get(
 );
 
 export default channelRoutes;
+
+// REST API conventions :
+
+// channelRoutes.post("/", verifyToken, createChannel);
+// channelRoutes.get("/", verifyToken, getUserChannels);
+// channelRoutes.get("/:channelId/messages", verifyToken, getChannelMessages);

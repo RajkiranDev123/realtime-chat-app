@@ -81,3 +81,15 @@ export default authRoutes;
 // So we should create the folder yourself before uploading:
 
 // Or use multer.diskStorage() to have more control over where and how files are stored.
+
+// clean, consistent, and widely used REST API design ==>
+
+// /api/v1/auth/signup	Register a user
+// /api/v1/auth/login	Login
+// /api/v1/auth/logout	Logout
+
+// /api/v1/auth/me	Get current user's profile
+// /api/v1/auth/me	Update current user's profile
+
+// /api/v1/auth/me/image	Upload/change profile image
+// /api/v1/auth/me/image  Remove profile image
