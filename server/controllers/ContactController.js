@@ -34,7 +34,6 @@ export const searchContacts = async (req, res) => {
       success: true,
       message: "Contacts fetched.",
     });
-    
   } catch (error) {
     return res.status(500).json({
       message: "Internal Server Error",
@@ -157,11 +156,10 @@ export const getAllContacts = async (req, res) => {
   }
 };
 
-
 ///////////////////////////////////////////////
 
 // Query
 // { age: { $gt: 18 } }   =========> field    ==> operator
 
 // Update
-// { $set: { age: 18 } }  =========> operator ==> field 
+// { $set: { age: 18 } }  =========> operator ==> field

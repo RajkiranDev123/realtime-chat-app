@@ -229,7 +229,7 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-///////////// addProfileImage ////////////////////////////////////
+///////////// addProfileImage (not cloudinary based) ////////////////////////////////////
 
 // export const addProfileImage = async (req, res) => {
 //   try {
@@ -407,7 +407,7 @@ export const removeProfileImage = async (req, res) => {
     }
 
     // 🔥 delete from cloudinary using stored public_id
-    console.log("imagePublicId ==> ",user.imagePublicId)
+    console.log("imagePublicId ==> ", user.imagePublicId);
     if (user.imagePublicId) {
       await cloudinary.uploader.destroy(user.imagePublicId);
     }
