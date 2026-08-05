@@ -23,6 +23,8 @@ import setupSocket from "./socket.js";
 
 dotenv.config();
 
+console.log("current working directory ==> ", process.cwd()); //  D:\clones\chat\server
+
 const app = express();
 
 const PORT = process.env.PORT || 8000;
@@ -151,7 +153,7 @@ const startServer = async () => {
     console.log(`Server running on ${process.env.BACKEND_URL}${PORT}`);
   });
 
-  // So even though you never explicitly imported the http module, 
+  // So even though you never explicitly imported the http module,
   // server is still a Node.js HTTP server under the hood, and that's exactly what Socket.IO needs.
 
   setupSocket(server);
