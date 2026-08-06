@@ -8,8 +8,9 @@ import cloudinary from "../config/cloudinary.js";
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
 const createToken = (email, userId) => {
-  // jwt.sign({payload}, secretKey, {options})
+  // jwt.sign({payload}, secretKey, {expiresIn: "3d"} )
   return jwt.sign({ email, userId }, process.env.JWT_KEY, { expiresIn: "3d" });
+  // const decoded = jwt.verify(token, secret, (err,decoded)=>{}) // for verifying is auth middleware
 };
 
 ////////////////////////////// signup /////////////////////////////
@@ -47,31 +48,37 @@ export const signup = async (req, res) => {
 
     // res.cookie(name, value, {options});
     // small data stored in browser that is automatically sent to the server with every request.
+
+    const isProduction = process.env.NODE_ENV === "production";
+
     res.cookie("jwt", createToken(email, user._id), {
       httpOnly: true, // JS (frontend) cannot access cookie.
       maxAge,
       //
-      secure: true, // cookie will only be sent over HTTPS.
-      sameSite: "none", // cookie can be sent in cross-site requests
+      secure: isProduction, // cookie will only be sent over HTTPS.
+      sameSite: isProduction ? "none" : "lax", // cookie can be sent in cross-site requests
 
-      // "strict" → safest , "lax" → balanced (commonly used) , "none" → requires ==> secure: true
+      // sameSite ==> "strict" → safest , "lax" → balanced (commonly used) , "none" → requires ==> secure: true
 
       // “Allow cross-site cookie, but only over encrypted connection (https)” ==> secure : true , sameSite : "none"
 
       //  secure: false, sameSite: "lax" ==> dev
 
-      //  prod ==>   secure: true , sameSite: "none",
+      //  prod ==>   secure: true , sameSite: "none"
 
+      // strict ==>
       // https://raj.com        -> frontend
       // https://raj.com/api    -> backend
       // Path does NOT make it cross-site. Browser mainly checks: protocol (https://) and domain (raj.com) ==> sameSite: "Strict"
-      // Generic TLDs (gTLD) : .com and Country Code TLDs (ccTLD) : .in
+      // sameSite does not check the port.
+
+      // Generic TLD : .com and Country Code like .in
       // raj → Second-level domain (the name you register)
       // .com → TLD (Top-Level Domain)
       // raj.com → Complete domain name
     });
     return res.status(201).json({
-      // axios : const { user, message, success } = res.data;
+      // axios in fe : const { user, message, success } = res.data;
       user: {
         id: user._id,
         email: user.email,
@@ -84,7 +91,7 @@ export const signup = async (req, res) => {
     // console.log("catch block of signup ==>", error.message);
     return res
       .status(500)
-      .json({ message: "Internal Server Error", success: false });
+      .json({ message: "Internal Server Error.", success: false });
   }
 };
 

@@ -20,7 +20,7 @@ const logger = winston.createLogger({
 
 // It tells Winston : “Also print logs to terminal (console)” : new winston.transports.Console({})
 // new winston.transports.Console({}) vs  new winston.transports.File({})
-if (process.env.NODE_ENV !== "prod") {
+if (process.env.NODE_ENV !== "production") {
   logger.add(
     new winston.transports.Console({
       format: winston.format.simple(),
