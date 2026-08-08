@@ -1,5 +1,6 @@
 import Message from "../models/MessageModel.js";
 import { mkdirSync, renameSync } from "fs";
+import cloudinary from "../config/cloudinary.js";
 
 export const getMessages = async (req, res) => {
   try {
@@ -31,6 +32,8 @@ export const getMessages = async (req, res) => {
 };
 
 export const uploadFile = async (req, res) => {
+  let fileName;
+
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -38,20 +41,36 @@ export const uploadFile = async (req, res) => {
         message: "File is required.",
       });
     }
+
     const date = Date.now();
-    let fileDir = `uploads/files/${date}`;
-    let fileName = `${fileDir}/${req.file.originalname}`;
-    mkdirSync(fileDir, { recursive: true });
+
+    fileName = `uploads/files/${date}${req.file.originalname}`;
+
     renameSync(req.file.path, fileName);
+
+    const result = await cloudinary.uploader.upload(fileName, {
+      folder: "files_upload",
+    });
 
     return res.status(200).json({
       success: true,
-      filePath: fileName,
+      filePath: result.secure_url,
+      filePublicId: result.public_id,
     });
   } catch (error) {
-    res.status(500).json({
+    console.log(error);
+
+    return res.status(500).json({
       success: false,
       message: "Internal Server error",
     });
+  } finally {
+    if (fileName) {
+      try {
+        unlinkSync(fileName);
+      } catch (err) {
+        console.log("File cleanup error:", err.message);
+      }
+    }
   }
 };

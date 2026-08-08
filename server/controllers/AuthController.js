@@ -26,7 +26,7 @@ export const signup = async (req, res) => {
         message: "All fields are required.",
       });
     }
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email }); // find ==> array of docs or [] and findOne ==> single doc or null
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -40,7 +40,7 @@ export const signup = async (req, res) => {
 
     // const user = new User(data) and await user.save() == User.create({})
 
-    // firstName : Since you did not provide , fields usually omitted from DB
+    // firstName : Since you did not provide and no required in schema and no default value , fields usually omitted from DB
     // This field gets auto-added because of default : profileSetup
     const user = await User.create({
       email,
@@ -66,7 +66,7 @@ export const signup = async (req, res) => {
       //  prod ==>   secure: true , sameSite: "none"
 
       // strict ==>
-      // https://raj.com        -> frontend
+      // https://raj.com        -> frontend , will be making req to backend
       // https://raj.com/api    -> backend
       // Path does NOT make it cross-site. Browser mainly checks: protocol (https://) and domain (raj.com) ==> sameSite: "Strict"
       // sameSite does not check the port.
@@ -105,7 +105,7 @@ export const login = async (req, res) => {
         message: "All fields are required.",
       });
     }
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }); // null or single doc
     if (!user) {
       return res.status(400).json({
         success: false,
@@ -156,6 +156,8 @@ export const getUserInfo = async (req, res) => {
   // req.userId = decoded.userId; // in middleware
   try {
     const userData = await User.findById(req.userId);
+    // Used once → req.userId directly ✅
+    // Used many times → store in const userId ✅
     if (!userData) {
       return res.status(400).json({
         success: false,
@@ -212,6 +214,8 @@ export const updateProfile = async (req, res) => {
       // but whole validation is done by ==> user.validate() , User.create({}) , user.save()
       // These methods in Mongoose run schema validation automatically : user.save(), User.create() ==> automatically
       // updateOne() , updateMany() , findOneAndUpdate() , findByIdAndUpdate() , replaceOne() need runValidators : true
+
+      // new : true ==> Return the updated document, not the old document.
     );
 
     return res.status(200).json({
@@ -359,7 +363,6 @@ export const addProfileImage = async (req, res) => {
         // "./photo.jpg"        // Relative
 
         // console.log(path.isAbsolute("C:\\images\\photo.jpg"));  // true (Windows)
-
       } catch (err) {
         console.log("File cleanup error : ", err.message);
       }

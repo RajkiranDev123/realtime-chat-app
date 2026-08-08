@@ -24,6 +24,9 @@ const messageSchema = new mongoose.Schema(
         return this.messageType === "text"; // If messageType = "text" → content must exist
       },
     },
+    filePublicId: {
+      type: String,
+    },
     fileUrl: {
       type: String,
       required: function () {
@@ -38,7 +41,6 @@ const messageSchema = new mongoose.Schema(
         // 1. mongoose creates an object in memory
         // 2. Validation happens ==> validation runs on the document instance and this points to that document.
         // 3. saved to db
-
       },
     },
   },
