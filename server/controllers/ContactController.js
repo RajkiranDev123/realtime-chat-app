@@ -42,18 +42,16 @@ export const searchContacts = async (req, res) => {
   }
 };
 
-// It returns a list of users you have chatted with, including:
-// 👤 User details (name, email, image, color)
-// ⏱️ Time of last message with them
-// 📌 Sorted by most recent chat
-
-// $ on the LEFT  -> MongoDB operator
-// $ inside a STRING -> document field
+// $ on the LEFT  -> MongoDB operator : $or
+// $ inside a STRING -> document field : "$sender"
 
 export const getContactsForDMList = async (req, res) => {
   try {
     let { userId } = req;
     userId = new mongoose.Types.ObjectId(userId);
+
+    // mongoose.Schema.Types.ObjectId → schema definition
+    // new mongoose.Types.ObjectId(id) → convert a value to ObjectId
 
     // find(), findOne(), findById(), updateOne() → Mongoose casts automatically.
 
@@ -66,13 +64,7 @@ export const getContactsForDMList = async (req, res) => {
           $or: [{ sender: userId }, { recipient: userId }],
         },
       },
-      // [
-      //   { sender: "U1", recipient: "U2" }, // keep
-      //   { sender: "U3", recipient: "U1" }, // keep
-      //   { sender: "U4", recipient: "U5" }  // remove
-      // ]
-
-      // stage 2 ==> This sorts the messages by the createdAt field in descending order.
+      // stage 2
       {
         $sort: { createdAt: -1 },
       },
@@ -87,7 +79,7 @@ export const getContactsForDMList = async (req, res) => {
               else: "$sender",
             },
           },
-          lastMessageTime: { $first: "$createdAt" },
+          lastMessageTime: { $first: "$createdAt" }, // max : aggregate function : count , sum , avg , min , max
         },
       },
 
