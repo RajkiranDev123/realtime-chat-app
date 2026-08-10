@@ -35,6 +35,12 @@ export type AuthSlice = {
   setUserInfo: (userInfo: UserInfo | null) => void; // When someone calls setUserInfo, they can pass either : a UserInfo object or null
 };
 
+// const identity = <T>(value: T): T => value;
+// Zustand version, the function's complete type is provided before =
+// const identity = <T>(value: T): T => {
+//   return value;
+// };
+
 export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   userInfo: null,
   loading: false,
