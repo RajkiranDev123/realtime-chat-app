@@ -24,7 +24,7 @@
   },
   "include": ["vite.config.ts"]
 }
-// Applies ONLY to this file : "include": ["vite.config.ts"]
-// So things like : path.resolve() work correctly
 
-// This file only helps TypeScript validate your Vite config — it doesn’t affect your React app directly.
+// It tells TypeScript how to understand and check vite.config.ts
+
+// Your React code is checked by another TypeScript config, usually tsconfig.app.json.

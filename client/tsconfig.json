@@ -16,5 +16,15 @@
   }
 }
 
-// Its job is to connect and coordinate other configs
-// This file links your React config and Node config, and shares common settings like alias.”
+// This is the main tsconfig.json file.
+
+// Its job is mainly to connect your TypeScript configurations together.
+
+// tsconfig.json
+//    ├──→ tsconfig.app.json
+//    │      ↓
+//    │   React code
+//    │
+//    └──→ tsconfig.node.json
+//           ↓
+//       vite.config.ts

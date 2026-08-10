@@ -1,9 +1,6 @@
-PS C:\Users\HP\OneDrive\Desktop\AI\clones\sccialmedia> npm create vite@latest
+PS D:\clones\chat\client> npm create vite@latest
 
-> npx
-> create-vite
 
-│
 ◇  Project name:
 │  .
 │
@@ -14,14 +11,16 @@ PS C:\Users\HP\OneDrive\Desktop\AI\clones\sccialmedia> npm create vite@latest
 │  TypeScript
 │
 ◇  Use rolldown-vite (Experimental)?:
-│  No
+│   No
 │
 ◇  Install with npm and start now?
-│  Yes
+│   Yes
 │
-◇  Scaffolding project in C:\Users\HP\OneDrive\Desktop\AI\clones\sccialmedia...
+◇  Scaffolding project in D:\clones\chat\client...
 │
 ◇  Installing dependencies with npm...
+
+-----------------------------------------------------------------------
 
 npm install tailwindcss @tailwindcss/vite
 
@@ -33,7 +32,8 @@ src/index.css : @import "tailwindcss";
 
 tsconfig.json =====================>
 
-Copy
+Copy and paste :
+
 {
   "files": [],
   "references": [
@@ -54,9 +54,11 @@ Copy
 
 
 -----------------------------------------------
+
 tsconfig.app.json  ===========================>
 
-Copy
+Copy and paste :
+
 {
   "compilerOptions": {
     // ...
@@ -79,7 +81,7 @@ npm install -D @types/node
 
 ---------------------------------------------
 
-vite.config.ts
+vite.config.ts =========================> 
 
 import path from "path"
 import tailwindcss from "@tailwindcss/vite"
@@ -98,13 +100,10 @@ export default defineConfig({
 
 --------------------------------------------------------
 
-
 npx shadcn@latest init
 
- Which color would you like to use as the base color? » - Use arrow-keys. Return to submit.
+ Which color would you like to use as the base color? 
 >   Neutral
-
-
 
 ---------------------------------------------------------------
 
@@ -112,6 +111,11 @@ npx shadcn@latest add button
 npx shadcn@latest add tabs
 npx shadcn@latest add input
 npx shadcn@latest add sonner
+npx shadcn@latest add command badge
+npx shadcn@latest add tooltip
+npx shadcn@latest add dialog
+npx shadcn@latest add scroll-area
+npx shadcn@latest add avatar
 
 
 --------------------------------------------------------------
@@ -128,31 +132,20 @@ function App() {
 
 export default App
 
----------------------------------
+-------------------------------------------------------------
 
 npm i react-icons
 npm i react-avatar
 npm i react-router-dom
-
-
 npm i axios
 npm i react-hot-toast
-
 npm i zustand
-
-npm i react-icons
-npx shadcn@latest add avatar
 npm i react-lottie
 npm i --save-dev @types/react-lottie
 npm i emoji-picker-react
-npx shadcn@latest add tooltip
-npx shadcn@latest add dialog
-npx shadcn@latest add scroll-area
-
-
 npm i socket.io-client
 npm i moment
 
 https://shadcnui-expansions.typeart.cc/docs/multiple-selector
 
- npx shadcn@latest add command badge
+ 

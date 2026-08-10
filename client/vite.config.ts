@@ -13,17 +13,17 @@ export default defineConfig({
   },
 });
 
+// vite.config.ts is the settings file for Vite.
 
+// This file tells Vite : 1. Use React , 2. Use Tailwind , 3. Treat @ as the src folder
 
-// Build = preparing your app for real users (production)
-// Build = converting your project into optimized, deployable files for users
+// Vite = development/build tool and Vite handles the environment around React.
 
-// Vite is not just a bundler — it’s a fast dev server + bundler (only during build).
-// A bundler is a tool that combines many files into a few optimized files.
+// HMR = Hot Module Replacement : when you change code,
+// the browser updates that part without doing a full page reload / without a full browser refresh.
 
-// It’s the configuration (settings) file for Vite
+// You write React code -> Vite -> Develpment Server -> Browser
 
-// In simple words :  “This file tells Vite how to run and build your project.”
+// Change React code -> Vite -> HMR -> Browser updates
 
-// In dev mode, vite.config.js configures how Vite serves and processes your code — not how it bundles it.
-
+// When deploy React code -> Vite build -> Rollup (bundling) -> Optimized files  -> Production server

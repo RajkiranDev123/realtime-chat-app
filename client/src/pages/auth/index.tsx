@@ -11,12 +11,14 @@ import { useNavigate } from "react-router-dom";
 import { useAppStore } from "@/store";
 import { Copy } from "lucide-react";
 import { Loader2 } from "lucide-react";
+import { EyeOff, Eye } from "lucide-react";
 import axios from "axios";
 
 const Auth = () => {
   const { setUserInfo, loading, setLoading } = useAppStore();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [showHidePassword, setShowHidePassword] = useState(false);
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
@@ -234,13 +236,28 @@ const Auth = () => {
                 {/* copy test password ends */}
 
                 {/* password starts  */}
-                <Input
-                  placeholder="Password"
-                  type="password"
-                  className="rounded-md p-6 focus-visible:ring-0"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <span className="relative">
+                  <Input
+                    placeholder="Password"
+                    type={showHidePassword ? "text" : "password"}
+                    className="rounded-md p-6 focus-visible:ring-0"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <span className="absolute top-3.5 right-3">
+                    {showHidePassword ? (
+                      <Eye
+                        className="w-5 h-5"
+                        onClick={() => setShowHidePassword((p) => !p)}
+                      />
+                    ) : (
+                      <EyeOff
+                        className="w-5 h-5"
+                        onClick={() => setShowHidePassword((p) => !p)}
+                      />
+                    )}
+                  </span>
+                </span>
                 {/* password ends */}
 
                 <Button className="rounded-full" onClick={handleLogin}>
