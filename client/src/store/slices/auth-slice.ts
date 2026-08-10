@@ -36,8 +36,21 @@ export type AuthSlice = {
 };
 
 // const identity = <T>(value: T): T => value;
+
 // Zustand version, the function's complete type is provided before =
+
+// Generic arrow function expression
 // const identity = <T>(value: T): T => {
+//   return value;
+// };
+
+// Generic function declaration
+// function identity<T>(value: T): T {
+//   return value;
+// }
+
+// Generic function expression
+// const identity = function <T>(value: T): T {
 //   return value;
 // };
 
