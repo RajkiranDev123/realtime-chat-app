@@ -141,11 +141,15 @@ npm i axios
 npm i react-hot-toast
 npm i zustand
 npm i react-lottie
+npm i sonner
 npm i --save-dev @types/react-lottie
 npm i emoji-picker-react
+npm i lucide-react
 npm i socket.io-client
 npm i moment
 
 https://shadcnui-expansions.typeart.cc/docs/multiple-selector
+
+Lucide React = ready-made SVG icons packaged as React components.
 
  

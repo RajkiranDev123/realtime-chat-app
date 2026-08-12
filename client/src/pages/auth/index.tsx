@@ -26,11 +26,11 @@ const Auth = () => {
   // validate signup
   const validateSignup = () => {
     if (!email.length) {
-      toast.error("Email is required", { duration: 2000 });
+      toast.error("Email is required.", { duration: 2000 });
       return false;
     }
     if (!password.length) {
-      toast.error("Password is required", { duration: 2000 });
+      toast.error("Password is required.", { duration: 2000 });
       return false;
     }
     if (password !== confirmPassword) {
@@ -45,11 +45,11 @@ const Auth = () => {
   // validate login
   const validateLogin = () => {
     if (!email.length) {
-      toast.error("Email is required", { duration: 2000 });
+      toast.error("Email is required.", { duration: 2000 });
       return false;
     }
     if (!password.length) {
-      toast.error("Password is required", { duration: 2000 });
+      toast.error("Password is required.", { duration: 2000 });
       return false;
     }
 
@@ -123,19 +123,25 @@ const Auth = () => {
   // grid grid-cols-2	==> 2 columns always
   // grid grid-cols-1 xl:grid-cols-2	==> responsive layout
 
+  // flex flex-col justify-center → centers on vertical axis
+  // display: flex; flex-direction: column; align-items: center; justify-content: center;
+
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
       {/* width >= xs : 480 , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}
-      {/* border == border-1 border-black/80 */}
+      {/* border == border-1 , border-black/80 */}
       <div
-        className="h-[80vh] w-[80vw] bg-white shadow-2xl 
-        md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2"
+        className="h-[80vh] w-[80vw] md:w-[90vw] lg:w-[70vw] xl:w-[60vw] bg-white shadow-2xl 
+         rounded-2xl grid xl:grid-cols-2"
       >
-        {/* grid-item-1 starts */}
+        {/* grid-item-1 starts : left side (logo , tabs , inputs and buttons )*/}
         <div className="flex flex-col gap-10 items-center justify-center">
-          {/* col-item-1 ==> welcome + logo and fill */}
+
+          {/* col-1 ==> welcome + logo and fill */}
           <div className="flex flex-col items-center justify-center p-1">
+
             <div className="flex items-center justify-center ">
+
               <h1 className="text-4xl font-bold md:text-5xl text-black/70">
                 Welcome
               </h1>
@@ -145,24 +151,30 @@ const Auth = () => {
                 alt="victory"
                 className="h-[70px] animate-bounce"
               />
+
             </div>
 
-            <p className="font-medium text-center">
+            <p className="font-normal">
               Fill in the details to get started.
             </p>
-          </div>
-          {/* col-item-1 ends , welcome , logo and fill ends*/}
 
-          {/* col-item-2 ==> tabs */}
+          </div>
+          {/* col-1 ends , welcome , logo and fill ends*/}
+
+          {/* col-2 starts ==> tabs */}
+     
           <div className="flex flex-col justify-center items-center w-full">
             {/* if width full not given : it will take content width and width 3/4 is 75% */}
+            {/* flex-col + items-center in parent → child will not take full width : items-center is horizontal in flex flex-col*/}
+            {/* it will take acc to content width if w-full not used. */}
 
             {/* Tabs : Main container that controls the whole tabs system. */}
-
+     
             <Tabs className="w-3/4" defaultValue="login">
               {/* TabsList : Wrapper for tab buttons (multiple TabsTrigger inisde) */}
 
               <TabsList className="bg-transparent w-full">
+
                 {/* TabsTrigger 1 */}
                 <TabsTrigger
                   className="
@@ -187,6 +199,7 @@ const Auth = () => {
                 </TabsTrigger>
 
                 {/* TabsTrigger 2 ends */}
+
               </TabsList>
 
               {/* TabsList : Wrapper for all tab buttons (TabsTrigger) */}
@@ -298,9 +311,12 @@ const Auth = () => {
                 </Button>
               </TabsContent>
               {/* signup : TabsContent ends */}
+
             </Tabs>
+
           </div>
-          {/* col-item-2 , tabs ends */}
+          {/* col-2 , tabs ends */}
+
         </div>
         {/* grid-item-1 ends */}
 
@@ -310,9 +326,12 @@ const Auth = () => {
             src={Background}
             alt="background"
             className="h-[80vh] rounded-sm object-cover"
+            // Image: 400 × 200 , Container:  300 × 200 , Height already matches: 200 , left and right get cropped , 50px from each side is cropped.
+            // show the entire image inside the box without cropping , The image is not cropped or stretched , The remaining space is simply unused = "object-contain"
           />
         </div>
         {/* grid-item-2 ends */}
+        
       </div>
     </div>
   );

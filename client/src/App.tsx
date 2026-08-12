@@ -41,6 +41,7 @@ function App() {
   useEffect(() => {
     // getUserData
     const getUserData = async () => {
+      console.log("getUserdata")
       try {
         setLoading(true);
 
