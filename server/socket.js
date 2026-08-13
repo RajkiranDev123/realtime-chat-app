@@ -158,7 +158,9 @@ const setupSocket = (server) => {
   // Before io.on() runs, Socket.IO does a handshake.
 
   // io.emit() → Broadcast to all connected clients.
+
   // io.to(socketId).emit() → Send to one specific client.
+
   // socket.emit() → Send only to the client represented by that socket.
 
   io.on("connection", (socket) => {
@@ -200,6 +202,7 @@ export default setupSocket;
 // const userMap = new Map();
 
 // Objects as keys → allowed in Map
+// String, Number, Boolean, BigInt, Symbol, Undefined, Null, Object, Array, Function
 // set(key, value) , has(key) , size
 
 // userMap.set("name", "Ravi");
@@ -211,7 +214,7 @@ export default setupSocket;
 // Map in JavaScript does not allow duplicate keys.
 // If you add the same key again, the old value gets replaced.
 
-// Problems with plain objects : Keys were only strings
+// Problems with plain objects : Keys are only strings
 
 // WeakMap : keys MUST be objects only.
 
@@ -224,16 +227,13 @@ export default setupSocket;
 //   socket.emit() can also be used outside socket.on()
 //   For example, send a welcome message immediately after a client connects :
 
-//   io.on("connection", (socket) => {
 //    socket.emit("welcome", {
 //     text: "Welcome!"
 //    });
-//   });
 
 //   socket.on("message", (data) => {
 
 //     console.log(data);
-
 //     io.to(socket.id).emit("messageReceived", {
 //       status: "OK"
 //     });
@@ -245,7 +245,5 @@ export default setupSocket;
 //    });
 
 //   });
-
-// });
 
 //////////////////////////////// xxxxxxxxxxxxxxxxxxxx//////////////////////////////

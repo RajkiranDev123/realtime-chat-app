@@ -58,7 +58,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
   useEffect(() => {
     if (userInfo) {
-      //
+      
 
       // io() ==> creates + returns socket instance/object
 
@@ -127,7 +127,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         socket.current?.disconnect();
       };
     }
-    //
+    
   }, [userInfo]);
 
   return (

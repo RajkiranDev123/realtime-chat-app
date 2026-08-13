@@ -173,13 +173,13 @@ const Profile = () => {
         {/* If you don’t set a background on a child, it’s just transparent,
          so you see the parent’s background behind it */}
 
-        {/* arrow */}
+        {/* col-1 : arrow */}
         <div onClick={handleNavigate}>
           <IoArrowBack className="text-2xl lg:text-4xl text-white/90 cursor-pointer" />
         </div>
         {/* arrow ends */}
 
-        {/* avatar and inputs : grid*/}
+        {/* col-2 : avatar and inputs : grid*/}
 
         <div className="grid md:grid-cols-2 gap-1 ">
           {/* Don’t force alignment — use normal/default positioning” : md:justify-self-auto  */}
@@ -312,7 +312,7 @@ const Profile = () => {
 
         {/* avatar and inputs ends : grid*/}
 
-        {/* save button  */}
+        {/* col-3 : save button  */}
 
         <div className="w-full">
           <Button
