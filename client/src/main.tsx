@@ -20,3 +20,17 @@ createRoot(document.getElementById("root")!).render(
     {/* </StrictMode>, */}
   </>,
 );
+
+// index.html
+// <body>
+//   <div id="root"></div>
+//   <script type="module" src="/src/main.tsx"></script>
+// </body>
+
+// So type="module" = enable ES module behavior (import / export) for the script.
+
+// ES = ECMAScript, the official standard for JavaScript.
+
+// ES6 = ECMAScript 2015, a specific major version of that standard.
+
+// ES modules (import / export) were introduced in ES6.

@@ -58,8 +58,6 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
   useEffect(() => {
     if (userInfo) {
-      
-
       // io() ==> creates + returns socket instance/object
 
       socket.current = io(HOST, {
@@ -70,11 +68,11 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
       });
 
       socket.current.on("connect", () => {
-        console.log("Connected to socket server");
+        console.log("Connected to socket server.");
       });
 
       socket.current.on("connect_error", (err) => {
-        console.log("Socket connect error =>", err);
+        console.log("Socket connect error => ", err);
       });
 
       // handleReceiveMessage
@@ -127,14 +125,13 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         socket.current?.disconnect();
       };
     }
-    
   }, [userInfo]);
 
   return (
     <SocketContext.Provider value={socket.current}>
       {/* The outer {} means "enter JavaScript mode in JSX". */}
       {/* The inner {} means "create an object". */}
-      {/* if value={{ socket: socket.current }} then const {socket} = useSocket() */}
+      {/* if value={{ socket: socket.current }} then ==> const {socket} = useSocket() */}
       {children}
     </SocketContext.Provider>
   );

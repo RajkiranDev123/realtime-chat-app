@@ -65,6 +65,7 @@ const Profile = () => {
   };
 
   // save button api call
+
   const saveChanges = async () => {
     if (validateProfile()) {
       try {
@@ -114,6 +115,7 @@ const Profile = () => {
   };
 
   // <input type="file"  triggers when ==> onChange={handleImageChange} name="profile-image"/>
+  // React.EventType<HtmlElement>
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
     // ChangeEvent = value changed
@@ -166,9 +168,9 @@ const Profile = () => {
 
   return (
     <div className="bg-[#1b1c24] h-[100vh] w-[100vw] flex items-center justify-center ">
-      {/* w-max : only as wide as content needs and w-full : 100% of parent container */}
+      {/* w-max : only as wide as content needs and later parent and w-full : 100% of parent container */}
 
-      <div className="flex flex-col gap-2 w-[80vw] md:w-max   p-2 rounded-md shadow-sm shadow-amber-100">
+      <div className="flex flex-col gap-4 w-[80vw] md:w-max   p-2 rounded-md shadow-sm shadow-amber-100">
         {/* background-color is not inherited by default */}
         {/* If you don’t set a background on a child, it’s just transparent,
          so you see the parent’s background behind it */}
@@ -182,12 +184,14 @@ const Profile = () => {
         {/* col-2 : avatar and inputs : grid*/}
 
         <div className="grid md:grid-cols-2 gap-1 ">
+
           {/* Don’t force alignment — use normal/default positioning” : md:justify-self-auto  */}
           {/* self ==> Apply this alignment to this item only , centered horizontally : justify-self-center */}
 
           {/* avatar starts : grid-item-1 */}
+
           <div
-            className="w-32 md:w-48 relative flex items-center justify-center justify-self-center md:justify-self-auto "
+            className="w-32 md:w-48 relative border-2  flex items-center justify-center justify-self-center md:justify-self-auto "
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
@@ -242,19 +246,21 @@ const Profile = () => {
             />
             {/* input ends */}
           </div>
+
           {/* avatar ends */}
 
           {/* --------------------------------------------------------- */}
 
           {/* input fields : grid-item-2 */}
 
-          {/* 1 = 0.25rem = 4px , 64 × 4px = 256px , m-w-? The element cannot go below this value, but it can go above it freely.*/}
+          {/* 1 = 0.25rem = 4px , 64 × 4px = 256px , min-w-? The element cannot go below this value, but it can go above it freely.*/}
 
           <div className="flex flex-col gap-2 min-w-32 md:min-w-64  text-white items-center justify-center">
+
             {/* email */}
             <div className="w-full">
-              {" "}
-              {/* If you this div to follow container width (most common): w-full */}
+              {/* If you this div to follow parent width : w-full */}
+
               {/* inputs default behave like block-level elements in many UI libs may take w-full */}
               <Input
                 placeholder="Email"
@@ -273,8 +279,15 @@ const Profile = () => {
                 type="text"
                 onChange={(e) => setFirstName(e.target.value)}
                 value={firstName}
-                className="rounded-lg p-6 bg-[#2c2e3b] border-none"
+                className="rounded-lg p-6 bg-[#2c2e3b] border-none "
               />
+
+              {/* outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 */}
+              {/* outline-none          → removes normal outline
+                  focus:outline-none    → removes outline on focus
+                  focus:ring-0          → removes focus ring
+                  focus-visible:ring-0  → removes shadcn's keyboard focus ring */}
+
             </div>
             {/* firstname ends*/}
 
@@ -291,7 +304,7 @@ const Profile = () => {
             {/* lastname ends*/}
 
             {/* colors */}
-            <div className="w-full flex gap-5">
+            <div className="w-ful flex flex-wrap gap-5 ">
               {colors.map((color, index) => (
                 <div
                   onClick={() => setSelectedColor(index)}
@@ -306,7 +319,9 @@ const Profile = () => {
               ))}
             </div>
             {/* colors ends */}
+
           </div>
+
           {/* input fields ends*/}
         </div>
 
@@ -314,7 +329,7 @@ const Profile = () => {
 
         {/* col-3 : save button  */}
 
-        <div className="w-full">
+        <div>
           <Button
             onClick={() => saveChanges()}
             className="h-10 w-full bg-purple-700 hover:bg-purple-800 transition duration-300"

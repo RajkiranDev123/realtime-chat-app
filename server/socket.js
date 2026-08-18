@@ -1,4 +1,4 @@
-import { Server as SocketIOServer } from "socket.io";
+import { Server as SocketIOServer } from "socket.io"; // use after as one
 import Message from "./models/MessageModel.js";
 import Channel from "./models/ChannelModel.js";
 
@@ -9,7 +9,9 @@ const setupSocket = (server) => {
   const io = new SocketIOServer(server, {
     cors: {
       origin: process.env.ORIGIN,
-      methods: ["GET", "POST"],
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+      // PUT	: Replace/update the entire resource
+      // PATCH	: Partially update a resource
       credentials: true,
     },
   });
@@ -18,7 +20,7 @@ const setupSocket = (server) => {
 
   console.log("userSocketMap ==> ", userSocketMap);
 
-  // Another user connects:
+
   // Map(2) {
   //   "101" => "abc123",
   //   "205" => "xyz789"
@@ -155,13 +157,14 @@ const setupSocket = (server) => {
     }
   };
 
+
   // Before io.on() runs, Socket.IO does a handshake.
 
   // io.emit() → Broadcast to all connected clients.
 
   // io.to(socketId).emit() → Send to one specific client.
 
-  // socket.emit() → Send only to the client represented by that socket.
+  // socket.emit() → Send only to the client (represented by that socket).
 
   io.on("connection", (socket) => {
     // socket : is an object that represents one user & has methods to communicate with them.

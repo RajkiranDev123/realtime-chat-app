@@ -60,6 +60,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
 
   setUserInfo: (userInfo) => {
     // userInfo is parameter
+    // userInfo: userInfo ==> object property shorthand.
     set({
       userInfo,
     });
