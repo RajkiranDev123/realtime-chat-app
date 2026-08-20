@@ -8,7 +8,10 @@ import { Toaster } from "./components/ui/sonner.tsx";
 import { SocketProvider } from "./context/SocketContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  // “I am sure this value is not null or undefined.” ==> ! (Non-null assertion operator)
+  // “ I am sure this value is not null or undefined ” ==> ! (Non-null assertion operator)
+  
+  // as → type assertion syntax in TypeScript.
+  // ! → non-null assertion operator in TypeScript.
   <>
     {/* <StrictMode> */}
 
@@ -21,7 +24,8 @@ createRoot(document.getElementById("root")!).render(
   </>,
 );
 
-// index.html
+// client/index.html ==>
+
 // <body>
 //   <div id="root"></div>
 //   <script type="module" src="/src/main.tsx"></script>
@@ -29,8 +33,7 @@ createRoot(document.getElementById("root")!).render(
 
 // So type="module" = enable ES module behavior (import / export) for the script.
 
-// ES = ECMAScript, the official standard for JavaScript.
+// ECMAScript/ES = rulebook / standard / specification ==> let , const etc
+// JavaScript = language that follows the rulebook  ==> Chrome → V8
 
-// ES6 = ECMAScript 2015, a specific major version of that standard.
-
-// ES modules (import / export) were introduced in ES6.
+// ES6 = ECMAScript 2015, a specific major version of that standard , (Modules ==> import / export , let and const , arrow fun etc) were introduced in ES6.

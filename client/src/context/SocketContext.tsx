@@ -125,7 +125,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         socket.current?.disconnect();
       };
     }
-  }, [userInfo]);
+  }, [userInfo?.id]);
 
   return (
     <SocketContext.Provider value={socket.current}>

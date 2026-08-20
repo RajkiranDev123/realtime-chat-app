@@ -3,7 +3,7 @@ import Message from "./models/MessageModel.js";
 import Channel from "./models/ChannelModel.js";
 
 const setupSocket = (server) => {
-  // This code creates a Socket.IO server and attaches it to your existing HTTP server.
+  // This code creates a Socket.IO/socket.io server and attaches it to your existing HTTP server.
 
   // io is a socket server.
   const io = new SocketIOServer(server, {
@@ -19,7 +19,6 @@ const setupSocket = (server) => {
   const userSocketMap = new Map();
 
   console.log("userSocketMap ==> ", userSocketMap);
-
 
   // Map(2) {
   //   "101" => "abc123",
@@ -47,7 +46,7 @@ const setupSocket = (server) => {
 
   // sendMessage ==============================>
 
-  // This function saves a message in the database and sends it in real time using Socket.IO.
+  // This function saves a message in the database and then sends it in real time using Socket.IO.
 
   const sendMessage = async (message) => {
     // get sender socket id
@@ -69,10 +68,10 @@ const setupSocket = (server) => {
       message.recipient,
     );
 
-    // save in db ==>
+    // save in db first ==>
     const createdMessage = await Message.create(message);
 
-    // get message from db ==>
+    // get saved message from db ==>
     const messageData = await Message.findById(createdMessage._id)
       .populate("sender", "id firstName lastName email image color")
       .populate("recipient", "id firstName lastName email image color");
@@ -81,7 +80,7 @@ const setupSocket = (server) => {
     // Emit to recipient
     if (recipientSocketId) {
       // Send event only to this specific connected socket id, Not broadcast to everyone.
-      // io.to(recipientSocketId).emit("receiveMessage", "Hello!");
+      // io.to(recipientSocketId).emit("eventName", {data});
       io.to(recipientSocketId).emit("receiveMessage", messageData);
     }
 
@@ -97,6 +96,7 @@ const setupSocket = (server) => {
     const { channelId, sender, messageType, content, fileUrl } = message;
 
     // sender{} , recipient{} , messageType , content , fileUrl ==> Message
+    // 1st : save in db
     const createdMessage = await Message.create({
       sender,
       recipient: null, // no need recipient when sending to channel
@@ -105,6 +105,7 @@ const setupSocket = (server) => {
       fileUrl,
     });
 
+    // 2nd : get saved msg from db
     const messageData = await Message.findById(createdMessage._id)
       .populate("sender", "id email firstName lastName image color") // email  , password , firstName , lastName , image , color , profileSetup : User
       .exec();
@@ -113,14 +114,19 @@ const setupSocket = (server) => {
     // await query.exec() → you explicitly tell Mongoose to execute it.
     // For normal async/await code, you can usually omit exec().
 
+
+    // 3rd : update channel by pushing message id 
     await Channel.findByIdAndUpdate(channelId, {
       // (_id / id / channelId), name , members[] , admin{} , messages[] ==> Channel
       $push: { messages: createdMessage._id },
     });
 
     // (_id / id / channelId), name , members[] , admin{} , messages[] ==> Channel
+
+    // 4th : get channel by id , we need channel later... in 6th step.
     const channel = await Channel.findById(channelId).populate("members");
 
+    // 5th : prepare data
     const finalData = { ...messageData._doc, channelId: channel._id };
 
     //  _doc converts a Mongoose document into a normal JavaScript object so you can easily send or modify the data.
@@ -132,6 +138,8 @@ const setupSocket = (server) => {
     // lean() is not a method on a Mongoose document. It is a query method that must be called before the query executes.
     // Message.findById(id).lean() // "When MongoDB returns the result, give me a plain object instead of a Mongoose Document."
 
+
+    // 6th : 
     if (channel && channel.members) {
       // So your current code is basically manually broadcasting to channel members one by one.
       // It works, but Socket.IO rooms are the built-in feature for this use case.
@@ -155,16 +163,18 @@ const setupSocket = (server) => {
       // if Sender is both member and admin :
       // The sender can receive it twice: Once from channel.members.forEach and Once from adminSocketId
     }
-  };
 
+  };
 
   // Before io.on() runs, Socket.IO does a handshake.
 
   // io.emit() → Broadcast to all connected clients.
 
-  // io.to(socketId).emit() → Send to one specific client.
+  // io.to(socketId).emit("messageReceived",{data}) → Send to one specific client.
 
-  // socket.emit() → Send only to the client (represented by that socket).
+  // socket.emit("messageReceived",{data}) → Send only to the client (represented by that socket).
+
+  // pattern ==> .on : ("eventName",cb)   &  .emit : (eventName,{data})
 
   io.on("connection", (socket) => {
     // socket : is an object that represents one user & has methods to communicate with them.
@@ -195,10 +205,10 @@ const setupSocket = (server) => {
   });
 };
 
-// ✅ io.on("connection") → runs once when the user connects.
-// ✅ socket.on("message") → runs every time that connected user sends a "message" event.
+// ✅ io.on("connection",(socket)=>{}) → runs once when the user connects.
+// ✅ socket.on("sendMessage",sendMessage) → runs every time when that connected user sends a "sendMessage" event.
 
-// If the user disconnects and later reconnects, then io.on("connection") runs again because a new socket connection is created.
+// If the user disconnects and later reconnects, then io.on("connection",(socket)=>{}) runs again because a new socket connection is created.
 
 export default setupSocket;
 
@@ -219,15 +229,15 @@ export default setupSocket;
 
 // Problems with plain objects : Keys are only strings
 
-// WeakMap : keys MUST be objects only.
+// WeakMap : keys MUST be objects only but Map ==> any data type as keys
 
 //////////////////////////////// xxxxxxxxxxxxxxxxxxxx//////////////////////////////
 
-// Send to the same client using ==> io.to(socket.id).emit() vs socket.emit()
+// Send to the same client using ==> io.to(socket.id).emit("messageReceived",{data}) vs socket.emit("messageReceived",{data})
 
 // io.on("connection", (socket) => {
 
-//   socket.emit() can also be used outside socket.on()
+//   socket.emit("welcome",{data}) can also be used outside socket.on("message",(data)=>{})
 //   For example, send a welcome message immediately after a client connects :
 
 //    socket.emit("welcome", {

@@ -26,6 +26,9 @@ const messageSchema = new mongoose.Schema(
     },
     filePublicId: {
       type: String,
+      required: function () {
+        return this.messageType === "file";
+      },
     },
     fileUrl: {
       type: String,
