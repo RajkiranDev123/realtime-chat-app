@@ -7,17 +7,20 @@ import App from "./App.tsx";
 import { Toaster } from "./components/ui/sonner.tsx";
 import { SocketProvider } from "./context/SocketContext.tsx";
 
+// createRoot().render()
 createRoot(document.getElementById("root")!).render(
-  // “ I am sure this value is not null or undefined ” ==> ! (Non-null assertion operator)
-  
+  // “ I am sure this value is not null or undefined ” ==> ! (Non/Not-null assertion operator)
+
   // as → type assertion syntax in TypeScript.
-  // ! → non-null assertion operator in TypeScript.
+  // ! → not-null assertion operator in TypeScript.
   <>
     {/* <StrictMode> */}
 
     <SocketProvider>
       <App />
       <Toaster closeButton position="top-center" />
+      {/* <Toaster /> is an application-level/global UI component, not part of a particular page. */}
+      {/* You want notifications to work from any component in your app. */}
     </SocketProvider>
 
     {/* </StrictMode>, */}
@@ -36,4 +39,5 @@ createRoot(document.getElementById("root")!).render(
 // ECMAScript/ES = rulebook / standard / specification ==> let , const etc
 // JavaScript = language that follows the rulebook  ==> Chrome → V8
 
-// ES6 = ECMAScript 2015, a specific major version of that standard , (Modules ==> import / export , let and const , arrow fun etc) were introduced in ES6.
+// ES6 = ECMAScript 2015, a specific major version of that standard , 
+// (Modules ==> import / export , let and const , arrow fun etc) were introduced in ES6.

@@ -10,7 +10,7 @@ const setupSocket = (server) => {
     cors: {
       origin: process.env.ORIGIN,
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-      // PUT	: Replace/update the entire resource
+      // PUT	  : Replace/update the entire resource
       // PATCH	: Partially update a resource
       credentials: true,
     },
@@ -70,12 +70,13 @@ const setupSocket = (server) => {
 
     // save in db first ==>
     const createdMessage = await Message.create(message);
+    // You can't chain populate() directly to create()
+    // but ==> await createdMessage.populate("sender") can be done...
 
     // get saved message from db ==>
     const messageData = await Message.findById(createdMessage._id)
       .populate("sender", "id firstName lastName email image color")
       .populate("recipient", "id firstName lastName email image color");
-    console.log("map after connect", userSocketMap);
 
     // Emit to recipient
     if (recipientSocketId) {
@@ -105,17 +106,22 @@ const setupSocket = (server) => {
       fileUrl,
     });
 
-    // 2nd : get saved msg from db
+    // 2nd : get saved msg from db and Populate the sender reference with only these User fields.
     const messageData = await Message.findById(createdMessage._id)
-      .populate("sender", "id email firstName lastName image color") // email  , password , firstName , lastName , image , color , profileSetup : User
+      .populate("sender", "id email firstName lastName image color") // email  , password , firstName , lastName , image , color , profileSetup ,  imagePublicId : User
       .exec();
+
+    // better ==>
+    // await createdMessage.populate(
+    //   "sender",
+    //   "id email firstName lastName image color"
+    // );
 
     // await query → Mongoose executes the query automatically.
     // await query.exec() → you explicitly tell Mongoose to execute it.
     // For normal async/await code, you can usually omit exec().
 
-
-    // 3rd : update channel by pushing message id 
+    // 3rd : update channel by pushing message id
     await Channel.findByIdAndUpdate(channelId, {
       // (_id / id / channelId), name , members[] , admin{} , messages[] ==> Channel
       $push: { messages: createdMessage._id },
@@ -125,6 +131,16 @@ const setupSocket = (server) => {
 
     // 4th : get channel by id , we need channel later... in 6th step.
     const channel = await Channel.findById(channelId).populate("members");
+
+    // 3rd and 4th steps can be combined ==>
+
+    // const channel = await Channel.findByIdAndUpdate(
+    //   channelId,
+    //   {
+    //     $push: { messages: createdMessage._id },
+    //   },
+    //   { new: true },
+    // ).populate("members");
 
     // 5th : prepare data
     const finalData = { ...messageData._doc, channelId: channel._id };
@@ -138,8 +154,7 @@ const setupSocket = (server) => {
     // lean() is not a method on a Mongoose document. It is a query method that must be called before the query executes.
     // Message.findById(id).lean() // "When MongoDB returns the result, give me a plain object instead of a Mongoose Document."
 
-
-    // 6th : 
+    // 6th :
     if (channel && channel.members) {
       // So your current code is basically manually broadcasting to channel members one by one.
       // It works, but Socket.IO rooms are the built-in feature for this use case.
@@ -163,7 +178,6 @@ const setupSocket = (server) => {
       // if Sender is both member and admin :
       // The sender can receive it twice: Once from channel.members.forEach and Once from adminSocketId
     }
-
   };
 
   // Before io.on() runs, Socket.IO does a handshake.
@@ -208,6 +222,9 @@ const setupSocket = (server) => {
 // ✅ io.on("connection",(socket)=>{}) → runs once when the user connects.
 // ✅ socket.on("sendMessage",sendMessage) → runs every time when that connected user sends a "sendMessage" event.
 
+// "sendMessage" = name/key
+//  sendMessage = cb function registered/attached to that event in memory.
+
 // If the user disconnects and later reconnects, then io.on("connection",(socket)=>{}) runs again because a new socket connection is created.
 
 export default setupSocket;
@@ -215,17 +232,18 @@ export default setupSocket;
 // const userMap = new Map();
 
 // Objects as keys → allowed in Map
-// String, Number, Boolean, BigInt, Symbol, Undefined, Null, Object, Array, Function
-// set(key, value) , has(key) , size
+// Also : String, Number, Boolean, BigInt, Symbol, Undefined, Null, Array, Function
+// userMap.set(key, value) , userMap.has(key) , userMap.size , userMap.delete(key);
 
 // userMap.set("name", "Ravi");
 // userMap.set("age", 22);
+
 // console.log(userMap) // Map(2) { 'name' => 'Ravi', 'age' => 22 }
 // console.log(userMap.get("name")); // Ravi
 // userMap.delete("name");
 
 // Map in JavaScript does not allow duplicate keys.
-// If you add the same key again, the old value gets replaced.
+// If you add the same key again, the old value gets replaced by new one.
 
 // Problems with plain objects : Keys are only strings
 
@@ -237,11 +255,11 @@ export default setupSocket;
 
 // io.on("connection", (socket) => {
 
-//   socket.emit("welcome",{data}) can also be used outside socket.on("message",(data)=>{})
+//   socket.emit("welcome",{data}) // it can also be used outside socket.on("message",(data)=>{})
 //   For example, send a welcome message immediately after a client connects :
 
 //    socket.emit("welcome", {
-//     text: "Welcome!"
+//     text: "Welcome"
 //    });
 
 //   socket.on("message", (data) => {
