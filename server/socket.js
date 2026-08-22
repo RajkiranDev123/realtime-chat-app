@@ -112,6 +112,7 @@ const setupSocket = (server) => {
       .exec();
 
     // better ==>
+    // createdMessage.populate() gets the User directly, while findById().populate() gets the Message again first, then the User.
     // await createdMessage.populate(
     //   "sender",
     //   "id email firstName lastName image color"
