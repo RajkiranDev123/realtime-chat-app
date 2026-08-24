@@ -5,7 +5,7 @@ import Channel from "./models/ChannelModel.js";
 const setupSocket = (server) => {
   // This code creates a Socket.IO/socket.io server and attaches it to your existing HTTP server.
 
-  // io is a socket server.
+  // io is a socket.io server , created when server runs.
   const io = new SocketIOServer(server, {
     cors: {
       origin: process.env.ORIGIN,
@@ -28,11 +28,14 @@ const setupSocket = (server) => {
   // map.set("1", "socket123") userId and socket.id
   // map.get("1")
   // map.has("1")
+  // map.delete("1")
 
   // disconnect ======================================>
 
   const disconnect = (socket) => {
     console.log(`Client Disconnected ${socket.id}`);
+
+    // let [a,b] = [1,2]
 
     for (const [userId, socketId] of userSocketMap.entries()) {
       if (socketId === socket.id) {
@@ -71,7 +74,7 @@ const setupSocket = (server) => {
     // save in db first ==>
     const createdMessage = await Message.create(message);
     // You can't chain populate() directly to create()
-    // but ==> await createdMessage.populate("sender") can be done...
+    // but ==> await createdMessage.populate("sender") can be done... on next line
 
     // get saved message from db ==>
     const messageData = await Message.findById(createdMessage._id)
@@ -146,7 +149,7 @@ const setupSocket = (server) => {
     // 5th : prepare data
     const finalData = { ...messageData._doc, channelId: channel._id };
 
-    //  _doc converts a Mongoose document into a normal JavaScript object so you can easily send or modify the data.
+    //  ._doc converts a Mongoose document into a normal JavaScript object so you can easily send or modify the data.
     //  ._doc is an internal Mongoose property and is generally not recommended for application code.
 
     // Query time → .lean()
@@ -157,6 +160,9 @@ const setupSocket = (server) => {
 
     // 6th :
     if (channel && channel.members) {
+
+      //  members: [{ type: mongoose.Schema.ObjectId, ref: "User", required: true }]
+      
       // So your current code is basically manually broadcasting to channel members one by one.
       // It works, but Socket.IO rooms are the built-in feature for this use case.
       // broadcast means sending the same message/data to multiple connected clients (users) at the same time.
@@ -181,7 +187,7 @@ const setupSocket = (server) => {
     }
   };
 
-  // Before io.on() runs, Socket.IO does a handshake.
+  // Before io.on() runs, Socket.IO server does a handshake.
 
   // io.emit() → Broadcast to all connected clients.
 
@@ -191,9 +197,10 @@ const setupSocket = (server) => {
 
   // pattern ==> .on : ("eventName",cb)   &  .emit : ("eventName",{data})
 
-  io.on("connection", (socket) => {
+  io.on("connection", (socket) => { // runs when client connects from browser and registers cbs and gives unique socket id.
+
     // socket : is an object that represents one user & has methods to communicate with them.
-    // it  has : id , Event methods ==> socket.on("event", handler) , socket.emit("event", data)
+    // it  has : id , Event methods ==> socket.on("eventName", handler) , socket.emit("eventName", data)
     // socket.handshake , Rooms system and Disconnect event
     const userId = socket.handshake.query.userId;
 
@@ -201,15 +208,15 @@ const setupSocket = (server) => {
       userSocketMap.set(userId, socket.id);
       console.log(`User connected : ${userId} with socket id : ${socket.id}`);
     } else {
-      console.log(`user id is not provided during connection.`);
+      console.log(`user id is not provided during client/user connection.`);
     }
 
-    console.log("userSocketMap after connect ==> ", userSocketMap);
+    console.log("userSocketMap after client/user connect ==> ", userSocketMap);
 
     // sendMessage :
     // Register the callback
     // Later... when Event arrives from the server
-    // Socket.IO automatically does : sendMessage(message);
+    // Socket.IO server automatically does : sendMessage(message);
     socket.on("sendMessage", sendMessage);
 
     // send channel message
@@ -220,8 +227,13 @@ const setupSocket = (server) => {
   });
 };
 
-// ✅ io.on("connection",(socket)=>{}) → runs once when the user connects.
-// ✅ socket.on("sendMessage",sendMessage) → runs every time when that connected user sends a "sendMessage" event.
+// ✅ io.on("connection",(socket) => {  → runs once when the user connects.
+//
+//     ✅ socket.on("sendMessage",sendMessage) → runs every time when that connected user sends a "sendMessage" event.
+//
+//   } 
+// ) 
+
 
 // "sendMessage" = name/key
 //  sendMessage = cb function registered/attached to that event in memory.
@@ -233,7 +245,7 @@ export default setupSocket;
 // const userMap = new Map();
 
 // Objects as keys → allowed in Map
-// Also : String, Number, Boolean, BigInt, Symbol, Undefined, Null, Array, Function
+// Also : String, Number, Boolean, BigInt, Symbol, Undefined, Null, Array, Function : 9
 // userMap.set(key, value) , userMap.has(key) , userMap.size , userMap.delete(key);
 
 // userMap.set("name", "Ravi");
@@ -250,7 +262,7 @@ export default setupSocket;
 
 // WeakMap : keys MUST be objects only but Map ==> any data type as keys
 
-//////////////////////////////// xxxxxxxxxxxxxxxxxxxx//////////////////////////////
+//////////////////////////////// xxxxxxxxxxxxxxxxxxxx //////////////////////////////
 
 // Send to the same client using ==> io.to(socket.id).emit("messageReceived",{data}) vs socket.emit("messageReceived",{data})
 
