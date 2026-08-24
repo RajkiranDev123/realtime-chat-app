@@ -162,7 +162,7 @@ const setupSocket = (server) => {
     if (channel && channel.members) {
 
       //  members: [{ type: mongoose.Schema.ObjectId, ref: "User", required: true }]
-      
+
       // So your current code is basically manually broadcasting to channel members one by one.
       // It works, but Socket.IO rooms are the built-in feature for this use case.
       // broadcast means sending the same message/data to multiple connected clients (users) at the same time.
@@ -175,6 +175,7 @@ const setupSocket = (server) => {
           // Even if it were, it only represents the sender, while io.to(socketId) can send to any connected user.
         }
       });
+      // end of forEach
 
       const adminSocketId = userSocketMap.get(channel.admin._id.toString());
 
