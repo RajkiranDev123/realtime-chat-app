@@ -5,10 +5,12 @@ import { createChatSlice, type ChatSlice } from "./slices/chat-slice";
 export type Store = AuthSlice & ChatSlice;
 // if another slice comes ==> type Store = AuthSlice & ChatSlice;
 // (...a) ==> This is shorthand for : (set, get, api)
-export const useAppStore = create<Store>()((...a) => ({
+export const useAppStore = create<Store>()(
+  (...a) => ({
   ...createAuthSlice(...a),
   ...createChatSlice(...a),
-}));
+})
+);
 
 // type outside (same thing) : Same meaning, just longer
 

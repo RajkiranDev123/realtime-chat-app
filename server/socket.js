@@ -189,7 +189,7 @@ const setupSocket = (server) => {
 
   // socket.emit("messageReceived",{data}) → Send only to the client (represented by that socket).
 
-  // pattern ==> .on : ("eventName",cb)   &  .emit : (eventName,{data})
+  // pattern ==> .on : ("eventName",cb)   &  .emit : ("eventName",{data})
 
   io.on("connection", (socket) => {
     // socket : is an object that represents one user & has methods to communicate with them.
