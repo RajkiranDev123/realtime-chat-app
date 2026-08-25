@@ -1,5 +1,5 @@
 import type { StateCreator } from "zustand";
-// StateCreator gives types to : set , state , your slice , Without it → everything becomes any
+// StateCreator gives types to : set , get , state , your slice , Without it → everything becomes any
 // StateCreator is a TypeScript type from Zustand.
 export type UserInfo = {
   email: string;
@@ -19,28 +19,38 @@ export type UserInfo = {
 //   age?: number;
 // };
 
-// Also Valid:
+// Also Valid :
 
 // const user1: User = {
 //   name: "RJ",
 // };
 
-// 👉 Slice = States and Functions for ONE feature
+// 👉 Slice = States and Functions for ==> ONE feature
 // slice type
 
 export type AuthSlice = {
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  // The parameter name in the type definition doesn't have to match the parameter name in the actual function ,  
+  // setLoading: (loa : boolean) => void;
+  // TypeScript only cares about the type, not the parameter name.
   userInfo: UserInfo | null;
   setUserInfo: (userInfo: UserInfo | null) => void; // When someone calls setUserInfo, they can pass either : a UserInfo object or null
 };
 
+
+// Zustand version, the slice creator complete type is provided before =
+
+// generic arrow function expression with implicit return
 // const identity = <T>(value: T): T => value;
 
-// Zustand version, the function's complete type is provided before =
+// Parentheses around the object are needed so {} is treated as the returned object, not a function body
+// const identity = <T>(value: T): T => ({name:"raj"});
+
 
 // Generic arrow function expression
 // const identity = <T>(value: T): T => {
+//   statements....
 //   return value;
 // };
 
@@ -54,6 +64,29 @@ export type AuthSlice = {
 //   return value;
 // };
 
+// typed arrow function
+// const greet = (name: string): string => {
+//   return `Hello ${name}`;
+// };
+
+// type User = {
+//   id: string;
+//   name: string;
+// };
+
+// const getUser = (id: string): User => ({
+//   id: id,
+//   name: "John"
+// });
+// const user = getUser("123");
+
+// StateCreator<AuthSlice> already describes things like : (set, get, store) => AuthSlice
+// so we don't need to write the parameter and return types manually.
+
+// below function is best called a typed arrow function, not a “generic arrow function.”
+// AuthSlice = Type/contract and createAuthSlice = implementation
+// In createAuthSlice, you provide the initial/default values and the actual functions.
+// AuthSlice only describes the type , it doesn't create any actual data
 export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   userInfo: null,
   loading: false,
@@ -64,6 +97,8 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
     set({
       userInfo,
     });
+    // At runtime, it can store a value that doesn't match UserInfo.
+    // if the stored runtime value doesn't actually have the expected UserInfo properties, accessing them with . can fail or give undefined
   },
   setLoading: (loading) => {
     set({ loading });
@@ -89,7 +124,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
 
 // ---------- Store (this is what you use) ----------
 
-// export type Store = AuthSlice
+// export type Store = Slice
 
 // export const useStore = create<Store>()((...a) => ({
 //   ...createSlice(...a),
