@@ -31,13 +31,12 @@ export type UserInfo = {
 export type AuthSlice = {
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  // The parameter name in the type definition doesn't have to match the parameter name in the actual function ,  
+  // The parameter name in the type definition doesn't have to match the parameter name in the actual function ,
   // setLoading: (loa : boolean) => void;
   // TypeScript only cares about the type, not the parameter name.
   userInfo: UserInfo | null;
   setUserInfo: (userInfo: UserInfo | null) => void; // When someone calls setUserInfo, they can pass either : a UserInfo object or null
 };
-
 
 // Zustand version, the slice creator complete type is provided before =
 
@@ -46,7 +45,6 @@ export type AuthSlice = {
 
 // Parentheses around the object are needed so {} is treated as the returned object, not a function body
 // const identity = <T>(value: T): T => ({name:"raj"});
-
 
 // Generic arrow function expression
 // const identity = <T>(value: T): T => {
@@ -103,6 +101,9 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   setLoading: (loading) => {
     set({ loading });
   },
+  // setLoading: (loa) => {
+  //   set({ loading : loa });
+  // },
 });
 
 // import type { StateCreator } from "zustand";
