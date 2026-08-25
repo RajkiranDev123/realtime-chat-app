@@ -38,7 +38,7 @@ type Message = {
   channelId?: string;
 
   sender: UserRef;
-  recipient: UserRef;
+  recipient?: UserRef;
 
   createdAt: string;
 };
@@ -53,8 +53,8 @@ type Message = {
 //   image?: string | null;
 // };
 
-const isUser = (val: User | string): val is User => {
-  return typeof val !== "string";
+const isUser = (val: User | string | undefined): val is User => {
+  return typeof val !== "string" && val !== undefined;
 };
 
 export type ChatSlice = {
@@ -148,7 +148,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
               ? message.recipient
               : typeof message.recipient === "string"
                 ? message.recipient
-                : message.recipient._id,
+                : message.recipient?._id,
 
           sender:
             selectedChatType === "channel"

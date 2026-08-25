@@ -29,7 +29,7 @@ type IncomingMessage = {
     color?: number;
   };
 
-  recipient: {
+  recipient?: {
     _id: string;
     firstName?: string;
     lastName?: string;
@@ -37,6 +37,9 @@ type IncomingMessage = {
     image?: string;
     color?: number;
   };
+  // recipient may be an object, or it may be undefined
+  // selectedChatData._id === message.recipient._id may cause a type error
+  // selectedChatData._id === message.recipient?._id ==> use optional chaining.
 };
 
 type SocketContextType = Socket | null;
@@ -91,7 +94,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
           selectedChatType !== undefined &&
           selectedChatData &&
           (selectedChatData._id === message.sender._id ||
-            selectedChatData._id === message.recipient._id)
+            selectedChatData._id === message.recipient?._id)
         ) {
           addMessage(message);
         }
