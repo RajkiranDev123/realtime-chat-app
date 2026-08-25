@@ -95,5 +95,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
 //   ...createSlice(...a),
 // }));
 
+// using ==>
+
 // const value = useStore((s) => s.value);
 // or const {value} = useStore()
