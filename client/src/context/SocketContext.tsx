@@ -7,6 +7,7 @@ import type { Socket } from "socket.io-client";
 
 // io is a function used to create a socket connection.
 // Socket is a TypeScript type.
+// The hyphen separates socket.io and client
 
 import { useAppStore } from "@/store";
 import { HOST } from "@/utils/constants";
