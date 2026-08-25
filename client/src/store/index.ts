@@ -16,7 +16,7 @@ export const useAppStore = create<Store>()(
 
 // import { sayHi } from "./types";
 // import type { User } from "./types";
-// vs
+// vs at once ==>
 // import { sayHi, type User } from "./types"; (shorter)
 
 // types.ts ===================================>
