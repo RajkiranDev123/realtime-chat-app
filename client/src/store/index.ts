@@ -1,9 +1,9 @@
-import { create } from "zustand";
+import { create } from "zustand"; // create , type { StateCreator } ==> zustand
 import { createAuthSlice, type AuthSlice } from "./slices/auth-slice";
 import { createChatSlice, type ChatSlice } from "./slices/chat-slice";
 
 export type Store = AuthSlice & ChatSlice;
-// if another slice comes ==> type Store = AuthSlice & ChatSlice;
+// if another slice comes ==> export type Store = AuthSlice & ChatSlice;
 // (...a) ==> This is shorthand for : (set, get, api)
 export const useAppStore = create<Store>()(
   (...a) => ({
@@ -12,7 +12,7 @@ export const useAppStore = create<Store>()(
 })
 );
 
-// type outside (same thing) : Same meaning, just longer
+// import type outside (same thing) : Same meaning, just longer
 
 // import { sayHi } from "./types";
 // import type { User } from "./types";
@@ -41,3 +41,7 @@ export const useAppStore = create<Store>()(
 
 // const add = (a) => (b) => a + b;
 // add(5)(10); // 15
+
+// In Currying , the function which takes multiple arguments is transformed into a sequence of functions, each taking one argument.
+// and the final result is not produced until all required arguments supplied.
+// often uses closures to remember previously supplied arguments.
