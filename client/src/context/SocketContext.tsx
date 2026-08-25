@@ -14,7 +14,7 @@ import { HOST } from "@/utils/constants";
 
 type IncomingMessage = {
   _id: string;
-  content: string;
+  content?: string;
   messageType: string;
   fileUrl?: string;
   channelId?: string;
@@ -37,12 +37,14 @@ type IncomingMessage = {
     image?: string;
     color?: number;
   };
-  // recipient may be an object, or it may be undefined
+  // recipient may be an object, or it may be undefined because of ?
   // selectedChatData._id === message.recipient._id may cause a type error
   // selectedChatData._id === message.recipient?._id ==> use optional chaining.
 };
 
 type SocketContextType = Socket | null;
+// This creates a TypeScript type for your Context value.
+// <SocketContext.Provider value={socket.current}>
 
 const SocketContext = createContext<SocketContextType>(null);
 
@@ -70,6 +72,13 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
           userId: userInfo.id,
         },
       });
+
+      // in server : 
+      // const userId = socket.handshake.query.userId;
+      // if (userId) {
+      //   userSocketMap.set(userId, socket.id);
+      // }
+      // key(userId) is given from client side and server gives value as socket.id
 
       socket.current.on("connect", () => {
         console.log("Connected to socket server.");

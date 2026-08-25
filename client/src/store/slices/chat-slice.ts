@@ -31,7 +31,7 @@ type UserRef = User | string;
 
 type Message = {
   _id: string;
-  content: string;
+  content?: string;
   messageType: string;
 
   fileUrl?: string;
