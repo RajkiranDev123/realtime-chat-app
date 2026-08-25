@@ -11,6 +11,7 @@ import { useAppStore } from "./store";
 import { useEffect, useState } from "react";
 import { apiClient } from "./lib/api-client";
 import { GET_USER_INFO } from "./utils/constants";
+import { Loader2 } from "lucide-react";
 
 // Logged in ✅ → “you can enter chat/profile”
 // Not logged in ❌ → “go to login page first”
@@ -74,7 +75,7 @@ function App() {
   }, [userInfo, setUserInfo]);
 
   if (loading) {
-    return <div className="text-center">Loading...</div>;
+    return <div className="text-center flex justify-center gap-2 items-center w-screen h-screen "> <Loader2 className="animate-spin"/> Loading...</div>;
   }
 
   // Logged in ❌ → “You don’t need login page” → go to chat
