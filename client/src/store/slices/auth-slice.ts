@@ -46,18 +46,18 @@ export type AuthSlice = {
 // Parentheses around the object are needed so {} is treated as the returned object, not a function body
 // const identity = <T>(value: T): T => ({name:"raj"});
 
-// Generic arrow function expression
+// Generic arrow function expression with explicit return
 // const identity = <T>(value: T): T => {
 //   statements....
 //   return value;
 // };
 
-// Generic function declaration
+// Generic function declaration , no = and no =>
 // function identity<T>(value: T): T {
 //   return value;
 // }
 
-// Generic function expression
+// Generic function expression , only = 
 // const identity = function <T>(value: T): T {
 //   return value;
 // };
@@ -72,6 +72,7 @@ export type AuthSlice = {
 //   name: string;
 // };
 
+// typed arrow function with implicit return
 // const getUser = (id: string): User => ({
 //   id: id,
 //   name: "John"
