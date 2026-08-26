@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Background from "../../assets/login2.png";
-import Victory from "../../assets/victory.svg";
+import Victory from "../../assets/victory.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -69,6 +69,8 @@ const Auth = () => {
 
         if (res.data.success) {
           setUserInfo(res.data.user);
+          // in App.tsx
+          // Effect runs again but not getUserData() because if(!userInfo) ==> if(!true) ==> if(false) { getUserData() }
           if (res.data.user.profileSetup) {
             navigate("/chat");
           } else {
@@ -77,9 +79,13 @@ const Auth = () => {
         }
       } catch (error: unknown) {
         // “Turn off TypeScript completely for this value.” ==> any
-        console.log("error from handleLogin ==> ", error);
+        console.log("catch block from handleLogin ==> ", error);
+        // The browser console / DevTools displays the Error object's name and message as its
+        // summary instead of showing all its properties immediately.
 
         if (axios.isAxiosError(error)) {
+          console.log(" error res from login api after axios.isAxiosError(error)  ==> ", error.response?.data);
+          
           toast.error(error.response?.data?.message || "Something went wrong", {
             duration: 1000,
           });
@@ -130,26 +136,28 @@ const Auth = () => {
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
       {/* width >= xs : 480 , sm : 640 , md : 768 , lg : 1024 , xl : 1280 , 2xl : 1536 */}
       {/* border == border-1 , border-black/80 */}
+
       <div
         className="h-[80vh] w-[80vw] md:w-[90vw] lg:w-[70vw] xl:w-[60vw] bg-white shadow-2xl 
          rounded-2xl grid xl:grid-cols-2"
       >
+
         {/* grid-item-1 starts : left side (logo , tabs , inputs and buttons )*/}
         <div className="flex flex-col gap-10 items-center justify-center">
 
           {/* col-1 ==> welcome + logo and fill */}
-          <div className="flex flex-col items-center justify-center p-1">
+          <div className="flex flex-col gap-2 items-center justify-center p-1 ">
 
-            <div className="flex items-center justify-center ">
+            <div className="flex items-center justify-center gap-2">
 
               <h1 className="text-4xl font-bold md:text-5xl text-black/70">
-                Welcome
+                Sync
               </h1>
 
               <img
                 src={Victory}
                 alt="victory"
-                className="h-[70px] animate-bounce"
+                className="h-[40px] w-[40px] animate-bounce"
               />
 
             </div>
@@ -163,8 +171,8 @@ const Auth = () => {
 
           {/* col-2 starts ==> tabs */}
      
-          <div className="flex flex-col justify-center items-center w-full">
-            {/* if width full not given : it will take content width and width 3/4 is 75% */}
+          <div className="w-full flex  justify-center ">
+            {/* width 3/4 is 75% */}
             {/* flex-col + items-center in parent → child will not take full width : items-center is horizontal in flex flex-col*/}
             {/* it will take acc to content width if w-full not used. */}
 
@@ -178,8 +186,8 @@ const Auth = () => {
                 {/* TabsTrigger 1 */}
                 <TabsTrigger
                   className="
-                data-[state=active]:bg-transparent text-black/90 border-b
-                rounded-3xl w-full data-[state=active]:text-black data-[state=active]:font-semibold
+                data-[state=active]:bg-transparent text-black/90 
+                rounded-3xl w-full data-[state=active]:text-black data-[state=active]:font-bold
                 data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
                   value="login"
                 >
@@ -190,8 +198,8 @@ const Auth = () => {
                 {/* TabsTrigger 2 */}
                 <TabsTrigger
                   className="
-                data-[state=active]:bg-transparent text-black/90 border-b  
-                rounded-3xl w-full data-[state=active]:text-black data-[state=active]:font-semibold
+                data-[state=active]:bg-transparent text-black/90 
+                rounded-3xl w-full data-[state=active]:text-black data-[state=active]:font-bold
                 data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
                   value="signup"
                 >
@@ -227,7 +235,7 @@ const Auth = () => {
                   placeholder="Email"
                   type="email"
                   className="rounded-md p-6  focus-visible:ring-0"
-                  // ring = fake border drawn outside the element using shadow
+                  // ring = fake border drawn outside the border using shadow
                   // focus: == focus-visible: , some focus-visible works on mouse click too!
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -322,12 +330,15 @@ const Auth = () => {
 
         {/*grid-item-2 starts */}
         <div className="hidden xl:block">
+          {/* hidden → display: none → does NOT occupy space ❌ */}
+          {/* block still means display: block, but the parent grid controls where the item is placed. */}
+          {/* also <div className="hidden xl:inline"> can be done */}
           <img
             src={Background}
             alt="background"
             className="h-[80vh] rounded-sm object-cover"
             // Image: 400 × 200 , Container:  300 × 200 , Height already matches: 200 , left and right get cropped , 50px from each side is cropped.
-            // show the entire image inside the box without cropping , The image is not cropped or stretched , The remaining space is simply unused = "object-contain"
+            // The image is not cropped or stretched , The remaining space is simply unused = "object-contain"
           />
         </div>
         {/* grid-item-2 ends */}
