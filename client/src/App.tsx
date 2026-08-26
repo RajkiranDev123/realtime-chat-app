@@ -74,6 +74,8 @@ function App() {
       setLoading(false);
     }
   }, [userInfo, setUserInfo]);
+  // setUserInfo → Zustand action/function → normally has a stable reference, so it doesn't change on every render.
+  // Stable reference = same reference/address between renders.
 
   if (loading) {
     return <div className="flex justify-center gap-2 items-center w-screen h-screen "> <Loader2 className="animate-spin"/> Loading ...</div>;
