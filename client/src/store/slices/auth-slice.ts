@@ -97,7 +97,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
       userInfo,
     });
     // At runtime, it can store a value that doesn't match UserInfo.
-    // if the stored runtime value doesn't actually have the expected UserInfo properties, accessing them with . can fail or give undefined
+    // if the stored runtime value doesn't actually have the expected UserInfo properties, accessing them with . can fail or give undefined or no suggestion
   },
   setLoading: (loading) => {
     set({ loading });
@@ -121,7 +121,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
 
 // const createSlice: StateCreator<Slice> = (set) => ({
 //   value: "",
-//   setValue: (v) => set({ value: v }),
+//   setValue: (v) => set({ value: v }), or  setValue: (value) => set({ value }),
 // });
 
 // ---------- Store (this is what you use) ----------
