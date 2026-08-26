@@ -47,6 +47,8 @@ userSchema.pre("save", async function () {
   // Node.js level : Not blocking (good) , event loop can handle other requests
   // Mongoose flow level : Still sequential , save waits for pre hook to finish before writing to the database.
   if (!this.isModified("password")) return;
+  // Signup: ❌ doesn't need DB comparison , There is no existing user document loaded into this Mongoose document.
+  // Existing document: ✅ Mongoose has the DB-loaded value and tracks changes to it.
 
   const salt = await genSalt(10);
   this.password = await hash(this.password, salt);
