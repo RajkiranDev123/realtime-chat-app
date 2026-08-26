@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppStore } from "@/store"; // @ = alias for src/ (usually)
+import { useAppStore } from "@/store"; // @ = alias for src (usually)
 import { useNavigate } from "react-router-dom"; // BrowserRouter, Navigate, Route, Routes , useNavigate
 import { IoArrowBack } from "react-icons/io5";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -69,6 +69,7 @@ const Profile = () => {
   const saveChanges = async () => {
     if (validateProfile()) {
       try {
+        // route , {payload} , {credentials}
         const response = await apiClient.post(
           UPDATE_PROFILE_ROUTE,
           { firstName, lastName, color: selectedColor },
@@ -124,7 +125,7 @@ const Profile = () => {
   ) => {
     const file = event.target.files?.[0]; // FileList object
     // FileList { 0: File, 1: File, length: 2 }
-    // Why "array-like"? You can access items by index : files[0]
+    // Why "array-like" ? You can access items by index : files[0]
     // But it's not a true JavaScript array : no map , filter etc
 
     if (file) {
@@ -171,6 +172,9 @@ const Profile = () => {
       {/* w-max : only as wide as content needs and later parent and w-full : 100% of parent container */}
 
       <div className="flex flex-col gap-4 w-[80vw] md:w-max   p-2 rounded-md shadow-sm shadow-amber-100">
+        {/* w-[80vw] → width is 80% of the screen width */}
+        {/* md:w-max → at md and larger, width becomes as wide as the content needs */}
+
         {/* background-color is not inherited by default */}
         {/* If you don’t set a background on a child, it’s just transparent,
          so you see the parent’s background behind it */}
@@ -191,7 +195,7 @@ const Profile = () => {
           {/* avatar starts : grid-item-1 */}
 
           <div
-            className="w-32 md:w-48 relative border-2  flex items-center justify-center justify-self-center md:justify-self-auto "
+            className="w-32 md:w-48 relative border-none   flex items-center justify-center justify-self-center md:justify-self-auto "
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
@@ -201,7 +205,7 @@ const Profile = () => {
                 <AvatarImage
                   src={image}
                   alt="profile"
-                  className="object-cover w-full h-full"
+                  className="object-cover"
                 />
               ) : (
                 <div
@@ -222,11 +226,10 @@ const Profile = () => {
               <div
                 onClick={image ? handleDeleteImage : handleFileInputclick}
                 className="absolute inset-0 flex items-center justify-center 
-              bg-black/60  rounded-full 
+              bg-black/60  rounded-full
               "
               >
-                {/*ring : tailwind applies a very tight box-shadow around the element. */}
-                {/* Border pushes inward/outward and Ring floats outside */}
+           
                 {image ? (
                   <FaTrash className="text-white text-3xl cursor-pointer" />
                 ) : (
@@ -247,7 +250,7 @@ const Profile = () => {
             {/* input ends */}
           </div>
 
-          {/* avatar ends */}
+          {/* avatar ends : grid-item-1 */}
 
           {/* --------------------------------------------------------- */}
 
@@ -269,6 +272,7 @@ const Profile = () => {
                 value={userInfo?.email}
                 className="rounded-lg p-6 bg-[#2c2e3b] border-none"
               />
+
             </div>
             {/* email ends*/}
 
@@ -315,6 +319,7 @@ const Profile = () => {
                   {/* Border = real line (inside) , Outline = extra line (outside)
                   Border → part of the box , Outline → not part of box , glow around the box , no space consumed
                   Padding ✅ adds space , Border ✅ adds space , Margin ✅ adds gap */}
+                  {/* outline is native css and ring is from tailwind with more styling and both are outside border */}
                 </div>
               ))}
             </div>
@@ -323,13 +328,14 @@ const Profile = () => {
           </div>
 
           {/* input fields ends*/}
+
         </div>
 
         {/* avatar and inputs ends : grid*/}
 
         {/* col-3 : save button  */}
 
-        <div>
+        <div className="">
           <Button
             onClick={() => saveChanges()}
             className="h-10 w-full bg-purple-700 hover:bg-purple-800 transition duration-300"
@@ -343,6 +349,7 @@ const Profile = () => {
         </div>
 
         {/* save button ends */}
+
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export const colors = [
 ];
 
 export const getColor = (color: number) => {
+  // colors.length = 4 , 0 < 4
   if (color >= 0 && color < colors.length) {
     return colors[color];
   }

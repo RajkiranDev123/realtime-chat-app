@@ -68,7 +68,7 @@ function App() {
     };
     // getUserData ends
 
-    if (!userInfo) {
+    if (!userInfo) { // call api only when userInfo is null 
       getUserData();
     } else {
       setLoading(false);
