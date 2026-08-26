@@ -156,8 +156,8 @@ export const getUserInfo = async (req, res) => {
   // req.userId = decoded.userId; // in middleware
   try {
     const userData = await User.findById(req.userId);
-    // Used once → req.userId directly ✅
-    // Used many times → store in const userId ✅
+    // Used once → req.userId directly 
+    // Used many times → store in const userId = req.userId
     if (!userData) {
       return res.status(400).json({
         success: false,

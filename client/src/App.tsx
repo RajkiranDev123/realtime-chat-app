@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 // components
 import Auth from "./pages/auth"; //  "./pages/auth" is treated as  "./pages/auth/index.tsx"
-// If you import a folder, it automatically looks for an index file inside it (Bundler : webpack)
+// If you import a folder, it automatically looks for an index file inside it , done by (Bundler : webpack)
 import Chat from "./pages/chat";
 import Profile from "./pages/profile";
 // components ends
@@ -22,7 +22,8 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   return isAuthenticated ? children : <Navigate to={"/auth"} />;
 };
 
-// AuthRoute = block login page for logged-in users , if logged in go to chat otherwise children.
+// Protected route = route that checks authentication before showing the page.
+// AuthRoute = block login page for logged-in users , if logged in go to chat otherwise children (/auth).
 // Auth
 const AuthRoute = ({ children }: { children: React.ReactNode }) => {
   const { userInfo } = useAppStore();
@@ -51,7 +52,7 @@ function App() {
           withCredentials: true,
         });
         console.log("res from App.ts x==> ", res);
-        // res == {config , data , headers , request , status , statusText}
+        // res == {config , data , headers , request , status , statusText} 
         if (res.status === 200 && res.data.user.id) {
           // To truly validate backend data, you need runtime validation libraries like : zod , yup , joi
           console.log("firstName from app.tsx ==> ", res.data.user.firstName); // undefined
@@ -85,7 +86,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* route 1 */}
+          {/* route 1 : auth */}
           <Route
             path="/auth"
             element={
