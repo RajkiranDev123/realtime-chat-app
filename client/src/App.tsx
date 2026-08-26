@@ -75,7 +75,7 @@ function App() {
   }, [userInfo, setUserInfo]);
 
   if (loading) {
-    return <div className="text-center flex justify-center gap-2 items-center w-screen h-screen "> <Loader2 className="animate-spin"/> Loading...</div>;
+    return <div className="flex justify-center gap-2 items-center w-screen h-screen "> <Loader2 className="animate-spin"/> Loading ...</div>;
   }
 
   // Logged in ❌ → “You don’t need login page” → go to chat
