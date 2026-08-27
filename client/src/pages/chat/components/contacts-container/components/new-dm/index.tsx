@@ -24,12 +24,10 @@ import { FaPlus } from "react-icons/fa";
 import Lottie from "react-lottie";
 import type { Contact } from "@/store/slices/chat-slice";
 
-
-
 const NewDm = () => {
   const { setSelectedChatType, setSelectedChatData } = useAppStore();
   const [openNewContactModal, setOpenNewContactModal] = useState(false);
-   // if you put this in store , it may impact other models on other pages , keep it private to component.
+  // if you put this in store , it may impact other models on other pages , keep it private to component.
   const [searchedContacts, setSearchedContacts] = useState<Contact[]>([]);
 
   const searchContacts = async (searchTerm: string) => {
@@ -102,10 +100,9 @@ const NewDm = () => {
       {/* tooltip */}
 
       {/* dialog */}
+      
       <Dialog open={openNewContactModal} onOpenChange={setOpenNewContactModal}>
-
         <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
-
           <DialogHeader>
             <DialogTitle>Please select a contact</DialogTitle>
             {/* <DialogDescription></DialogDescription> */}

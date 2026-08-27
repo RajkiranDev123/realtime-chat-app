@@ -43,27 +43,16 @@ type Message = {
   createdAt: string;
 };
 
-// type ChatData = {
-//   email: string;
-//   profileSetup?: boolean;
-//   _id: string;
-//   firstName?: string;
-//   lastName?: string;
-//   color?: number;
-//   image?: string | null;
-// };
-
 const isUser = (val: User | string | undefined): val is User => {
   return typeof val !== "string" && val !== undefined;
 };
 
 export type ChatSlice = {
-  //
+  
   isUploading: boolean;
   isDownloading: boolean;
   fileUploadProgress: number;
   fileDownloadProgress: number;
-
   setIsUploading: (isUploading: boolean) => void;
   setIsDownloading: (isDownloading: boolean) => void;
   setFileUploadProgress: (fileUploadProgress: number) => void;
@@ -75,6 +64,7 @@ export type ChatSlice = {
     selectedChatType: "contact" | "channel" | undefined,
   ) => void;
 
+  //
   selectedChatData: Contact | Channel | undefined;
   setSelectedChatData: (
     selectedChatData: Contact | Channel | undefined,
@@ -83,24 +73,23 @@ export type ChatSlice = {
   //
   selectedChatMessages: Message[];
   setSelectedChatMessages: (selectedChatMessages: Message[]) => void;
-  //
+  
 
   //
   directMessagesContacts: Contact[];
   setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
   addContactsInDMContacts: (message: Message) => void;
   addMessage: (message: Message) => void;
-  //
+  
 
   //
   channels: Channel[];
   addChannel: (channel: Channel) => void;
   setChannels: (channels: Channel[]) => void;
   addChannelInChannelList: (message: Message) => void;
+  
   //
-
   closeChat: () => void;
-
 
 };
 
@@ -123,6 +112,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
   selectedChatType: undefined,
   setSelectedChatType: (selectedChatType) => set({ selectedChatType }),
 
+  //
   selectedChatData: undefined,
   setSelectedChatData: (selectedChatData) => set({ selectedChatData }),
 
@@ -160,7 +150,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
       ],
     });
   },
-  //
+  
 
   //
   directMessagesContacts: [],

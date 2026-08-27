@@ -18,9 +18,7 @@ const ContactsContainer = () => {
     setChannels,
   } = useAppStore();
 
-
   useEffect(() => {
-    
     const getContacts = async () => {
       const res = await apiClient.get(GET_DM_CONTACTS_ROUTE, {
         withCredentials: true,
@@ -40,9 +38,7 @@ const ContactsContainer = () => {
       }
     };
     getChannels();
-
   }, [setChannels, setDirectMessagesContacts]);
-
 
   return (
     // xs sm  md lg xl 2xl ......... 7xl
@@ -55,48 +51,39 @@ const ContactsContainer = () => {
       </div>
       {/* logo ends */}
 
-
       {/* direct messages */}
       <div className="my-5">
- 
-       {/* Direct Messages and + */}
+        {/* Direct Messages and + */}
         <div className="flex items-center justify-between pr-10 border-b p-2">
           <Title text="Direct Messages" />
           <NewDm />
         </div>
-       {/* Direct Messages and +  */}
+        {/* Direct Messages and +  */}
 
         {/* contact list */}
         <div className="max-h-[38vh] overflow-y-auto scrollbar-hidden">
           <ContactList contacts={directMessagesContacts} />
         </div>
         {/* contact list  */}
-
       </div>
       {/* direct messages */}
 
-  
-
       {/* channels */}
       <div className="my-5">
-
         <div className="flex items-center justify-between pr-10 border-b p-2">
           <Title text="Channels" />
           <CreateChannel />
         </div>
-    
 
         <div className="max-h-[38vh] overflow-y-auto scrollbar-hidden">
           <ContactList contacts={channels} isChannel={true} />
         </div>
- 
       </div>
       {/* channels ends*/}
 
       {/* profile info */}
       <ProfileInfo />
       {/* profile info  */}
-
     </div>
   );
 };
