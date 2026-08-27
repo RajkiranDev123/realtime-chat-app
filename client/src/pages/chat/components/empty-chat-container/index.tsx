@@ -14,6 +14,9 @@ const EmptyChatContainer = () => {
 
     <div className="flex-1 md:bg-[#1c1d25] md:flex flex-col justify-center items-center hidden duration-1000 transition-all">
 
+      {/* The <div> doesn't exist in the layout ==> hidden
+          flex-1, flex-col, justify-center, etc. have no visible effect. */}
+
       <Lottie
         isClickToPauseDisabled={false}
         height={200}

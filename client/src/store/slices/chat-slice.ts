@@ -78,14 +78,18 @@ export type ChatSlice = {
   //
   directMessagesContacts: Contact[];
   setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
-  addContactsInDMContacts: (message: Message) => void;
-  addMessage: (message: Message) => void;
+
+  // update ==>
+  addContactsInDMContacts: (message: Message) => void; // removes existing contact and adds it at front
+  addMessage: (message: Message) => void; // updates the existing messages array
   
 
   //
   channels: Channel[];
   addChannel: (channel: Channel) => void;
   setChannels: (channels: Channel[]) => void;
+
+  // directly modifies the existing array
   addChannelInChannelList: (message: Message) => void;
   
   //
@@ -157,6 +161,8 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
 
   setDirectMessagesContacts: (directMessagesContacts) =>
     set({ directMessagesContacts }),
+
+  //
 
   addContactsInDMContacts: (message: Message) => {
     const userId = get().userInfo?.id;

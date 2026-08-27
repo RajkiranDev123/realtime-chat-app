@@ -100,7 +100,7 @@ const NewDm = () => {
       {/* tooltip */}
 
       {/* dialog */}
-      
+
       <Dialog open={openNewContactModal} onOpenChange={setOpenNewContactModal}>
         <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
           <DialogHeader>

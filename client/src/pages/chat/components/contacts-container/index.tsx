@@ -9,6 +9,7 @@ import {
 } from "@/utils/constants";
 import ContactList from "@/components/ContactList";
 import CreateChannel from "./components/create-channel";
+import { Loader2 } from "lucide-react";
 
 const ContactsContainer = () => {
   const {
@@ -40,6 +41,12 @@ const ContactsContainer = () => {
     getChannels();
   }, [setChannels, setDirectMessagesContacts]);
 
+// Component is mounted to the DOM
+// useEffect runs → 1 time
+// setDirectMessagesContacts(...) and setChannels(...) update Zustand
+// Component may re-render
+// But the effect doesn't run again, assuming those setter references remain stable.
+
   return (
     // xs sm  md lg xl 2xl ......... 7xl
     <div className="relative rounded-sm md:w-[35vw] lg:w-[30vw] xl:w-[20vw] bg-[#1b1c24] border-r-2 border-[#2f303b] w-full">
@@ -52,6 +59,7 @@ const ContactsContainer = () => {
       {/* logo ends */}
 
       {/* direct messages */}
+
       <div className="my-5">
         {/* Direct Messages and + */}
         <div className="flex items-center justify-between pr-10 border-b p-2">
@@ -62,10 +70,12 @@ const ContactsContainer = () => {
 
         {/* contact list */}
         <div className="max-h-[38vh] overflow-y-auto scrollbar-hidden">
-          <ContactList contacts={directMessagesContacts} />
+        {directMessagesContacts?.length > 0 ? <ContactList contacts={directMessagesContacts} /> : <Loader2 className="animate-spin mx-auto  m-2"/>} 
         </div>
         {/* contact list  */}
+
       </div>
+
       {/* direct messages */}
 
       {/* channels */}
