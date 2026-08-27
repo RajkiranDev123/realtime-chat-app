@@ -17,6 +17,8 @@ const EmptyChatContainer = () => {
       {/* The <div> doesn't exist in the layout ==> hidden
           flex-1, flex-col, justify-center, etc. have no visible effect. */}
 
+      {/* flex-col works only when the element itself has display: flex. */}
+
       <Lottie
         isClickToPauseDisabled={false}
         height={200}
