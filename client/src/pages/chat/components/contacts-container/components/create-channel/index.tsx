@@ -40,14 +40,14 @@ const CreateChannel = () => {
   const [channelName, setChannelName] = useState("");
 
   useEffect(() => {
-    const getData = async () => {
+    const getAllContacts = async () => {
       const res = await apiClient.get(GET_ALL_CONTACTS_ROUTE, {
         withCredentials: true,
       });
       setAllContacts(res.data.contacts);
     };
 
-    getData();
+    getAllContacts();
   }, []);
 
   const createChannel = async () => {

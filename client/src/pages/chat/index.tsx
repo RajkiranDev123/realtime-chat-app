@@ -25,7 +25,8 @@ const Chat = () => {
   useEffect(() => {
     // If you access a property of null or undefined, JavaScript throws a TypeError.
     // TypeError: Cannot read properties of null (reading 'name')
-    if (userInfo && !userInfo.profileSetup) { // or if(userInfo?.profileSetup)
+    if (userInfo && !userInfo.profileSetup) {
+      // or if(userInfo?.profileSetup)
       toast("Please setup your profile first to continue.");
       navigate("/profile");
     }
@@ -36,7 +37,6 @@ const Chat = () => {
 
   return (
     <div className="flex h-[100vh] text-white overflow-hidden gap-0.5 bg-gray-500 p-1">
-
       {isUploading && (
         <div
           className="

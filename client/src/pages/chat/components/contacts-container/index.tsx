@@ -15,6 +15,7 @@ const ContactsContainer = () => {
   const {
     directMessagesContacts,
     setDirectMessagesContacts,
+    //
     channels,
     setChannels,
   } = useAppStore();
@@ -41,6 +42,7 @@ const ContactsContainer = () => {
     getChannels();
   }, [setChannels, setDirectMessagesContacts]);
 
+
 // Component is mounted to the DOM
 // useEffect runs → 1 time
 // setDirectMessagesContacts(...) and setChannels(...) update Zustand
@@ -61,12 +63,12 @@ const ContactsContainer = () => {
       {/* direct messages */}
 
       <div className="my-5">
-        {/* Direct Messages and + */}
-        <div className="flex items-center justify-between pr-10 border-b p-2">
+        {/* Direct Messages text and + */}
+        <div className="flex items-center justify-between pr-10 border-b border-y-purple-800 p-2">
           <Title text="Direct Messages" />
           <NewDm />
         </div>
-        {/* Direct Messages and +  */}
+        {/* Direct Messages text and +  */}
 
         {/* contact list */}
         <div className="max-h-[38vh] overflow-y-auto scrollbar-hidden">
@@ -80,7 +82,7 @@ const ContactsContainer = () => {
 
       {/* channels */}
       <div className="my-5">
-        <div className="flex items-center justify-between pr-10 border-b p-2">
+        <div className="flex items-center justify-between pr-10 border-b border-y-purple-800 p-2">
           <Title text="Channels" />
           <CreateChannel />
         </div>
@@ -94,6 +96,7 @@ const ContactsContainer = () => {
       {/* profile info */}
       <ProfileInfo />
       {/* profile info  */}
+      
     </div>
   );
 };
@@ -103,6 +106,7 @@ export default ContactsContainer;
 const Logo = () => {
   return (
     <div className="flex p-5 justify-start items-center gap-2">
+
       <svg
         id="logo-38"
         width={78}
@@ -127,8 +131,11 @@ const Logo = () => {
           className="ccompli2"
           fill="#a16ee8"
         ></path>
+
       </svg>
+
       <span className="text-3xl font-semibold">Sync</span>
+
     </div>
   );
 };
@@ -140,8 +147,8 @@ interface TitleProps {
 const Title = ({ text }: TitleProps) => {
   return (
     <h6
-      className="uppercase tracking-widest text-neutral-400 pl-10 font-light text-opacity-90
-      text-sm "
+      className="uppercase tracking-widest text-neutral-300 pl-10 font-light text-opacity-95
+      text-xs"
     >
       {text}
     </h6>
