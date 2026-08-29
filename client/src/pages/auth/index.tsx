@@ -104,7 +104,7 @@ const Auth = () => {
       try {
         setLoading(true);
 
-        const res = await apiClient.post(SIGNUP_ROUTE, { email, password });
+        const res = await apiClient.post(SIGNUP_ROUTE, { email, password },{ withCredentials: true });
 
         if (res.data.success) {
           setUserInfo(res.data.user);

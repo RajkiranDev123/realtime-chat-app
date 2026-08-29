@@ -80,8 +80,11 @@ const NewDm = () => {
     <>
       {/* tooltip */}
       <TooltipProvider>
+
         <Tooltip>
+
           <TooltipTrigger>
+
             <FaPlus
               onClick={() => {
                 setOpenNewContactModal(true);
@@ -90,19 +93,25 @@ const NewDm = () => {
               className="text-neutral-400/90 text-xl font-light text-start hover:text-neutral-100
           cursor-pointer transition-all duration-300"
             />
+
           </TooltipTrigger>
 
           <TooltipContent className="bg-black border-none text-white p-2">
             Select New Contact
           </TooltipContent>
+
         </Tooltip>
+
       </TooltipProvider>
-      {/* tooltip */}
+
+      {/* tooltip ends*/}
 
       {/* dialog */}
 
       <Dialog open={openNewContactModal} onOpenChange={setOpenNewContactModal}>
+
         <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
+
           <DialogHeader>
             <DialogTitle>Please select a contact</DialogTitle>
             {/* <DialogDescription></DialogDescription> */}
@@ -196,10 +205,11 @@ const NewDm = () => {
             </div>
           )}
           {/* when empty */}
+          
         </DialogContent>
       </Dialog>
 
-      {/* dialog */}
+      {/* dialog ends*/}
     </>
   );
 };

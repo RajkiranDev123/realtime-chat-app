@@ -18,18 +18,23 @@ type Contact = {
   color?: number;
 };
 
+// TypeScript type literal, so you don't need commas or semicolons between the properties. Newlines are enough.
+// const { name, age }: { name: string; age: number } = user;
+
 const ContactList = ({
   contacts,
   isChannel = false,
 }: {
-  contacts: (Contact | Channel)[];
+  contacts: (Contact | Channel)[]
   isChannel?: boolean;
 }) => {
+
   const {
     selectedChatData,
     setSelectedChatData,
+    //
     setSelectedChatType,
-
+    //
     setSelectedChatMessages,
   } = useAppStore();
 
@@ -45,7 +50,9 @@ const ContactList = ({
 
   return (
     <div className="mt-5">
+
       {contacts.map((contact) => (
+        
         <div
           onClick={() => handleClick(contact)}
           key={contact._id}
@@ -59,6 +66,7 @@ const ContactList = ({
                 `}
         >
           <div className="flex gap-5 items-center justify-start text-neutral-300">
+
             {/* flex-item-1 */}
             {"email" in contact && (
               <Avatar className="h-10 w-10 rounded-full overflow-hidden">
@@ -92,7 +100,7 @@ const ContactList = ({
                 )}
               </Avatar>
             )}
-            {/* flex-item-1 */}
+            {/* flex-item-1 ends */}
 
             {/* flex-item-2 */}
 
@@ -118,10 +126,13 @@ const ContactList = ({
             )}
 
             {/* flex-item-3 */}
+
           </div>
+
         </div>
       ))}
       {/* map ends */}
+
     </div>
   );
 };

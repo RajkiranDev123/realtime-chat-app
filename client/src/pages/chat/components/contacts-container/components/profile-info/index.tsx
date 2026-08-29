@@ -35,7 +35,7 @@ const ProfileInfo = () => {
   return (
     // absolute : It is removed from normal layout and Its width becomes auto (content-based)
     <div
-      className="absolute bottom-0 h-16 flex items-center justify-between px-10 w-full 
+      className="absolute bottom-0 h-16 flex items-center justify-between px-10 w-full
     bg-[#2a2b33]"
     >
       {/* item 1 */}

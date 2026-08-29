@@ -57,7 +57,7 @@ export type AuthSlice = {
 //   return value;
 // }
 
-// Generic function expression , only = 
+// Generic function expression , only =
 // const identity = function <T>(value: T): T {
 //   return value;
 // };
