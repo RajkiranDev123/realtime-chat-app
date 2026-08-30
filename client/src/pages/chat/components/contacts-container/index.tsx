@@ -46,7 +46,7 @@ const ContactsContainer = () => {
 // Component is mounted to the DOM
 // useEffect runs → 1 time
 // setDirectMessagesContacts(...) and setChannels(...) update Zustand
-// Component may re-render because we are using directMessagesContacts and  setDirectMessagesContacts.
+// Component may re-render because we are using directMessagesContacts and channels.
 // But the effect doesn't run again, assuming those setter references remain stable.
 
   return (
@@ -65,6 +65,7 @@ const ContactsContainer = () => {
       {/* direct messages */}
 
       <div className="my-5">
+
         {/* Direct Messages text and + */}
         <div className="flex items-center justify-between pr-10 border-b border-y-purple-800 p-2">
           <Title text="Direct Messages" />
@@ -73,10 +74,21 @@ const ContactsContainer = () => {
         {/* Direct Messages text and +  */}
 
         {/* contact list */}
+
         <div className="max-h-[38vh] overflow-y-auto scrollbar-hidden">
-        {directMessagesContacts?.length > 0 ? <ContactList contacts={directMessagesContacts} /> : <Loader2 className="animate-spin mx-auto  m-2"/>} 
+
+          {/* h-[38vh] : element is always 38% of the viewport height, even if there is very little content. */}
+          {/* max-h-[38vh] : The element can be smaller than 38vh, but it will never become taller than 38vh. */}
+
+          {/* overflow-y-auto scrollbar-hidden : vertical scrolling is enabled only when content is taller than the container. */}
+
+        {directMessagesContacts?.length > 0 ? 
+          <ContactList contacts={directMessagesContacts} /> 
+        : <Loader2 className="animate-spin mx-auto  m-2"/>} 
+
         </div>
-        {/* contact list  */}
+
+        {/* contact list  ends */}
 
       </div>
 

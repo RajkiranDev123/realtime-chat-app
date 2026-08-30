@@ -26,8 +26,10 @@ import type { Contact } from "@/store/slices/chat-slice";
 
 const NewDm = () => {
   const { setSelectedChatType, setSelectedChatData } = useAppStore();
+
   const [openNewContactModal, setOpenNewContactModal] = useState(false);
   // if you put this in store , it may impact other models on other pages , keep it private to component.
+
   const [searchedContacts, setSearchedContacts] = useState<Contact[]>([]);
 
   const searchContacts = async (searchTerm: string) => {
@@ -72,8 +74,10 @@ const NewDm = () => {
     //   }
 
     setOpenNewContactModal(false);
+
     setSelectedChatType("contact");
     setSelectedChatData(contact);
+
     setSearchedContacts([]);
   };
   return (
@@ -112,101 +116,151 @@ const NewDm = () => {
 
         <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
 
+          {/* header */}
           <DialogHeader>
             <DialogTitle>Please select a contact</DialogTitle>
             {/* <DialogDescription></DialogDescription> */}
           </DialogHeader>
+          {/* header ends */}
 
+          {/* flex-col item-2 : input */}
           <div>
             <Input
               placeholder="Search Contacts"
-              className="rounded-lg p-8 bg-[#2c2e3b] border-none"
+              className="rounded-lg p-4 bg-[#2c2e3b] border-none"
               onChange={(e) => searchContacts(e.target.value)}
             />
           </div>
+          {/* flex-col item-2 : input ends */}
+
 
           {searchedContacts.length > 0 && (
-            <ScrollArea className="h-[250px]">
-              <div className="flex flex-col gap-5">
+            // no need ?. ==> Because searchedContacts is initialized as an array and has length 0 when empty too.
+            // need when it is null or undefined.
+
+
+            <ScrollArea className="h-[250px] bg-[#1c1d25] p-1 rounded-xs">
+              {/* For scrolling to happen, the ScrollArea needs a limited/available height,
+               and the content must exceed it. */}
+
+              <div className="flex flex-col gap-2">
+
                 {searchedContacts.map((contact) => (
                   <div
                     onClick={() => selectNewContact(contact)}
-                    key={contact._id}
-                    className="flex gap-3 items-center cursor-pointer"
+                    key={contact._id} // no need ?. too because of useState<Contact[]>([]); 
+                    // and if Contact type has: _id: string;
+                    // but in runtime if we dont get _id property of contact from api then undefined and no type error
+                    className="flex gap-3 border-b items-center cursor-pointer p-1
+                     hover:bg-gray-700/30 hover:p- hover:rounded-xl rounded-sm "
                   >
+
+                    {/* flex item-1 : avatar  */}
+
                     <div className="w-12 h-12 relative">
+
                       <Avatar className="h-12 w-12 rounded-full overflow-hidden">
-                        {contact?.image ? (
+                        {contact.image ? (
                           <AvatarImage
                             src={`${contact.image}`}
                             alt="profile"
-                            className="object-cover w-full h-full"
+                            className="object-cover"
                           />
                         ) : (
+                          
                           <div
-                            className={`uppercase h-12 w-12 text-lg border-[1px] 
+                            className={`uppercase h-12 w-12 text-lg border
                             flex items-center justify-center
-                            rounded-full ${getColor(contact?.color ?? 0)}
+                            rounded-full ${getColor(contact.color ?? 0)} 
                           `}
+                            // (property) color?: number | undefined ( because of ? ) in export type Contact={}
                             // ts says : “I can’t pass undefined into something that requires a number”
                             // ?? ==> It gives a default value only when the left side is null or undefined.
                             // nullish coalescing operator.
                           >
-                            {contact?.firstName
+                            {contact.firstName
                               ? contact.firstName.split("").shift()
-                              : contact?.email.split("").shift()}
+                              : contact.email.split("").shift()}
+                              
                           </div>
                         )}
                       </Avatar>
+
                     </div>
-                    {/*  */}
+
+                    {/* end of avatar  */}
+
+                    {/* item-2 : firstName and lastName and email  */}
 
                     <div className="flex flex-col">
+
                       <span className="">
                         {contact.firstName && contact.lastName
-                          ? `${contact.firstName} ${contact.lastName}`
+                          ? `${contact.firstName.charAt(0).toUpperCase() + contact.firstName.slice(1)}
+                             ${contact.lastName.charAt(0).toUpperCase()+contact.lastName.slice(1)}`
                           : contact.email}
                       </span>
 
+                      {/* 
+                      const name = "raj";
+                      console.log(name.slice(1)); // aj ==> slice() takes a portion of a string.
+                      charAt() gets one character from a string at a specific index.
+                      */}
+
                       <span className="text-xs">{contact.email}</span>
+
                     </div>
 
                     {/*  */}
+
                   </div>
                 ))}
+
               </div>
+
             </ScrollArea>
+
           )}
 
           {/* when empty */}
           {searchedContacts.length <= 0 && (
+            // flex-1 can exist without md:flex or flex , but it only has an effect if the parent is a flex container.
             <div
-              className="flex-1 mt-5 md:bg-[#1c1d25] lg:mt-0 md:flex flex-col justify-center 
+              className="flex-1 mt-5 bg-[#1c1d25] lg:mt-1 flex flex-col justify-center 
             items-center  duration-1000 transition-all"
             >
+
+              {/* Lottie */}
               <Lottie
                 isClickToPauseDisabled={true}
-                // isClickToPauseDisabled={true} is a prop used in react-lottie to prevent the animation from pausing when the user clicks on it.
+                // isClickToPauseDisabled={true} is a prop used in react-lottie to 
+                // prevent the animation from pausing when the user clicks on it.
                 height={100}
                 width={100}
                 options={animationDefaultOptions}
+                
               />
 
+              {/* text */}
               <div
-                className=" text-white/80   mt-5
-                            lg:text-2xl text-xl  text-center "
+                className="text-white/80 mt-5
+                            lg:text-2xl text-xl text-center "
               >
+
                 <h3 className="poppins-thin-italic">
                   Hi <span className="text-purple-500">!</span> Search
                   <span className="text-purple-500"> new</span> contact
                   <span className="text-purple-500">.</span>
                 </h3>
+
               </div>
+
             </div>
           )}
           {/* when empty */}
           
         </DialogContent>
+
       </Dialog>
 
       {/* dialog ends*/}
