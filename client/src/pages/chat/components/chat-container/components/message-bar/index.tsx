@@ -147,6 +147,7 @@ const MessageBar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  
   return (
     <div className="h-[10vh] bg-[#1c1d25] flex  items-center px-3 mb-6 gap-1">
       {/* flex item 1 : input , attachment and emoji */}
