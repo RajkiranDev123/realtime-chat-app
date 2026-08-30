@@ -18,7 +18,7 @@ import { apiClient } from "@/lib/api-client";
 import { animationDefaultOptions, getColor } from "@/lib/utils";
 import { useAppStore } from "@/store";
 import { SEARCH_CONTACTS_ROUTE } from "@/utils/constants";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 import { FaPlus } from "react-icons/fa";
 import Lottie from "react-lottie";
@@ -31,6 +31,8 @@ const NewDm = () => {
   // if you put this in store , it may impact other models on other pages , keep it private to component.
 
   const [searchedContacts, setSearchedContacts] = useState<Contact[]>([]);
+  // Contact[] means an array where every element must follow the Contact type.
+  const [searchTerm, setSearchTerm] = useState("");
 
   const searchContacts = async (searchTerm: string) => {
     try {
@@ -80,6 +82,24 @@ const NewDm = () => {
 
     setSearchedContacts([]);
   };
+
+  useEffect(() => {
+
+  const timer = setTimeout(() => {
+    searchContacts(searchTerm);
+  }, 500);
+
+  return () => {
+    clearTimeout(timer);
+  };
+
+  // 0ms : type r => clearTimout and then setTimeout
+  // 200ms : type a => clearTimout and then setTimeout
+
+  // Yes. clearTimeout(timer) cancels/removes the old pending timer.
+
+ }, [searchTerm]);
+
   return (
     <>
       {/* tooltip */}
@@ -128,7 +148,7 @@ const NewDm = () => {
             <Input
               placeholder="Search Contacts"
               className="rounded-lg p-4 bg-[#2c2e3b] border-none"
-              onChange={(e) => searchContacts(e.target.value)}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           {/* flex-col item-2 : input ends */}
@@ -136,7 +156,7 @@ const NewDm = () => {
 
           {searchedContacts.length > 0 && (
             // no need ?. ==> Because searchedContacts is initialized as an array and has length 0 when empty too.
-            // need when it is null or undefined.
+            // need only when it is null or undefined.
 
 
             <ScrollArea className="h-[250px] bg-[#1c1d25] p-1 rounded-xs">
@@ -167,7 +187,7 @@ const NewDm = () => {
                             className="object-cover"
                           />
                         ) : (
-                          
+
                           <div
                             className={`uppercase h-12 w-12 text-lg border
                             flex items-center justify-center
