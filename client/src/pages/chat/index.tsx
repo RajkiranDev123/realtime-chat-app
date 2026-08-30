@@ -27,10 +27,10 @@ const Chat = () => {
     // TypeError: Cannot read properties of null (reading 'name')
     if (userInfo && !userInfo.profileSetup) {
       // or if(userInfo?.profileSetup)
-      toast("Please setup your profile first to continue.");
+      toast("Please setup your profile first to enter chat.");
       navigate("/profile");
     }
-    // userInfo → effect should re-run when user info changes
+    // userInfo → effect should re-run when userInfo changes
     // navigate → used inside effect , navigate from React Router is usually stable and won't change.
     // But ESLint still asks to include it.
   }, [userInfo, navigate]);
@@ -38,9 +38,10 @@ const Chat = () => {
   return (
     <div className="flex h-[100vh] text-white overflow-hidden gap-0.5 bg-gray-500 p-1">
       {isUploading && (
+        // fixed inset-0 : covers the entire viewport  and no need width and height
         <div
           className="
-          h-[100vh] w-[100vw] z-5 fixed inset-0 bg-black/80 
+          z-5 fixed inset-0 bg-black/80 
           flex flex-col items-center justify-center  gap-5 backdrop-blur-xs
           "
         >
@@ -56,7 +57,7 @@ const Chat = () => {
       {isDownloading && (
         <div
           className="
-          h-[100vh] w-[100vw] fixed inset-0 z-10  bg-black/80 
+          fixed inset-0 z-10  bg-black/80 
           flex items-center justify-center flex-col gap-5 backdrop-blur-xs
           "
         >
