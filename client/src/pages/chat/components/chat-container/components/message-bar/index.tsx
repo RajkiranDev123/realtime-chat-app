@@ -16,11 +16,16 @@ const MessageBar = () => {
 
   const {
     selectedChatData,
+    //
     selectedChatType,
+    //
     userInfo,
+    //
     setIsUploading,
+    //
     setFileUploadProgress,
   } = useAppStore();
+
   const [message, setMessage] = useState<string>("");
   const [emojiPickerOpen, setEmojiPickerOpen] = useState<boolean>(false);
 
@@ -125,6 +130,7 @@ const MessageBar = () => {
   // ! ==> removes null | undefined from a type by forcing TypeScript to trust you — but it does NOT guarantee safety at runtime.
 
   useEffect(() => {
+
     function handleClickOutside(event: MouseEvent) {
       // without MouseEvent : TypeScript loses type info , Now event becomes implicitly any (or very loosely typed depending on config).
       // TypeScript loses type info , So TS no longer knows : what event is , what target is
@@ -146,13 +152,16 @@ const MessageBar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+
   }, []);
   
   return (
     <div className="h-[10vh] bg-[#1c1d25] flex  items-center px-3 mb-6 gap-1">
-      {/* flex item 1 : input , attachment and emoji */}
+
+      {/* flex item-1 : input , attachment and emoji */}
       <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center  gap-5 pr-5">
 
+        {/* imput */}
         <input
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -201,25 +210,27 @@ const MessageBar = () => {
         {/* emoji ends */}
 
       </div>
-      {/* flex item 1 : input , attachment and emoji ends */}
+      {/* flex item-1 : input , attachment and emoji ends */}
 
       {/* send button */}
 
       {/* focus ==> Triggered when an element is selected  (usually via click or keyboard tab). */}
 
       <button
-        onClick={handleSendMessage}
-        className=" 
-       rounded-md flex items-center justify-center p-3
+      onClick={handleSendMessage}
+      className=" 
+      rounded-md flex items-center justify-center p-3
      bg-[#8417ff]  focus:outline-none focus:border-none hover:bg-[#741bda] focus:bg-[#741bda]
       focus:text-white text-neutral-300 duration-300 transition-all
       "
       >
+
         <IoSend className="text-2xl" />
+
       </button>
 
       {/* send button ends */}
-      
+
     </div>
   );
 };

@@ -189,7 +189,8 @@ const MessageContainer = () => {
 
         {message.messageType === "text" && (
            <>
-            {selectedMessage === message._id && <div className=" flex justify-end  ">
+            {selectedMessage === message._id && 
+            <div className={`flex  ${message.sender === selectedChatData?._id ? "justify-start":"justify-end"}  `}>
             <MdDelete className="text-2xl text-red-500 cursor-pointer  hover:text-red-400"/>
             </div>
             }
@@ -215,7 +216,8 @@ const MessageContainer = () => {
         {message.messageType === "file" && (
           <>
 
-            {selectedMessage === message._id && <div className=" flex justify-end  ">
+            {selectedMessage === message._id && 
+            <div  className={`flex  ${message.sender === selectedChatData?._id ? "justify-start":"justify-end"}  `}>
             <MdDelete className="text-2xl text-red-500 cursor-pointer  hover:text-red-400"/>
             </div>
             }
@@ -298,9 +300,11 @@ const MessageContainer = () => {
     );
   };
 
-  //
+  // This is a TypeScript type guard that narrows sender from UserRef to User.
+  // type UserRef = string | User
   const isUser = (sender: UserRef): sender is User =>
     typeof sender !== "string";
+
   //
   const getSenderId = (sender: UserRef) =>
     typeof sender === "string" ? sender : sender._id;
