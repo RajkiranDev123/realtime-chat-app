@@ -3,7 +3,7 @@ import { useAppStore } from "@/store";
 import {
   GET_ALL_MESSAGES_ROUTE,
   GET_CHANNEL_MESSAGES,
-  HOST,
+
 } from "@/utils/constants";
 import moment from "moment";
 import { useRef, useEffect, useState } from "react";
@@ -14,6 +14,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getColor } from "@/lib/utils";
 import { MdDelete } from "react-icons/md";
+import { Eye } from "lucide-react";
 
 
 type User = {
@@ -212,53 +213,77 @@ const MessageContainer = () => {
         {/* if message is of file type */}
 
         {message.messageType === "file" && (
+          <>
 
-          <div
+            {selectedMessage === message._id && <div className=" flex justify-end  ">
+            <MdDelete className="text-2xl text-red-500 cursor-pointer  hover:text-red-400"/>
+            </div>
+            }
+
+          <div onClick={()=>setSelectedMessage(selectedMessage === message._id ? null : message._id)}
             className={`${
               message.sender !== selectedChatData?._id
                 ? "bg-[#8417ff] text-white/80 border-[#8417ff]/50"
                 : "bg-[#2a2b33] text-white/80 border-[#ffffff]/20"
             } 
-            border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+           inline-block p-2 rounded my-1 max-w-[50%] break-words cursor-pointer
+           ${selectedMessage === message._id ? "border-2 border-white" : "border"}  
+            `}
           >
+
+            {/* for image */}
             {message.fileUrl && checkIfImage(message.fileUrl) ? (
               // TS already knows message.fileUrl exists.
               // But inside onClick, narrowing is lost sometimes because of closure/function scope.
               // So just use non-null assertion:
               <div
                 className="cursor-pointer"
+           
+              >
+                <img
+                  src={`${message.fileUrl}`}
+                  height={200}
+                  width={200}
+                  className="object-cover rounded-xs"
+                />
+
+               {/* eye */}
+                <div className="flex justify-center items-center"
                 onClick={() => {
                   setShowImage(true);
                   setImageUrl(message.fileUrl!);
                 }}
-              >
-                <img
-                  src={`${message.fileUrl}`}
-                  height={300}
-                  width={300}
-                />
+                >
+                  <Eye/>
+                </div>
+
               </div>
             ) : (
+              //  file
+              <div className="flex items-center justify-center gap-2 flex-wrap ">
 
-              <div className="flex items-center justify-center gap-4">
-                <span className="text-white/80 text-3xl bg-black/20 rounded-full p-3">
-                  <MdFolderZip />
-                </span>
-                <span>{message.fileUrl?.split("/").pop()}</span>
+                <span className=""> 
+                  <MdFolderZip className="text-fuchsia-950 text-2xl"/>
+               </span>
+
+                <span className="break-all">{message.fileUrl?.split("/").pop()}</span>
+
                 <span
                   onClick={() =>
                     message.fileUrl && downloadFile(message.fileUrl)
                   }
-                  className="bg-black/20 p-3 text-2xl rounded-full
+                  className="bg-black/20 p-1 text-md rounded-full
                 hover:bg-black/50 cursor-pointer transition-all duration-300"
                 >
                   <IoMdArrowRoundDown />
                 </span>
+
               </div>
 
             )}
 
           </div>
+          </>
         )}
         
         {/* if message is of file type */}
@@ -287,6 +312,8 @@ const MessageContainer = () => {
 
     return (
       <div className={`mt-5  ${isMine ? "text-right" : "text-left"}`}>
+
+        {/* text msg */}
         {message.messageType === "text" && (
           <div
             className={`${
@@ -298,16 +325,19 @@ const MessageContainer = () => {
             {message.content}
           </div>
         )}
-        {/*  */}
+        {/* text msg ends */}
+
+        {/* file  */}
 
         {message.messageType === "file" && (
+
           <div
             className={`${
               isMine
                 ? "bg-[#8417ff] text-white/80 border-[#8417ff]/50"
                 : "bg-[#2a2b33] text-white/80 border-[#ffffff]/20"
             } 
-            border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+            border inline-block p-2 rounded my-1 max-w-[50%] break-words`}
           >
             {message.fileUrl && checkIfImage(message.fileUrl) ? (
               // TS already knows message.fileUrl exists.
@@ -315,55 +345,72 @@ const MessageContainer = () => {
               // So just use non-null assertion:
               <div
                 className="cursor-pointer"
-                onClick={() => {
+             
+              >
+                <img
+                  src={`${message.fileUrl}`}
+                  height={200}
+                  width={200}
+                />
+                <div className="flex justify-center items-center">
+                  <Eye
+                  onClick={() => {
                   setShowImage(true);
                   setImageUrl(message.fileUrl!);
                 }}
-              >
-                <img
-                  src={`${HOST}/${message.fileUrl}`}
-                  height={300}
-                  width={300}
-                />
+                  />
+                </div>
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-4">
-                <span className="text-white/80 text-3xl bg-black/20 rounded-full p-3">
-                  <MdFolderZip />
+
+              <div className="flex items-center justify-center gap-4 flex-wrap">
+
+                <span className="">
+                  <MdFolderZip className="text-fuchsia-950" />
                 </span>
-                <span>{message.fileUrl?.split("/").pop()}</span>
+
+                <span className="break-all">{message.fileUrl?.split("/").pop()}</span>
+
                 <span
                   onClick={() =>
                     message.fileUrl && downloadFile(message.fileUrl)
                   }
-                  className="bg-black/20 p-3 text-2xl rounded-full
+                  className="bg-black/20  text-2xl rounded-full
                 hover:bg-black/50 cursor-pointer transition-all duration-300"
                 >
                   <IoMdArrowRoundDown />
                 </span>
+
               </div>
+
             )}
           </div>
         )}
 
-        {/*  */}
+        {/* file ends  */}
 
+        {/* if me then only content and time otherwise profile pic and name */}
         {isMine ? (
-          <div className="text-xs text-white/60 mt-1">
+          <div className="text-xs text-white mt-1">
             {moment(message.createdAt).format("LT")}
           </div>
         ) : (
-          <div className="flex items-center justify-start gap-3">
-            <Avatar className="h-8 w-8 rounded-full overflow-hidden">
+
+          <div className="flex items-center justify-start gap-2 ">
+
+            <Avatar className="h-6 w-6 rounded-full overflow-hidden">
+
               {isUser(message.sender) && message.sender.image && (
+
                 <AvatarImage
-                  src={`${HOST}/${message.sender.image}`}
+                  src={`${message.sender.image}`}
                   alt="profile"
-                  className="object-cover w-full h-full"
+                  className="object-cover "
                 />
               )}
+
               <AvatarFallback
-                className={`uppercase h-8 w-8 text-lg 
+                className={`uppercase h-6 w-6 text-md
                             flex items-center justify-center
                             rounded-full ${getColor(isUser(message.sender) ? (message.sender.color ?? 0) : 0)}
                           `}
@@ -374,20 +421,29 @@ const MessageContainer = () => {
                 {isUser(message.sender)
                   ? (message.sender.firstName?.[0] ?? message.sender.email?.[0])
                   : "U"}
+                  
               </AvatarFallback>
+
             </Avatar>
+             
+             {/* first and last name */}
             <span>
               {isUser(message.sender)
                 ? `${message.sender.firstName ?? ""} ${message.sender.lastName ?? ""}`
                 : "Unknown"}
             </span>
-            <span className="text-xs text-white/60">
+
+            {/* time */}
+            <span className="text-xs text-white">
               {moment(message.createdAt).format("LT")}
             </span>
+            {/* time */}
+
           </div>
         )}
 
         {/*  */}
+
       </div>
     );
   };

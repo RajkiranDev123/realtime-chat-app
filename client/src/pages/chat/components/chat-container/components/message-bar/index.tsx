@@ -152,6 +152,7 @@ const MessageBar = () => {
     <div className="h-[10vh] bg-[#1c1d25] flex  items-center px-3 mb-6 gap-1">
       {/* flex item 1 : input , attachment and emoji */}
       <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center  gap-5 pr-5">
+
         <input
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -160,7 +161,9 @@ const MessageBar = () => {
           className="flex-1 p-3 bg-transparent rounded-md focus:border-none 
          focus:outline-none"
         />
+
         {/* attachment  */}
+
         <button
           onClick={handleAttachmentClick}
           className="
@@ -196,6 +199,7 @@ const MessageBar = () => {
           </div>
         </div>
         {/* emoji ends */}
+
       </div>
       {/* flex item 1 : input , attachment and emoji ends */}
 
@@ -215,6 +219,7 @@ const MessageBar = () => {
       </button>
 
       {/* send button ends */}
+      
     </div>
   );
 };

@@ -97,7 +97,7 @@ const setupSocket = (server) => {
   //sendChannelMessage ============================>
 
   const sendChannelMessage = async (message) => {
-    const { channelId, sender, messageType, content, fileUrl } = message;
+    const { channelId, sender, messageType, content, fileUrl ,  filePublicId  } = message;
 
     // sender{} , recipient{} , messageType , content , fileUrl ==> Message
     // 1st : save in db
@@ -107,6 +107,7 @@ const setupSocket = (server) => {
       content,
       messageType,
       fileUrl,
+      filePublicId,
     });
 
     // 2nd : get saved msg from db and Populate the sender reference with only these User fields.
