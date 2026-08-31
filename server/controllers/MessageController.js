@@ -1,5 +1,5 @@
 import Message from "../models/MessageModel.js";
-import { mkdirSync, renameSync } from "fs";
+import { unlinkSync, renameSync } from "fs";
 import cloudinary from "../config/cloudinary.js";
 
 export const getMessages = async (req, res) => {
