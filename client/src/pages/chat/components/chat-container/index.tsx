@@ -7,13 +7,13 @@ const ChatContainer = () => {
     // h-screen == h-[100vh]
     // A div with position:fixed and no width shrinks to the width of its content.
 
-    // xs sm md lg xl 2xl..............
+    // xs  sm  md  lg   xl   2xl..............
     // 480 640 768 1024 1280 1536
 
     // You have two conflicting rules : fixed and md:static , after 768 its static
     // also static  → z-index normally doesn't work and no top , bottom etc
     <div
-      className="fixed top-0  flex flex-col rounded-sm text-white  h-[100vh] bg-[#1c1d25] 
+      className="fixed top-0  flex flex-col rounded-sm text-white  h-[99vh] bg-[#1c1d25] 
                  md:flex-1 md:static w-full"
     >
       {/* flex-1 is applied at md even though w-full is also applied. ✅ */}

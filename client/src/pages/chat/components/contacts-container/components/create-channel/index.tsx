@@ -96,7 +96,7 @@ const CreateChannel = () => {
       <Dialog open={newChannelModal} onOpenChange={setNewChannelModal}>
         <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
           <DialogHeader>
-            <DialogTitle>
+            <DialogTitle className="text-md">
               Please fill up the details for new channel
             </DialogTitle>
             <DialogDescription></DialogDescription>

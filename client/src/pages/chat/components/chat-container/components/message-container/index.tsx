@@ -13,6 +13,8 @@ import { IoMdArrowRoundDown } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getColor } from "@/lib/utils";
+import { MdDelete } from "react-icons/md";
+
 
 type User = {
   _id: string;
@@ -27,23 +29,29 @@ type UserRef = User | string;
 
 type Message = {
   _id: string;
-  content: string;
+  content?: string;
   // message.content is always guaranteed to exist, no ts complain
   messageType: string;
   fileUrl?: string;
   // ? == string | undefined , so ts complains
 
   sender: UserRef;
-  recipient: UserRef;
+  recipient?: UserRef;
   createdAt: string;
 };
 
 const MessageContainer = () => {
+
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
+
   const {
     selectedChatType,
+    //
     selectedChatData,
+    //
     userInfo,
+    //
     selectedChatMessages,
     setSelectedChatMessages,
     //
@@ -52,11 +60,12 @@ const MessageContainer = () => {
   } = useAppStore();
 
   const [showImage, setShowImage] = useState(false);
+
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const getMessages = async () => {
-      console.log(6754, selectedChatData?._id);
+    
       try {
         const res = await apiClient.post(
           GET_ALL_MESSAGES_ROUTE,
@@ -89,6 +98,7 @@ const MessageContainer = () => {
     }
   }, [selectedChatData, selectedChatType, setSelectedChatMessages]);
 
+
   useEffect(() => {
     if (scrollRef.current) {
       // It is a DOM method that scrolls the page/container so a specific element becomes visible.
@@ -109,9 +119,11 @@ const MessageContainer = () => {
   // Browser downloads file
   // Cleanup memory
   const downloadFile = async (url: string) => {
+
+    setShowImage(false)
     setIsDownloading(true);
     setFileDownloadProgress(0);
-    const res = await apiClient.get(`${HOST}/${url}`, {
+    const res = await apiClient.get(`${url}`, {
       responseType: "blob",
       onDownloadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
@@ -138,44 +150,69 @@ const MessageContainer = () => {
   };
 
   const renderMessages = () => {
+
     let lastDate: string | null = null;
+
     return selectedChatMessages.map((message, index) => {
+
       const messageDate = moment(message.createdAt).format("YYYY-MM-DD");
+
       const showDate = messageDate !== lastDate;
       lastDate = messageDate;
+
       return (
         <div key={index}>
+
           {showDate && (
-            <div className="text-center text-gray-500 my-2">
-              {moment(message.createdAt).format("LL")}
+            <div className="text-center text-white my-2 border-b rounded-sm">
+              {moment(message.createdAt).format("LL")} 
             </div>
           )}
+           
           {selectedChatType === "contact" && renderDmMessages(message)}
+
           {selectedChatType === "channel" && renderChannelMessages(message)}
+
         </div>
       );
+
     });
+
   };
 
+  // render dm messagee
   const renderDmMessages = (message: Message) => {
-    // console.log("rdm =>",message)
+
     return (
-      <div
-        className={`${message.sender === selectedChatData?._id ? "text-left" : "text-right"}`}
-      >
+      <div className={`${message.sender === selectedChatData?._id ? "text-left" : "text-right"} `}>
+
         {message.messageType === "text" && (
-          <div
+           <>
+            {selectedMessage === message._id && <div className=" flex justify-end  ">
+            <MdDelete className="text-2xl text-red-500 cursor-pointer  hover:text-red-400"/>
+            </div>
+            }
+
+          <div onClick={()=>setSelectedMessage(selectedMessage === message._id ? null : message._id)}
             className={`${
               message.sender !== selectedChatData?._id
-                ? "bg-[#8417ff] text-white/80 border-[#8417ff]/50"
-                : "bg-[#2a2b33] text-white/80 border-[#ffffff]/20"
+                ? "bg-[#8417ff] text-white/90 border-[#8417ff]/50"
+                : "bg-[#2a2b33] text-white/90 border-[#ffffff]/20"
             } 
-            border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+             ${selectedMessage === message._id ? "border-2 border-white" : "border"}  
+            inline-block p-4 rounded my-1 max-w-[50%] break-words cursor-pointer text-left`}
           >
-            {message.content}
+
+             {message.content}
+
           </div>
+          </>
         )}
+
+        {/* if message is of file type */}
+
         {message.messageType === "file" && (
+
           <div
             className={`${
               message.sender !== selectedChatData?._id
@@ -196,12 +233,13 @@ const MessageContainer = () => {
                 }}
               >
                 <img
-                  src={`${HOST}/${message.fileUrl}`}
+                  src={`${message.fileUrl}`}
                   height={300}
                   width={300}
                 />
               </div>
             ) : (
+
               <div className="flex items-center justify-center gap-4">
                 <span className="text-white/80 text-3xl bg-black/20 rounded-full p-3">
                   <MdFolderZip />
@@ -217,23 +255,32 @@ const MessageContainer = () => {
                   <IoMdArrowRoundDown />
                 </span>
               </div>
+
             )}
+
           </div>
         )}
+        
+        {/* if message is of file type */}
 
-        <div className="text-xs text-gray-600">
+        {/* time */}
+        <div className="text-xs text-white/90 mb-4">
           {moment(message.createdAt).format("LT")}
         </div>
+        {/* time */}
+
       </div>
     );
   };
+
   //
   const isUser = (sender: UserRef): sender is User =>
     typeof sender !== "string";
   //
   const getSenderId = (sender: UserRef) =>
     typeof sender === "string" ? sender : sender._id;
-  //
+
+  // render channel messages
   const renderChannelMessages = (message: Message) => {
     const senderId = getSenderId(message.sender);
     const isMine = senderId === userInfo?.id;
@@ -344,52 +391,65 @@ const MessageContainer = () => {
       </div>
     );
   };
+
   return (
     // If you give flex-1 to MessageContainer, then it will take all remaining vertical space inside the flex column parent.
     // Parent = outer box
     // xs sm md lg xl 2xl....
     // In a flex column (flex-col): align-items: stretch is the default (items-stretch)
     // That means : Every child automatically stretches to full width of the parent , no need md:w-[60vw] here...
-    <div
-      className="flex-1 overflow-y-auto scrollbar-hidden p-4 px-8 
+    <div className="flex-1 overflow-y-auto scrollbar-hidden p-3 px-8">
 
-    "
-    >
       {renderMessages()}
+
+       {/* self close div */}
       <div ref={scrollRef} />
+
+      {/* modal for image show  */}
       {showImage && (
         <div
-          className="fixed z-[1000] top-0 left-0 h-[100vh] w-[100vw] flex items-center
+          className="fixed z-1000 inset-0 flex items-center
           justify-center backdrop-blur-lg flex-col
           "
         >
-          <div>
+
+          {/* col item-1 : img */}
+          <div className="bg-gray-500 p-1 m-2 rounded-sm">
             <img
-              className="h-[80vh] w-full bg-cover"
-              src={`${HOST}/${imageUrl}`}
+              className="h-[70vh]  "
+              src={`${imageUrl}`}
             />
           </div>
-          <div className="flex gap-5 fixed top-0 mt-5">
+
+          {/* download and close button col item-2 */}
+          <div className="flex gap-5">
+
             <button
               onClick={() => imageUrl && downloadFile(imageUrl)}
-              className="bg-black/20 p-3 text-2xl rounded-full hover:bg-black/50
+              className="bg-black/20 p-3 text-xl rounded-full hover:bg-black/50
             cursor-pointer transition-all duration-300"
             >
               <IoMdArrowRoundDown />
             </button>
+
             <button
               onClick={() => {
                 setShowImage(false);
                 setImageUrl(null);
               }}
-              className="bg-black/20 p-3 text-2xl rounded-full hover:bg-black/50
+              className="bg-black/20 p-3 text-xl rounded-full hover:bg-black/50
             cursor-pointer transition-all duration-300"
             >
               <IoCloseSharp />
             </button>
+
           </div>
+            {/* download and close button */}
+
         </div>
       )}
+      {/* modal for image show ends */}
+
     </div>
   );
 };

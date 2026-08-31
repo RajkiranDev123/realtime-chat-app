@@ -138,7 +138,7 @@ const NewDm = () => {
 
           {/* header */}
           <DialogHeader>
-            <DialogTitle>Please select a contact</DialogTitle>
+            <DialogTitle className="text-md">Please select a contact</DialogTitle>
             {/* <DialogDescription></DialogDescription> */}
           </DialogHeader>
           {/* header ends */}
