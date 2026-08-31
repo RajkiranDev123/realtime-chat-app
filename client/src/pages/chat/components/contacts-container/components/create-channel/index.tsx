@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
+  // DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -31,7 +31,9 @@ type Option = {
   label: string;
 };
 const CreateChannel = () => {
+
   const { addChannel } = useAppStore();
+
   const [newChannelModal, setNewChannelModal] = useState(false);
 
   //
@@ -77,42 +79,59 @@ const CreateChannel = () => {
     <>
       {/* tooltip */}
       <TooltipProvider>
+
         <Tooltip>
+
           <TooltipTrigger>
             <FaPlus
               onClick={() => setNewChannelModal(true)}
               className="text-neutral-400/90 text-xl font-light text-start hover:text-neutral-100
-          cursor-pointer transition-all duration-300"
+              cursor-pointer transition-all duration-300"
             />
           </TooltipTrigger>
+
           <TooltipContent className="bg-black border-none text-white p-2">
             Create New Channel
           </TooltipContent>
+
         </Tooltip>
+
       </TooltipProvider>
       {/* tooltip */}
 
       {/* dialog */}
       <Dialog open={newChannelModal} onOpenChange={setNewChannelModal}>
+
         <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
+
           <DialogHeader>
+
             <DialogTitle className="text-md">
               Please fill up the details for new channel
             </DialogTitle>
-            <DialogDescription></DialogDescription>
+
+            {/* <DialogDescription></DialogDescription> */}
           </DialogHeader>
+          
+          {/* channel name input */}
           <div>
+
             <Input
               placeholder="Channel Name"
               className="rounded-lg p-8 bg-[#2c2e3b] border-none"
               onChange={(e) => setChannelName(e.target.value)}
               value={channelName}
             />
+
           </div>
+          
+
           <div>
+
+            {/* It is a multi-select dropdown with search. */}
             <MultipleSelector
               className="
-            rounded-lg border-none py-2 text-white bg-[#2c2e3b]
+              rounded-lg border-none py-2 text-white bg-[#2c2e3b]
             "
               defaultOptions={allContacts}
               placeholder="Search contacts"
@@ -125,6 +144,8 @@ const CreateChannel = () => {
               }
             />
           </div>
+          
+          {/* create channel button */}
           <div>
             <Button
               onClick={createChannel}
@@ -135,7 +156,10 @@ const CreateChannel = () => {
               Create Channel
             </Button>
           </div>
+           {/* create channel button */}
+
         </DialogContent>
+
       </Dialog>
 
       {/* dialog */}
