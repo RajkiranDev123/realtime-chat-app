@@ -73,7 +73,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         },
       });
 
-      // in server : 
+      // in server :
       // const userId = socket.handshake.query.userId;
       // if (userId) {
       //   userSocketMap.set(userId, socket.id);
@@ -98,6 +98,8 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
           addMessage,
           addContactsInDMContacts,
         } = useAppStore.getState();
+        // When a message comes, getState() tells us which chat is selected right now.
+        // Because useAppStore() is a React hook, and the socket callback is not a React component.
 
         if (
           selectedChatType !== undefined &&
@@ -105,9 +107,10 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
           (selectedChatData._id === message.sender._id ||
             selectedChatData._id === message.recipient?._id)
         ) {
-          addMessage(message);
+          addMessage(message); // 
         }
         addContactsInDMContacts(message);
+        // So the new message can still update the DM contacts/list, even when no chat is open.
       };
 
       // handleReceiveChannelMessage

@@ -156,20 +156,26 @@ const MessageBar = () => {
   }, []);
   
   return (
-    <div className="h-[10vh] bg-[#1c1d25] flex  items-center px-3 mb-6 gap-1">
+    
+    <div className="h-[10vh] bg-[#1c1d25] flex  items-center px-3 mb-1 gap-1">
 
       {/* flex item-1 : input , attachment and emoji */}
-      <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center  gap-5 pr-5">
+      <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center  gap-2 pr-2 min-w-0 flex-wrap">
+        {/* why min-w-0 on flex parent ?  */}
+        {/* "because parent don't want to shrink smaller than the minimum width the items require." */}
+     
 
-        {/* imput */}
+
+        {/* input */}
         <input
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           type="text"
           placeholder="Message..."
-          className="flex-1 p-3 bg-transparent rounded-md focus:border-none 
-         focus:outline-none"
+          className="flex-1 p-3 bg-transparent rounded-md focus:border-none min-w-0
+          focus:outline-none focus:ring-1"
         />
+        {/* The element is allowed to shrink even down to 0px if necessary if min-w-0 */}
 
         {/* attachment  */}
 
@@ -181,6 +187,7 @@ const MessageBar = () => {
         >
           <GrAttachment className="text-xl" />
         </button>
+
         <input
           type="file"
           className="hidden"
@@ -191,6 +198,7 @@ const MessageBar = () => {
 
         {/* emoji */}
         <div className="relative ">
+
           <button
             onClick={() => setEmojiPickerOpen(true)}
             className="text-neutral-500 focus:text-white duration-300 transition-all"
@@ -198,18 +206,22 @@ const MessageBar = () => {
             <RiEmojiStickerLine className="text-2xl" />
           </button>
 
-          <div className="absolute bottom-12 right-0 " ref={emojiRef}>
+          <div className="absolute bottom-12 -right-4 " ref={emojiRef}>
             <EmojiPicker
               theme={Theme.DARK}
               open={emojiPickerOpen}
               onEmojiClick={handleAddEmoji}
               autoFocusSearch={false}
+              width={250}
+              height={300}
             />
           </div>
+
         </div>
         {/* emoji ends */}
 
       </div>
+
       {/* flex item-1 : input , attachment and emoji ends */}
 
       {/* send button */}

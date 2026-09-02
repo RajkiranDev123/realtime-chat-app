@@ -125,18 +125,26 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
   setSelectedChatMessages: (selectedChatMessages) =>
     set({ selectedChatMessages }),
 
-    addMessage: (message: Message) => {
+  // update message
+  addMessage: (message: Message) => {
+
     const selectedChatMessages = get().selectedChatMessages;
 
     const selectedChatType = get().selectedChatType;
 
     set({
+
       selectedChatMessages: [
         ...selectedChatMessages,
-
+        
+        // add new message object and update its sender and recipient
         {
           ...message,
-
+          // For a direct message, both sender and recipient become IDs (strings).
+          // For a channel, the code keeps sender and recipient exactly as they came in.
+          // If your API messages and socket messages have different shapes, you usually want to normalize both to one consistent shape,
+          // rather than leaving the API response and socket response different.
+          
           recipient:
             selectedChatType === "channel"
               ? message.recipient
@@ -151,6 +159,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
                 ? message.sender
                 : message.sender._id,
         },
+
       ],
     });
   },
@@ -162,8 +171,9 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
   setDirectMessagesContacts: (directMessagesContacts) =>
     set({ directMessagesContacts }),
 
-  //
-
+  // update contact
+  // Already exists → remove it → put it at front.
+  // Doesn't exist  → just put it at front.
   addContactsInDMContacts: (message: Message) => {
     const userId = get().userInfo?.id;
 
@@ -196,15 +206,19 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
 
     set({ directMessagesContacts: updated });
   },
-  //
+  
 
   //
   channels: [],
-  setChannels: (channels) => set({ channels }),
+  setChannels: (channels) => set({ channels }), // from api
+
+  // locally add one new channel without making an API call.
   addChannel: (channel) => {
     const channels = get().channels;
     set({ channels: [channel, ...channels] });
   },
+
+  // the channel with the newest message moves to the top.
   addChannelInChannelList: (message: Message) => {
     const channels = get().channels;
     const data = channels.find((channel) => channel._id === message.channelId);

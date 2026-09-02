@@ -44,6 +44,7 @@ type Message = {
 const MessageContainer = () => {
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
   const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
 
   const {
@@ -93,7 +94,7 @@ const MessageContainer = () => {
         console.log(error);
       }
     };
-    if (selectedChatData?._id) {
+    if (selectedChatData?._id) { // selectedChatData?._id is receiver / channel id
       if (selectedChatType === "contact") getMessages();
       else if (selectedChatType === "channel") getChannelMessages();
     }
@@ -119,13 +120,18 @@ const MessageContainer = () => {
   // Auto click it
   // Browser downloads file
   // Cleanup memory
+
   const downloadFile = async (url: string) => {
 
     setShowImage(false)
+
     setIsDownloading(true);
     setFileDownloadProgress(0);
+
     const res = await apiClient.get(`${url}`, {
-      responseType: "blob",
+      responseType: "blob", // Treat the server response as binary file data like pdf , jpg etc
+
+      // onDownloadProgress = Axios download progress callback.
       onDownloadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
 
@@ -135,19 +141,34 @@ const MessageContainer = () => {
         }
       },
     });
-
+    
+    // createObjectURL() creates a temporary browser URL pointing to that Blob.
+    // the browser creates and manages a temporary Blob URL in its memory/resource storage.
+    // blob:http://localhost/abc123
     const urlBlob = window.URL.createObjectURL(new Blob([res.data]));
+   
+
     const link = document.createElement("a");
     link.href = urlBlob;
+    // <a href="blob:http://localhost/abc123">
+
     // .pop() returns the last item OR undefined if array is empty
     // ?? only uses fallback for null or undefined.
     link.setAttribute("download", url.split("/").pop() ?? "download");
+    // <a href="blob:..." download="myfile.pdf">
+    // So download is an HTML <a> attribute specifically used to trigger downloading.
+    // we can give a name too!
+
     document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(urlBlob);
+
+    link.click(); // Programmatically click it
+    link.remove(); // Remove the <a> You don't need that temporary element anymore.
+
+    window.URL.revokeObjectURL(urlBlob); // "I'm finished using this temporary Blob URL. Release its memory
+
     setIsDownloading(false);
     setFileDownloadProgress(0);
+
   };
 
   const renderMessages = () => {
@@ -162,7 +183,7 @@ const MessageContainer = () => {
       lastDate = messageDate;
 
       return (
-        <div key={index}>
+        <div key={index} className="">
 
           {showDate && (
             <div className="text-center text-white my-2 border-b rounded-sm">
@@ -183,14 +204,15 @@ const MessageContainer = () => {
 
   // render dm messagee
   const renderDmMessages = (message: Message) => {
-
+    
     return (
+      
       <div className={`${message.sender === selectedChatData?._id ? "text-left" : "text-right"} `}>
 
         {message.messageType === "text" && (
            <>
             {selectedMessage === message._id && 
-            <div className={`flex  ${message.sender === selectedChatData?._id ? "justify-start":"justify-end"}  `}>
+            <div className={` flex ${message.sender === selectedChatData?._id ? "justify-start":"justify-end"}  `}>
             <MdDelete className="text-2xl text-red-500 cursor-pointer  hover:text-red-400"/>
             </div>
             }
@@ -198,7 +220,7 @@ const MessageContainer = () => {
           <div onClick={()=>setSelectedMessage(selectedMessage === message._id ? null : message._id)}
             className={`${
               message.sender !== selectedChatData?._id
-                ? "bg-[#8417ff] text-white/90 border-[#8417ff]/50"
+                ? "bg-[#730beb] text-white/90 border-[#8417ff]/50"
                 : "bg-[#2a2b33] text-white/90 border-[#ffffff]/20"
             } 
              ${selectedMessage === message._id ? "border-2 border-white" : "border"}  
@@ -225,10 +247,10 @@ const MessageContainer = () => {
           <div onClick={()=>setSelectedMessage(selectedMessage === message._id ? null : message._id)}
             className={`${
               message.sender !== selectedChatData?._id
-                ? "bg-[#8417ff] text-white/80 border-[#8417ff]/50"
-                : "bg-[#2a2b33] text-white/80 border-[#ffffff]/20"
+                ? "bg-[#730beb] text-white/90 border-[#8417ff]/50"
+                : "bg-[#2a2b33] text-white/90 border-[#ffffff]/20"
             } 
-           inline-block p-2 rounded my-1 max-w-[50%] break-words cursor-pointer
+           inline-block p-1 rounded my-1 max-w-[50%] break-words cursor-pointer
            ${selectedMessage === message._id ? "border-2 border-white" : "border"}  
             `}
           >
@@ -452,6 +474,8 @@ const MessageContainer = () => {
     );
   };
 
+  // jsx
+
   return (
     // If you give flex-1 to MessageContainer, then it will take all remaining vertical space inside the flex column parent.
     // Parent = outer box
@@ -512,6 +536,7 @@ const MessageContainer = () => {
 
     </div>
   );
+
 };
 
 export default MessageContainer;

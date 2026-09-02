@@ -97,7 +97,8 @@ const setupSocket = (server) => {
   //sendChannelMessage ============================>
 
   const sendChannelMessage = async (message) => {
-    const { channelId, sender, messageType, content, fileUrl ,  filePublicId  } = message;
+    const { channelId, sender, messageType, content, fileUrl, filePublicId } =
+      message;
 
     // sender{} , recipient{} , messageType , content , fileUrl ==> Message
     // 1st : save in db
@@ -161,7 +162,6 @@ const setupSocket = (server) => {
 
     // 6th :
     if (channel && channel.members) {
-
       //  members: [{ type: mongoose.Schema.ObjectId, ref: "User", required: true }]
 
       // So your current code is basically manually broadcasting to channel members one by one.
@@ -199,7 +199,8 @@ const setupSocket = (server) => {
 
   // pattern ==> .on : ("eventName",cb)   &  .emit : ("eventName",{data})
 
-  io.on("connection", (socket) => { // runs when client connects from browser and registers cbs and gives unique socket id.
+  io.on("connection", (socket) => {
+    // runs when client connects from browser and registers cbs and gives unique socket id.
 
     // socket : is an object that represents one user & has methods to communicate with them.
     // it  has : id , Event methods ==> socket.on("eventName", handler) , socket.emit("eventName", data)
@@ -233,9 +234,8 @@ const setupSocket = (server) => {
 //
 //     ✅ socket.on("sendMessage",sendMessage) → runs every time when that connected user sends a "sendMessage" event.
 //
-//   } 
-// ) 
-
+//   }
+// )
 
 // "sendMessage" = name/key
 //  sendMessage = cb function registered/attached to that event in memory.
