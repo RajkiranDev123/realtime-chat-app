@@ -1,6 +1,22 @@
 import type { StateCreator } from "zustand";
 import type { Store } from "../index";
 
+// when ts may complain
+
+// type User = {
+//   firstName?: string;
+//   email : string
+// };
+
+// user.firstName.toUpperCase();
+// TypeScript complains because firstName might be undefined.
+// user.firstName?.toUpperCase() or if (user.firstName) {  user.firstName.toUpperCase() }
+
+// So ? matters at compile time both when creating the object and when accessing the property. Runtime JavaScript itself doesn't enforce it.
+// const user: User = {   firstname : "raj" } TypeScript complains : Property 'email' is missing
+
+
+
 type User = {
   _id: string;
   firstName?: string;
@@ -15,15 +31,14 @@ export type Channel = {
   name: string;
 };
 
+//  dm
 export type Contact = {
   _id: string;
   lastMessageTime: string;
-
   email: string;
   firstName?: string;
   lastName?: string;
   image?: string;
-
   color?: number;
 };
 
@@ -33,13 +48,10 @@ type Message = {
   _id: string;
   content?: string;
   messageType: string;
-
   fileUrl?: string;
   channelId?: string;
-
   sender: UserRef;
   recipient?: UserRef;
-
   createdAt: string;
 };
 
@@ -70,26 +82,27 @@ export type ChatSlice = {
     selectedChatData: Contact | Channel | undefined,
   ) => void;
 
-  //
+  // api response to store all chat messages on mount
   selectedChatMessages: Message[];
   setSelectedChatMessages: (selectedChatMessages: Message[]) => void;
   
 
-  //
+  // all dm contact lists ==> api response
   directMessagesContacts: Contact[];
   setDirectMessagesContacts: (directMessagesContacts: Contact[]) => void;
 
-  // update ==>
+  // update dm contact list ==> after receiving msg from socket in socket
   addContactsInDMContacts: (message: Message) => void; // removes existing contact and adds it at front
+
+  // update new messages in existing messages
   addMessage: (message: Message) => void; // updates the existing messages array
   
-
   //
   channels: Channel[];
-  addChannel: (channel: Channel) => void;
-  setChannels: (channels: Channel[]) => void;
+  addChannel: (channel: Channel) => void; // locally add one new channel without making an API call.
+  setChannels: (channels: Channel[]) => void; // api response
 
-  // directly modifies the existing array
+  // the channel with the newest message moves to the top ==> socket
   addChannelInChannelList: (message: Message) => void;
   
   //
@@ -125,7 +138,7 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
   setSelectedChatMessages: (selectedChatMessages) =>
     set({ selectedChatMessages }),
 
-  // update message
+  // update message locally for both dm and channel , no need to make another api call to fetch message after sending
   addMessage: (message: Message) => {
 
     const selectedChatMessages = get().selectedChatMessages;
@@ -152,12 +165,21 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
                 ? message.recipient
                 : message.recipient?._id,
 
+          // recipient:
+          // selectedChatType === "channel"
+          //   ? null : message.recipient?._id
+
           sender:
             selectedChatType === "channel"
               ? message.sender
               : typeof message.sender === "string"
                 ? message.sender
                 : message.sender._id,
+
+            // sender:
+            // selectedChatType === "channel"
+            //   ? message.sender :  message.sender._id
+               
         },
 
       ],
@@ -210,16 +232,17 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
 
   //
   channels: [],
-  setChannels: (channels) => set({ channels }), // from api
+  setChannels: (channels) => set({ channels }), // from api response
 
-  // locally add one new channel without making an API call.
+  // locally add one new channel without making an API call after creating channel via model.
   addChannel: (channel) => {
     const channels = get().channels;
     set({ channels: [channel, ...channels] });
   },
 
-  // the channel with the newest message moves to the top.
+  // the channel with the newest message moves to the top ==> socket
   addChannelInChannelList: (message: Message) => {
+
     const channels = get().channels;
     const data = channels.find((channel) => channel._id === message.channelId);
     // find can return channel | undefined
@@ -232,8 +255,8 @@ export const createChatSlice: StateCreator<Store, [], [], ChatSlice> = (
       channels.unshift(data);
     }
   },
-  //
 
+  //
   closeChat: () =>
     set({
       selectedChatData: undefined,

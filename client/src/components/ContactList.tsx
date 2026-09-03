@@ -39,15 +39,19 @@ const ContactList = ({
   } = useAppStore();
 
   const handleClick = (contact: Contact | Channel) => {
-    console.log("selectedChatData ==> ",contact)
+
+    console.log("selectedChatData (receiver info) from Contactlist ==> ",contact)
+
     if (isChannel) setSelectedChatType("channel");
     else setSelectedChatType("contact");
+
     setSelectedChatData(contact);
 
     // So your condition is specifically useful when switching from an already-selected chat to another chat.
     if (selectedChatData && selectedChatData._id !== contact._id) {
       setSelectedChatMessages([]);
     }
+
   };
 
   return (

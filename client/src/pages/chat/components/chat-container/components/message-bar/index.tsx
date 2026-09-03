@@ -10,8 +10,11 @@ import { apiClient } from "@/lib/api-client";
 import { UPLOAD_FILE_ROUTE } from "@/utils/constants";
 
 const MessageBar = () => {
+
   const socket = useSocket();
+
   const emojiRef = useRef<HTMLDivElement | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const {
@@ -32,14 +35,14 @@ const MessageBar = () => {
   const handleSendMessage = async () => {
     // type SocketContextType = Socket | null ==> 'socket' is possibly 'null'.
     if (!message.trim()) return;
+
     if (
       selectedChatType === "contact" &&
       socket &&
       userInfo &&
       selectedChatData
     ) {
-      console.log(11, typeof userInfo.id, userInfo.id);
-      console.log(12, typeof selectedChatData._id, selectedChatData._id);
+    
       socket.emit("sendMessage", {
         sender: userInfo.id,
         content: message,
@@ -47,9 +50,9 @@ const MessageBar = () => {
         messageType: "text",
         fileUrl: undefined,
       });
+
     } else if (selectedChatType === "channel") {
-      console.log(13, typeof userInfo?.id);
-      console.log(14, typeof selectedChatData?._id);
+    
       socket?.emit("send-channel-message", {
         sender: userInfo?.id,
         content: message,
@@ -58,7 +61,9 @@ const MessageBar = () => {
         channelId: selectedChatData?._id,
       });
     }
+
     setMessage("");
+
   };
 
   const handleAddEmoji = (emojiData: EmojiClickData) => {
@@ -71,16 +76,17 @@ const MessageBar = () => {
     }
   };
 
-  const handleAttachmentChange = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleAttachmentChange = async ( event: React.ChangeEvent<HTMLInputElement> ) => {
+
     try {
       const file = event.target.files?.[0];
 
       if (file) {
         const formData = new FormData();
+        
         formData.append("file", file);
         setIsUploading(true);
+
         const res = await apiClient.post(UPLOAD_FILE_ROUTE, formData, {
           withCredentials: true,
           onUploadProgress: (data) => {
@@ -91,6 +97,7 @@ const MessageBar = () => {
             }
           },
         });
+
         if (res.status === 200 && res.data) {
           setIsUploading(false);
           if (selectedChatType === "contact") {

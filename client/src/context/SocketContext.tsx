@@ -94,7 +94,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
         const {
           selectedChatType,
-          selectedChatData,
+          selectedChatData, 
           addMessage,
           addContactsInDMContacts,
         } = useAppStore.getState();
@@ -105,7 +105,9 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
           selectedChatType !== undefined &&
           selectedChatData &&
           (selectedChatData._id === message.sender._id ||
-            selectedChatData._id === message.recipient?._id)
+            selectedChatData._id === message.recipient?._id
+          )
+          // In your server, the socket sends the DM to both : That's why the frontend checks both sender and recipient
         ) {
           addMessage(message); // 
         }
@@ -118,7 +120,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         console.log("handleReceiveChannelMsg ==>", message);
         const {
           selectedChatType,
-          selectedChatData,
+          selectedChatData, // receiver
           addMessage,
           addChannelInChannelList,
         } = useAppStore.getState();
